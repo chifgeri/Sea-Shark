@@ -1,29 +1,30 @@
 package game;
 
 import java.io.IOException;
-//Csapóajtót reprezentáló osztály.
+//Csapï¿½ajtï¿½t reprezentï¿½lï¿½ osztï¿½ly.
 public class Trapdoor extends Field{
-	//Azt jelzi, hogy nyilva van-e a csapóajtó.
+	//Azt jelzi, hogy nyilva van-e a csapï¿½ajtï¿½.
 	protected boolean open = false;
+	public Trapdoor(){ super();}
+	public Trapdoor(Pushable p){
+		super(p);
+	}
 	
-	//A csapóajtóra beállítunk itemet.
-	//Ha csukva van, akkor úgy viselkedik, mint egy egyszerû mezõ.
-	//Ha nyitva van, akkor pedig úgy, mint egy lyuk.
-	public void setItem(Pushable p) throws IOException {
+	//A csapï¿½ajtï¿½ra beï¿½llï¿½tunk itemet.
+	//Ha csukva van, akkor ï¿½gy viselkedik, mint egy egyszerï¿½ mezï¿½.
+	//Ha nyitva van, akkor pedig ï¿½gy, mint egy lyuk.
+	public void setItem(Pushable p) {
 		//System.out.println("--- Trapdoor setItem()");
-		//Megkérdezzük a felhasználótóla a csapóajtó állapotát.
+		//Megkï¿½rdezzï¿½k a felhasznï¿½lï¿½tï¿½la a csapï¿½ajtï¿½ ï¿½llapotï¿½t.
 		System.out.println("??? Nyitva van a trapdoor? {true, false}");
-		//Parancsbekérés.
-		Main.getcommand();
-		//Beállítjuk az új állapotot
-		if(Main.cmd[0].equals("true")) 
-			switch_(true);
-		if(Main.cmd[0].equals("false")) 
-			switch_(false);
-		//Beállítjuk az itemet, majd a specifikus viselkedést végrehajtjuk.
+		//Parancsbekï¿½rï¿½s.
+
+		//Beï¿½llï¿½tjuk az ï¿½j ï¿½llapotot
+
+		//Beï¿½llï¿½tjuk az itemet, majd a specifikus viselkedï¿½st vï¿½grehajtjuk.
 		item = p;
-		//Ha nyitva van, akkor az item leesik, majd eltávolítjuk a csapóajtóból.
-		//(Feltéve, ha az a item nem null).
+		//Ha nyitva van, akkor az item leesik, majd eltï¿½volï¿½tjuk a csapï¿½ajtï¿½bï¿½l.
+		//(Feltï¿½ve, ha az a item nem null).
 		if(open) {
 			if(item != null) {
 				item.Fall();
@@ -31,7 +32,7 @@ public class Trapdoor extends Field{
 			}
 		}
 	}
-	//A csapóajtó állapotát állítja be a megadott értékre.
+	//A csapï¿½ajtï¿½ ï¿½llapotï¿½t ï¿½llï¿½tja be a megadott ï¿½rtï¿½kre.
 	public void switch_(boolean b) {
 		open=b;
 	}

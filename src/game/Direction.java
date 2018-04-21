@@ -1,9 +1,9 @@
 package game;
-//Az irányokat reprezentáló enum.
-//A szkeletonban a mozgás irányának meghatározására használjuk.
+//Az irï¿½nyokat reprezentï¿½lï¿½ enum.
+//A szkeletonban a mozgï¿½s irï¿½nyï¿½nak meghatï¿½rozï¿½sï¿½ra hasznï¿½ljuk.
 public enum Direction {
 	LEFT,
-	RIGHT,
 	UP,
+	RIGHT,
 	DOWN
 }

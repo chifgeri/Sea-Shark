@@ -1,9 +1,15 @@
 package game;
-//Célmezõt reprezentáló osztály
+//Cï¿½lmezï¿½t reprezentï¿½lï¿½ osztï¿½ly
 public class Goal extends Field{
-	//Ha dobozt tolunk a célmezõre, aktiváljuk azt.
+
+	public Goal(){}
+
+	public Goal(Pushable p){
+		super(p);
+	}
+	//Ha dobozt tolunk a cï¿½lmezï¿½re, aktivï¿½ljuk azt.
 	public void activate() {
 		//System.out.println("--- Goal activate()");
-		System.out.println("@@@ A goal aktiválódott!");
+		System.out.println("@@@ A goal aktivï¿½lï¿½dott!");
 	}
 }

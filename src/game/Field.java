@@ -8,7 +8,13 @@ public class Field {
 	protected Pushable item;
 	//Az ir�nnyal indexelt szomsz�dok
 	protected HashMap<Direction, Field> neighbours = new HashMap<Direction, Field>();
-	
+
+	public Field(){}
+
+	public Field(Pushable p){
+	    item = p;
+    }
+
 	//Minden fieldnek van activate f�ggv�nye, a field nem csin�l semmit a f�ggv�ny megh�v�sakor.
 	public void activate() {
 		//System.out.println("--- Field activate()");
@@ -55,4 +61,8 @@ public class Field {
 	       return null;
 
 	}
+
+	public void setNeighboursAt(Direction d, Field f){
+	    neighbours.put(d, f);
+    }
 }
