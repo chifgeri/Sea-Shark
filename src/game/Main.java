@@ -15,6 +15,12 @@ public class Main {
 		READY_TO_MOVE,
 		MOVE
 	}
+
+	public  static  void  MainMenu(){}
+
+	public  static  void Game(){}
+
+	public  static  void GameMenu(){}
 	
 	//Itt találhatók azok a publikus statikus változók, amelyek a parancssor kezeléséhez szükségesek.
 	

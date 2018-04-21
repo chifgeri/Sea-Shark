@@ -1,14 +1,14 @@
 package game;
 
 import java.io.IOException;
-//A dobozokat reprezentáló osztály, ami a Pushable osztályból származik
+//A dobozokat reprezentï¿½lï¿½ osztï¿½ly, ami a Pushable osztï¿½lybï¿½l szï¿½rmazik
 public class Box extends Pushable {
-	//A dobozt eltoló függvény, hasonlóan mûködik, mint a munkást eltoló függvény, de 
-	//a doboz aktivál minden mezõt.
-	public boolean Push(Direction d) throws IOException {
+	//A dobozt eltolï¿½ fï¿½ggvï¿½ny, hasonlï¿½an mï¿½kï¿½dik, mint a munkï¿½st eltolï¿½ fï¿½ggvï¿½ny, de 
+	//a doboz aktivï¿½l minden mezï¿½t.
+	public boolean Push(Direction d) {
 		//System.out.println("--- Box Push()");
 		Main.DIST++;
-		System.out.println("@@@ Tolódni próbál a doboz!");
+		System.out.println("@@@ Tolï¿½dni prï¿½bï¿½l a doboz!");
 		
 		Field neighbor = actual.getNeighborAt(d);
 		Pushable neighbor_item = neighbor.getItem();
@@ -18,13 +18,13 @@ public class Box extends Pushable {
 			neighbor.setItem(this);
 			neighbor.activate();
 			actual.removeItem();
-			System.out.println("@@@ A doboz "+Main.DIR+" irányba tolódott!");
+			System.out.println("@@@ A doboz "+Main.DIR+" irï¿½nyba tolï¿½dott!");
 			return true; 
 		}
-		System.out.println("@@@ A doboz nem tud tolódni!");
+		System.out.println("@@@ A doboz nem tud tolï¿½dni!");
 		return false;
 	}
-	//Ha a doboz leesik, akkor hívódik meg ez a függvény.
+	//Ha a doboz leesik, akkor hï¿½vï¿½dik meg ez a fï¿½ggvï¿½ny.
 	public void Fall() {
 		//System.out.println("--- Box Fall()");
 		System.out.println("@@@ A doboz leesett!");

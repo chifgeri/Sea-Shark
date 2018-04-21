@@ -17,7 +17,7 @@ public class Worker extends Pushable {
 		score = s;
 	}
 	//A munkás mozgás függvénye a megadott irányba.
-	public boolean Move(Direction d) throws IOException {
+	public boolean Move(Direction d) {
 		//System.out.println("--- Worker Move()");
 		//A Main függvényben növeljük a távolság változó értékét, mivel a szomszédokat fogjuk vizsgálni.
 		Main.DIST++;
@@ -49,7 +49,7 @@ public class Worker extends Pushable {
 	}
 	//A tolódás jelentõ függvény, nagyon hasonlít a mozgásra.
 	//A munkás mindenképpen el tud tolódni, ha nincs hely, akkor összenyomódik.
-	public boolean Push(Direction d) throws IOException {
+	public boolean Push(Direction d) {
 		//System.out.println("--- Box Push()");
 		Main.DIST++;
 		System.out.println("@@@ Tolódni próbál a munkás!");
