@@ -1,8 +1,14 @@
 package game;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,12 +17,12 @@ import java.util.List;
 
 public class Map {
 
-	private List<Field> fields = new ArrayList();
+	
+	private List<Field> fields = new ArrayList<>();
 	private List<Worker> workers = new ArrayList<>();
-
     private List<Box> boxes = new ArrayList<>();
 
-
+    public static Worker actualPlayer;
 	private int actualWorkerNumber = 0;
 
 	private int sizeX;
@@ -69,7 +75,7 @@ public class Map {
                         p.setActual(f);
                         fields.add(f);
                         if(subcmd.size() == 2)
-                            f.changeFriction(Integer.parseInt(subcmd.get(1)));
+                            f.changeFritcion(Integer.parseInt(subcmd.get(1)));
                         break;
                     case 'W' :
                         fields.add(new Field(new Wall()));
@@ -82,7 +88,7 @@ public class Map {
                             switchMap.put(subcmd.get(1), s);
                             fields.add(s);
                             if(subcmd.size() == 3)
-                                s.changeFriction(Integer.parseInt(subcmd.get(2)));
+                                s.changeFritcion(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -94,7 +100,7 @@ public class Map {
                             trapdoorMap.put(subcmd.get(1), t);
                             fields.add(t);
                             if(subcmd.size() == 3)
-                                t.changeFriction(Integer.parseInt(subcmd.get(2)));
+                                t.changeFritcion(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -151,6 +157,7 @@ public class Map {
 
 	}
 
+
 	public boolean EndGame(){
 		return true;
 	}
@@ -164,6 +171,7 @@ public class Map {
 		    actualWorkerNumber++;
         else
             actualWorkerNumber = 0;
+		actualPlayer=workers.get(actualWorkerNumber);
 	}
 
 	public  void MoveWorker(Direction d){
@@ -193,8 +201,61 @@ public class Map {
 	       // w.setHoney(honey);
     }
 
+	
+	public void printWorkers(PrintStream ps) {
+		int i=1;
+		ps.println("Workers");
+		for (Worker w : workers) {
+			ps.print(i+". ");
+			int j=fields.indexOf(w.actual);
+			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
+			ps.print(w.score);
+			ps.print("\n");
+			i++;
+		}
+}
+
+public void printBoxes(PrintStream ps) {
+		int i=1;
+		ps.println("Boxes:");
+		for (Box b : boxes) {
+				ps.print(i+". ");
+			int j=fields.indexOf(b.actual);
+			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
+			//ps.print(b.weight);
+			ps.print("\n");
+			i++;
+		}
 	}
+	
+	
+public void printFields(PrintStream ps) {
+		int i=0;
+		ps.println("Fields:");
+		for (Field f : fields) {
+			ps.print((i+1)+". ");
+			ps.print("["+i/sizeX+","+i%sizeX+"]"+" ");
+			f.print(ps);
+			ps.print("\n");
+			i++;
+		}
+}
 
-
-
+public void save(String filename)  {
+		File file=new File(filename);
+		try {
+		if(!file.exists())
+			file.createNewFile();
+		
+			PrintStream ps=new PrintStream(file);
+			printWorkers(ps);
+			printBoxes(ps);
+			printFields(ps);
+			ps.close();
+		} catch (IOException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+}
+}
+}
 

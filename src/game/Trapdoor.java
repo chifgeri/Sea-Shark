@@ -1,6 +1,8 @@
 package game;
 
 import java.io.IOException;
+import java.io.PrintStream;
+
 //Csapóajtót reprezentáló osztály.
 public class Trapdoor extends Field{
 
@@ -16,13 +18,6 @@ public class Trapdoor extends Field{
     //Ha csukva van, akkor úgy viselkedik, mint egy egyszerű mező.
     //Ha nyitva van, akkor pedig úgy, mint egy lyuk.
     public void setItem(Pushable p){
-        //System.out.println("--- Trapdoor setItem()");
-        //Megkérdezzük a felhasználótóla a csapóajtó állapotát.
-        System.out.println("??? Nyitva van a trapdoor? {true, false}");
-        //Parancsbekérés.
-
-        //Beállítjuk az új állapotot
-
         //Beállítjuk az itemet, majd a specifikus viselkedést végrehajtjuk.
         item = p;
         //Ha nyitva van, akkor az item leesik, majd eltávolítjuk a csapóajtóból.
@@ -38,4 +33,16 @@ public class Trapdoor extends Field{
     public void switch_(boolean b) {
         open = b;
     }
+
+	//A kimeneti nyelvnek megfelelően kiírja az információkat a megadott streambe
+	public void print( PrintStream ps) {
+		ps.print("Trapdoor ");
+		if(item!=null)
+			item.printType(ps);
+			else
+			ps.print("empty ");
+		ps.print(friction+" ");
+		ps.print(open);
+	}
 }
+
