@@ -124,8 +124,6 @@ public class Main {
 //			map.printWorkers(System.out);
 
     }
-			
-
 }
 
 
