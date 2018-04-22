@@ -1,58 +1,62 @@
 package game;
 
 import java.io.IOException;
-//A munkást reprezentáló osztály.
+
+//A munkÃ¡st reprezentÃ¡lÃ³ osztÃ¡ly.
+
+import java.io.PrintStream;
+
 public class Worker extends Pushable {
-	//A munkás pontszáma.
+	//A munkÃ¡s pontszÃ¡ma.
 	protected int score = 0;
 	
-	//Lekérdezzük a munkás pontszámát.
+	//LekÃ©rdezzÃ¼k a munkÃ¡s pontszÃ¡mÃ¡t.
 	public int getScore() {
 		//System.out.println("--- Worker getScore()");
 		return score;
 	}
-	//Beállítjuk a munkás pontszámát.
+	//BeÃ¡llÃ­tjuk a munkÃ¡s pontszÃ¡mÃ¡t.
 	public void setScore(int s) {
 		System.out.println("--- Worker setScore()");
 		score = s;
 	}
-	//A munkás mozgás függvénye a megadott irányba.
+	//A munkÃ¡s mozgÃ¡s fÃ¼ggvÃ©nye a megadott irÃ¡nyba.
 	public boolean Move(Direction d) {
 		//System.out.println("--- Worker Move()");
-		//A Main függvényben növeljük a távolság változó értékét, mivel a szomszédokat fogjuk vizsgálni.
+		//A Main fÃ¼ggvÃ©nyben nÃ¶veljÃ¼k a tÃ¡volsÃ¡g vÃ¡ltozÃ³ Ã©rtÃ©kÃ©t, mivel a szomszÃ©dokat fogjuk vizsgÃ¡lni.
 		Main.DIST++;
-		//Információs üzenet.
-		System.out.println("@@@ Mozogni próbál a munkás!");
-		//Lekérdezzük a szomszédot.
+		//InformÃ¡ciÃ³s Ã¼zenet.
+		System.out.println("@@@ Mozogni prÃ³bÃ¡l a munkÃ¡s!");
+		//LekÃ©rdezzÃ¼k a szomszÃ©dot.
 		Field neighbor = actual.getNeighborAt(d);
-		//Lekérdezzük a szomszédon lévõ itemet.
+		//LekÃ©rdezzÃ¼k a szomszÃ©don lÃ©vÅ‘ itemet.
 		Pushable neighbor_item = neighbor.getItem();
-		//A szomszédon lévõ itemnek beállítjuk a szomszédot annak fieldjeként.
-		//(Persze a szomszédon van item, csak akkor.)
+		//A szomszÃ©don lÃ©vÅ‘ itemnek beÃ¡llÃ­tjuk a szomszÃ©dot annak fieldjekÃ©nt.
+		//(Persze a szomszÃ©don van item, csak akkor.)
 		if(neighbor_item != null)
 			neighbor_item.actual=neighbor;
-		//Ha a szomszédon lévõ item null, akkor true-val térünk vissza, mert el tud mozdulni oda az item.
-		//Ha a szomszédon lévõ itemet el tudjuk tolni, akkor is.
-		//Ekkor egy sor keletkezik, tehát az összes szomszédos itemet meg próbáljuk eltolni.
+		//Ha a szomszÃ©don lÃ©vÅ‘ item null, akkor true-val tÃ©rÃ¼nk vissza, mert el tud mozdulni oda az item.
+		//Ha a szomszÃ©don lÃ©vÅ‘ itemet el tudjuk tolni, akkor is.
+		//Ekkor egy sor keletkezik, tehÃ¡t az Ã¶sszes szomszÃ©dos itemet meg prÃ³bÃ¡ljuk eltolni.
 		if( neighbor_item==null || neighbor_item.Push(d) ) {
-			//Az eltolás során a szomszéd itemét beállítjuk a munkásra,
-			//Az aktuális fieldrõl pedig eltávolítjuk a munkást.
+			//Az eltolÃ¡s sorÃ¡n a szomszÃ©d itemÃ©t beÃ¡llÃ­tjuk a munkÃ¡sra,
+			//Az aktuÃ¡lis fieldrÅ‘l pedig eltÃ¡volÃ­tjuk a munkÃ¡st.
 			neighbor.setItem(this);
 			actual.removeItem();
-			//Információs üzenet.
-			System.out.println("@@@ A munkás "+Main.DIR+" irányba mozgott!");
+			//InformÃ¡ciÃ³s Ã¼zenet.
+			System.out.println("@@@ A munkÃ¡s "+Main.DIR+" irÃ¡nyba mozgott!");
 			return true; 
 		}
-		//Egyéb esetben a munkás nem tud mozogni, ezt tudatjuk a felhasználóval is.
-		System.out.println("@@@ A munkás nem tud mozogni!");
+		//EgyÃ©b esetben a munkÃ¡s nem tud mozogni, ezt tudatjuk a felhasznÃ¡lÃ³val is.
+		System.out.println("@@@ A munkÃ¡s nem tud mozogni!");
 		return false;
 	}
-	//A tolódás jelentõ függvény, nagyon hasonlít a mozgásra.
-	//A munkás mindenképpen el tud tolódni, ha nincs hely, akkor összenyomódik.
+	//A tolÃ³dÃ¡s jelentÅ‘ fÃ¼ggvÃ©ny, nagyon hasonlÃ­t a mozgÃ¡sra.
+	//A munkÃ¡s mindenkÃ©ppen el tud tolÃ³dni, ha nincs hely, akkor Ã¶sszenyomÃ³dik.
 	public boolean Push(Direction d) {
 		//System.out.println("--- Box Push()");
 		Main.DIST++;
-		System.out.println("@@@ Tolódni próbál a munkás!");
+		System.out.println("@@@ TolÃ³dni prÃ³bÃ¡l a munkÃ¡s!");
 		
 		Field neighbor = actual.getNeighborAt(d);
 		Pushable neighbor_item = neighbor.getItem();
@@ -61,22 +65,28 @@ public class Worker extends Pushable {
 		if( neighbor_item==null || neighbor_item.Push(d) ) {
 			neighbor.setItem(this);
 			actual.removeItem();
-			System.out.println("@@@ A munkás "+Main.DIR+" irányba tolódott!");
+			System.out.println("@@@ A munkÃ¡s "+Main.DIR+" irÃ¡nyba tolÃ³dott!");
 			return true; 
 		}
-		System.out.println("@@@ A munkás a falnak nyomódott!");
+		System.out.println("@@@ A munkÃ¡s a falnak nyomÃ³dott!");
 		Die();
 		return true;
 	}
-	//A munkás leesik, ekkor meg is hal.
+	//A munkÃ¡s leesik, ekkor meg is hal.
 	public void Fall() {
 		//System.out.println("--- Worker Fall()");
-		System.out.println("@@@ A munkás leesett!");
+		System.out.println("@@@ A munkÃ¡s leesett!");
 		Die();
 	}
-	//A munkás meghal.
+	//A munkÃ¡s meghal.
 	public void Die() {
 		//System.out.println("--- Worker Die()");
-		System.out.println("@@@ A munkás meghalt!");
+		System.out.println("@@@ A munkÃ¡s meghalt!");
+	}
+
+	@Override
+	public void printType(PrintStream ps) {
+		ps.print(" Worker ");		
 	}
 }
+
