@@ -1,14 +1,14 @@
 package game;
 
 import java.io.IOException;
-//Eltolható típusú itemeket összefoglaló absztrakt õsosztály.
-//Minden leszármazottjának implementálnia kell a függvényeit.
+//Eltolhatï¿½ tï¿½pusï¿½ itemeket ï¿½sszefoglalï¿½ absztrakt ï¿½sosztï¿½ly.
+//Minden leszï¿½rmazottjï¿½nak implementï¿½lnia kell a fï¿½ggvï¿½nyeit.
 public abstract class Pushable {
-	//Az a mezõ, amelyiken az item áll.
+	//Az a mezï¿½, amelyiken az item ï¿½ll.
 	protected Field actual = new Field();
 	
-	//Ezt a függvényt hívjuk meg, amikor az itemet eltoljuk.
-	public abstract boolean Push(Direction d) throws IOException;
-	//Ezt a függvént híjvuk meg, amikor az item leesik.
+	//Ezt a fï¿½ggvï¿½nyt hï¿½vjuk meg, amikor az itemet eltoljuk.
+	public abstract boolean Push(Direction d);
+	//Ezt a fï¿½ggvï¿½nt hï¿½jvuk meg, amikor az item leesik.
 	public abstract void Fall();
 }

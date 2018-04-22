@@ -2,68 +2,67 @@ package game;
 
 import java.io.IOException;
 import java.util.HashMap;
-//A mezõt reprezentáló osztály
+//A mezï¿½t reprezentï¿½lï¿½ osztï¿½ly
 public class Field {
-	//A mezõn lévõ tolható dolog
+	//A mezï¿½n lï¿½vï¿½ tolhatï¿½ dolog
 	protected Pushable item;
-	//Az iránnyal indexelt szomszédok
+	//Az irï¿½nnyal indexelt szomszï¿½dok
 	protected HashMap<Direction, Field> neighbours = new HashMap<Direction, Field>();
-	
-	//Minden fieldnek van activate függvénye, a field nem csinál semmit a függvény meghívásakor.
+
+	public Field(){}
+
+	public Field(Pushable p){
+	    item = p;
+    }
+
+	//Minden fieldnek van activate fï¿½ggvï¿½nye, a field nem csinï¿½l semmit a fï¿½ggvï¿½ny meghï¿½vï¿½sakor.
 	public void activate() {
 		//System.out.println("--- Field activate()");
-		System.out.println("@@@ A field aktiválódott (nem történik semmi)!");
+		System.out.println("@@@ A field aktivï¿½lï¿½dott (nem tï¿½rtï¿½nik semmi)!");
 	}
-	//Beállítja a fielden lévõ itemet.
-	public void setItem(Pushable p) throws IOException {
+	//Beï¿½llï¿½tja a fielden lï¿½vï¿½ itemet.
+	public void setItem(Pushable p)  {
 		//System.out.println("--- Field setItem()");
 		item = p;
 	}
-	//Lekéri a fielden lévõ itemet.
-	//A szkeletonban, mivel a futás során derül ki, hogy mi van a térképen,
-	//ezért itt jön létre a fielden lévõ item.
-	public Pushable getItem() throws IOException {
+	//Lekï¿½ri a fielden lï¿½vï¿½ itemet.
+	//A szkeletonban, mivel a futï¿½s sorï¿½n derï¿½l ki, hogy mi van a tï¿½rkï¿½pen,
+	//ezï¿½rt itt jï¿½n lï¿½tre a fielden lï¿½vï¿½ item.
+	public Pushable getItem()  {
 		//System.out.println("--- Field getItem()");
-		//Megkérdezzük a felhasználótól, hogy mi található a fielden.
-		System.out.println("??? Mi található a fielden "+Main.DIR+" irányban "+Main.DIST+
-				" távolságra a munkástól? {box, worker, wall, null}");
-		//Parancsbekérés
-		Main.getcommand();
-		//Attól függõen, hogy mit mond a felhasználó, beállítjuk az itemet.
-		//Valójában itt hozzuk létre.
-		switch(Main.cmd[0]) {
-			case "box":    item = new Box(); break;
-			case "worker": item = new Worker();  break;
-			case "wall":   item = new Wall(); break;
-			case "null":   item = null; break;
-			default:	   item = null;
-		}	
+		//Megkï¿½rdezzï¿½k a felhasznï¿½lï¿½tï¿½l, hogy mi talï¿½lhatï¿½ a fielden.
+		System.out.println("??? Mi talï¿½lhatï¿½ a fielden "+Main.DIR+" irï¿½nyban "+Main.DIST+
+				" tï¿½volsï¿½gra a munkï¿½stï¿½l? {box, worker, wall, null}");
+		//Parancsbekï¿½rï¿½s
+
+		//Attï¿½l fï¿½ggï¿½en, hogy mit mond a felhasznï¿½lï¿½, beï¿½llï¿½tjuk az itemet.
+		//Valï¿½jï¿½ban itt hozzuk lï¿½tre.
+
 		return item;
 	}
-	//Eltávolítjuk az itemet a fieldrõl.
+	//Eltï¿½volï¿½tjuk az itemet a fieldrï¿½l.
 	public void removeItem() {
 		//System.out.println("--- Field removeItem()");
 		item = null;
 	}
-	//Lekérdezzük az adott irányban a field szomszédját.
-	//A szkeletonban, mivel a futás során derül ki, hogy mi van a térképen,
-	//ezért itt jön létre a fielden szomszédja is.
-	public Field getNeighborAt(Direction d) throws IOException {
+	//Lekï¿½rdezzï¿½k az adott irï¿½nyban a field szomszï¿½djï¿½t.
+	//A szkeletonban, mivel a futï¿½s sorï¿½n derï¿½l ki, hogy mi van a tï¿½rkï¿½pen,
+	//ezï¿½rt itt jï¿½n lï¿½tre a fielden szomszï¿½dja is.
+	public Field getNeighborAt(Direction d)  {
 		//System.out.println("--- Field getNeighborAt()");
-		//Megkérdezzük a felhasználótól, hogy mi található a field szomszédságában.
-		System.out.println("??? Milyen field található "+Main.DIR+" irányban "+
-		Main.DIST+" távolságra a munkástól? {field, hole, switch, goal, trapdoor}");
-		//Parancsbekérés
-		Main.getcommand();
-		//Attól függõen, hogy mit mond a felhasználó, beállítjuk az szomszédot.
-		//Valójában itt hozzuk létre.
-		switch(Main.cmd[0]) {
-			case "field":    return new Field(); 
-			case "hole":     return new Hole();
-			case "switch":   return new Switch();
-			case "goal":     return new Goal();
-			case "trapdoor": return new Trapdoor();
-			default:         return null;
-		}
+		//Megkï¿½rdezzï¿½k a felhasznï¿½lï¿½tï¿½l, hogy mi talï¿½lhatï¿½ a field szomszï¿½dsï¿½gï¿½ban.
+		System.out.println("??? Milyen field talï¿½lhatï¿½ "+Main.DIR+" irï¿½nyban "+
+		Main.DIST+" tï¿½volsï¿½gra a munkï¿½stï¿½l? {field, hole, switch, goal, trapdoor}");
+		//Parancsbekï¿½rï¿½s
+
+		//Attï¿½l fï¿½ggï¿½en, hogy mit mond a felhasznï¿½lï¿½, beï¿½llï¿½tjuk az szomszï¿½dot.
+		//Valï¿½jï¿½ban itt hozzuk lï¿½tre.
+
+	       return null;
+
 	}
+
+	public void setNeighboursAt(Direction d, Field f){
+	    neighbours.put(d, f);
+    }
 }

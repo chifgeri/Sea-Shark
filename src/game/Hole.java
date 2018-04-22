@@ -1,11 +1,11 @@
 package game;
 
 import java.io.IOException;
-//Lyukat reprezentáló osztály
+//Lyukat reprezentï¿½lï¿½ osztï¿½ly
 public class Hole extends Field{
 	
-	//A lyukba beállítjuk az itemet, valójában a leesik, majd kitöröljük.
-	public void setItem(Pushable p) throws IOException {
+	//A lyukba beï¿½llï¿½tjuk az itemet, valï¿½jï¿½ban a leesik, majd kitï¿½rï¿½ljï¿½k.
+	public void setItem(Pushable p)  {
 		//System.out.println("--- Hole setItem()");
 		item = p;
 		if(item != null) {

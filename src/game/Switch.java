@@ -1,13 +1,24 @@
 package game;
-//Kapcsolót reprezentáló osztály.
+//Kapcsolï¿½t reprezentï¿½lï¿½ osztï¿½ly.
 public class Switch extends Field {
-	//Az itemet beállítjuk a kapcsolóra.
+
+	private  Trapdoor trapdoor;
+	public Switch(){}
+
+	public  Switch(Pushable p){
+		super(p);
+	}
+	//Az itemet beï¿½llï¿½tjuk a kapcsolï¿½ra.
 	public void setItem(Pushable p) {
 		//System.out.println("--- Switch setItem()");
 	}
-	//A doboz hívja meg, amikor rátoljuk. A hozzá tartozó csapóajtót nyitja ki.
+	//A doboz hï¿½vja meg, amikor rï¿½toljuk. A hozzï¿½ tartozï¿½ csapï¿½ajtï¿½t nyitja ki.
 	public void activate() {
 		//System.out.println("--- Switch activate()");
-		System.out.println("@@@ A switch aktiválódott!");
+		System.out.println("@@@ A switch aktivï¿½lï¿½dott!");
+	}
+
+	public void setTrapdoor(Trapdoor trapdoor) {
+		this.trapdoor = trapdoor;
 	}
 }
