@@ -79,4 +79,9 @@ public class Worker extends Pushable {
 		//System.out.println("--- Worker Die()");
 		System.out.println("@@@ A munkás meghalt!");
 	}
+
+	@Override
+	public void setActual(Field field) {
+		actual = field;
+	}
 }

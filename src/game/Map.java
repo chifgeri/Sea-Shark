@@ -66,22 +66,31 @@ public class Map {
                 String[] subcmd = pushableCmd(parm);
                 switch(parm.charAt(0)){
                     case 'F' :
-                        fields.add(new Field(createPushable(subcmd[0])));
+                        p = createPushable(subcmd[0]);
+                        Field f = new Field(p);
+                        p.setActual(f);
+                        fields.add(f);
                         break;
                     case 'W' :
                         fields.add(new Field(new Wall()));
                         break;
                     case 'S' :
                         if(subcmd.length == 2) {
-                            Switch s = new Switch(createPushable(subcmd[0]));
+                            p = createPushable(subcmd[0]);
+                            Switch s = new Switch(p);
+                            p.setActual(s);
                             switchMap.put(subcmd[1], s);
+                            fields.add(s);
                         }
                         else throw new IllegalArgumentException();
                         break;
                     case 'T' :
                         if(subcmd.length == 2) {
-                            Trapdoor t = new Trapdoor(createPushable(subcmd[0]));
+                            p = createPushable(subcmd[0]);
+                            Trapdoor t = new Trapdoor(p);
+                            p.setActual(t);
                             trapdoorMap.put(subcmd[1], t);
+                            fields.add(t);
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -89,7 +98,10 @@ public class Map {
                         fields.add(new Hole());
                         break;
                     case 'G' :
-                        fields.add(new Goal(createPushable(subcmd[0])));
+                        p = createPushable(subcmd[0]);
+                        Goal g = new Goal(p);
+                        p.setActual(g);
+                        fields.add(g);
                         break;
                     default:
                         System.out.println("Wrong file");

@@ -29,4 +29,9 @@ public class Box extends Pushable {
 		//System.out.println("--- Box Fall()");
 		System.out.println("@@@ A doboz leesett!");
 	}
+
+	@Override
+	public void setActual(Field field) {
+		actual = field;
+	}
 }
