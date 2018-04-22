@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Map {
 	
-	private List<Field> fields = new ArrayList();
+	private List<Field> fields = new ArrayList<>();
 	private List<Worker> workers = new ArrayList<>();
     private List<Box> boxes = new ArrayList<>();
 
@@ -192,6 +192,7 @@ public void printBoxes(PrintStream ps) {
 				ps.print(i+". ");
 			int j=fields.indexOf(b.actual);
 			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
+			//ps.print(b.weight);
 			ps.print("\n");
 			i++;
 		}
@@ -220,7 +221,7 @@ public void save(String filename)  {
 			printWorkers(ps);
 			printBoxes(ps);
 			printFields(ps);
-			
+			ps.close();
 		} catch (IOException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
