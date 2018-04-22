@@ -95,16 +95,9 @@ public class Main {
 //				state = State.READY_TO_MOVE;
 //				}
 //		}
-			Map m=new Map();
-			Field b=new Field();
-			b.setItem(new Box());
-			m.addField(b);
-			m.addField(new Field());
-			m.addField(new Goal());
-			m.addWorker(new Worker());
 			
-			SerializeClass s = new SerializeClass();
-			s.printFields(m, System.out);
+		
+			map.printFields(System.out);
 		}
 	
 }

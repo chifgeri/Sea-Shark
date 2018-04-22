@@ -1,21 +1,23 @@
 package game;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//A t�rk�pet reprezent�l� oszt�ly.
-//A szkeletonban nem haszn�ljuk, mivel a fut�s sor�n k�rj�k be a felhaszn�l�t�l
-//a t�rk�pen tal�lhat� fieldeket �s itemeket.
-public class Map {
-	//A t�rk�pen tal�lhat� mez�k list�ja.
-	private List<Field> fields = new ArrayList();
-	//A t�rk�pen tal�lhat� munk�sok list�ja.
-	private List<Worker> workers = new ArrayList<>();
 
+public class Map {
+	
+	private List<Field> fields = new ArrayList();
+	private List<Worker> workers = new ArrayList<>();
     private List<Box> boxes = new ArrayList<>();
 
 
@@ -135,6 +137,7 @@ public class Map {
 
 	}
 
+
 	public boolean EndGame(){
 		return true;
 	}
@@ -155,8 +158,52 @@ public class Map {
 			    workers.get(actualWorkerNumber).Move(d);
 		}
 
+	
+	public void printWorkers(PrintStream ps) {
+		int i=1;
+		for (Worker w : workers) {
+			ps.print(i+". ");
+			//mez�
+			ps.print(w.score);
+			i++;
+		}
+}
+
+public void printBoxes(PrintStream ps) {
+		int i=1;
+		for (Box b : boxes) {
+		ps.print(i+". ");
+		//mező
+		}
 	}
+	
+	
+public void printFields(PrintStream ps) {
+		int i=0;
+		for (Field f : fields) {
+			ps.print((i+1)+". ");
+//			ps.print(x/i+" "+i%x);
+			f.print(ps);
+			ps.print("\n");
+			i++;
+		}
+}
 
-
-
+public void save(String filename)  {
+		File file=new File(filename);
+		try {
+		if(!file.exists())
+			file.createNewFile();
+		
+			PrintStream ps=new PrintStream(file);
+			printWorkers(ps);
+			printBoxes(ps);
+			printFields(ps);
+			
+		} catch (IOException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+}
+}
+}
 
