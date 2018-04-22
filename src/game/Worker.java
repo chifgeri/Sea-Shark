@@ -16,9 +16,8 @@ public class Worker extends Pushable {
 		return score;
 	}
 	//Beállítjuk a munkás pontszámát.
-	public void setScore(int s) {
-		System.out.println("--- Worker setScore()");
-		score = s;
+	public void addScore(int s) {
+		score += s;
 	}
 	//A munkás mozgás függvénye a megadott irányba.
 	public boolean Move(Direction d) {

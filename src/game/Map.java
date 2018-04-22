@@ -20,7 +20,7 @@ public class Map {
 	private List<Worker> workers = new ArrayList<>();
     private List<Box> boxes = new ArrayList<>();
 
-
+    public static Worker actualPlayer;
 	private int actualWorkerNumber = 0;
 
 	private int sizeX;
@@ -163,6 +163,7 @@ public class Map {
 		    actualWorkerNumber++;
         else
             actualWorkerNumber = 0;
+		actualPlayer=workers.get(actualWorkerNumber);
 	}
 
 	public  void MoveWorker(Direction d){
@@ -173,30 +174,36 @@ public class Map {
 	
 	public void printWorkers(PrintStream ps) {
 		int i=1;
+		ps.println("Workers");
 		for (Worker w : workers) {
 			ps.print(i+". ");
 			int j=fields.indexOf(w.actual);
-			ps.print(j/sizeX+" "+j%sizeX+" ");
+			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
 			ps.print(w.score);
+			ps.print("\n");
 			i++;
 		}
 }
 
 public void printBoxes(PrintStream ps) {
 		int i=1;
+		ps.println("Boxes:");
 		for (Box b : boxes) {
 				ps.print(i+". ");
 			int j=fields.indexOf(b.actual);
-			ps.print(j/sizeX+" "+j%sizeX+" ");
+			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
+			ps.print("\n");
+			i++;
 		}
 	}
 	
 	
 public void printFields(PrintStream ps) {
 		int i=0;
+		ps.println("Fields:");
 		for (Field f : fields) {
 			ps.print((i+1)+". ");
-			ps.print(i/sizeX+" "+i%sizeX+" ");
+			ps.print("["+i/sizeX+","+i%sizeX+"]"+" ");
 			f.print(ps);
 			ps.print("\n");
 			i++;
