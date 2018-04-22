@@ -70,9 +70,9 @@ public class Field {
 	public void print( PrintStream ps) {
 		ps.print("Field ");
 		if(item!=null)
-		item.printType(ps);
+			item.printType(ps);
 		else
-		ps.print("empty ");
+			ps.print("empty ");
 		ps.print(friction);
 	}
 }
