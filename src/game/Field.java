@@ -2,67 +2,66 @@ package game;
 
 import java.io.IOException;
 import java.util.HashMap;
-//A mez�t reprezent�l� oszt�ly
+//A mezőt reprezentáló osztály
 public class Field {
-	//A mez�n l�v� tolhat� dolog
-	protected Pushable item;
-	//Az ir�nnyal indexelt szomsz�dok
-	protected HashMap<Direction, Field> neighbours = new HashMap<Direction, Field>();
 
-	public Field(){}
+    //A mezőn lévő tolható dolog
+    protected Pushable item;
+    //Az iránnyal indexelt szomszédok
+    protected HashMap<Direction, Field> neighbours = new HashMap<Direction, Field>();
 
-	public Field(Pushable p){
-	    item = p;
+    public Field(){};
+    public Field(Pushable p){
+        item = p;
     }
 
-	//Minden fieldnek van activate f�ggv�nye, a field nem csin�l semmit a f�ggv�ny megh�v�sakor.
-	public void activate() {
-		//System.out.println("--- Field activate()");
-		System.out.println("@@@ A field aktiv�l�dott (nem t�rt�nik semmi)!");
-	}
-	//Be�ll�tja a fielden l�v� itemet.
-	public void setItem(Pushable p)  {
-		//System.out.println("--- Field setItem()");
-		item = p;
-	}
-	//Lek�ri a fielden l�v� itemet.
-	//A szkeletonban, mivel a fut�s sor�n der�l ki, hogy mi van a t�rk�pen,
-	//ez�rt itt j�n l�tre a fielden l�v� item.
-	public Pushable getItem()  {
-		//System.out.println("--- Field getItem()");
-		//Megk�rdezz�k a felhaszn�l�t�l, hogy mi tal�lhat� a fielden.
-		System.out.println("??? Mi tal�lhat� a fielden "+Main.DIR+" ir�nyban "+Main.DIST+
-				" t�vols�gra a munk�st�l? {box, worker, wall, null}");
-		//Parancsbek�r�s
 
-		//Att�l f�gg�en, hogy mit mond a felhaszn�l�, be�ll�tjuk az itemet.
-		//Val�j�ban itt hozzuk l�tre.
+    //Minden fieldnek van activate függvénye, a field nem csinál semmit a függvény meghívásakor.
+    public void activate() {
+        //System.out.println("--- Field activate()");
+        System.out.println("@@@ A field aktiválódott (nem történik semmi)!");
+    }
+    //Beállítja a fielden lévő itemet.
+    public void setItem(Pushable p) {
+        //System.out.println("--- Field setItem()");
+        item = p;
+    }
+    //Lekéri a fielden lévő itemet.
+    //A szkeletonban, mivel a futás során derül ki, hogy mi van a térképen,
+    //ezért itt jön létre a fielden lévő item.
+    public Pushable getItem()  {
+        //System.out.println("--- Field getItem()");
+        //Megkérdezzük a felhasználótól, hogy mi található a fielden.
+        System.out.println("??? Mi található a fielden "+Main.DIR+" irányban "+Main.DIST+
+                " távolságra a munkástól? {box, worker, wall, null}");
+        //Parancsbekérés
 
-		return item;
-	}
-	//Elt�vol�tjuk az itemet a fieldr�l.
-	public void removeItem() {
-		//System.out.println("--- Field removeItem()");
-		item = null;
-	}
-	//Lek�rdezz�k az adott ir�nyban a field szomsz�dj�t.
-	//A szkeletonban, mivel a fut�s sor�n der�l ki, hogy mi van a t�rk�pen,
-	//ez�rt itt j�n l�tre a fielden szomsz�dja is.
-	public Field getNeighborAt(Direction d)  {
-		//System.out.println("--- Field getNeighborAt()");
-		//Megk�rdezz�k a felhaszn�l�t�l, hogy mi tal�lhat� a field szomsz�ds�g�ban.
-		System.out.println("??? Milyen field tal�lhat� "+Main.DIR+" ir�nyban "+
-		Main.DIST+" t�vols�gra a munk�st�l? {field, hole, switch, goal, trapdoor}");
-		//Parancsbek�r�s
+        //Attól függően, hogy mit mond a felhasználó, beállítjuk az itemet.
+        //Valójában itt hozzuk létre.
 
-		//Att�l f�gg�en, hogy mit mond a felhaszn�l�, be�ll�tjuk az szomsz�dot.
-		//Val�j�ban itt hozzuk l�tre.
+        return item;
+    }
+    //Eltávolítjuk az itemet a fieldről.
+    public void removeItem() {
+        //System.out.println("--- Field removeItem()");
+        item = null;
+    }
+    //Lekérdezzük az adott irányban a field szomszédját.
+    //A szkeletonban, mivel a futás során derül ki, hogy mi van a térképen,
+    //ezért itt jön létre a fielden szomszédja is.
+    public Field getNeighborAt(Direction d)  {
+        //System.out.println("--- Field getNeighborAt()");
+        //Megkérdezzük a felhasználótól, hogy mi található a field szomszédságában.
+        System.out.println("??? Milyen field található "+Main.DIR+" irányban "+
+                Main.DIST+" távolságra a munkástól? {field, hole, switch, goal, trapdoor}");
+        //Parancsbekérés
 
-	       return null;
+        //Attól függően, hogy mit mond a felhasználó, beállítjuk az szomszédot.
+        //Valójában itt hozzuk létre.
+      return null;
+        }
 
-	}
-
-	public void setNeighboursAt(Direction d, Field f){
-	    neighbours.put(d, f);
+    public void setNeighboursAt(Direction d, Field f) {
+        neighbours.put(d, f);
     }
 }
