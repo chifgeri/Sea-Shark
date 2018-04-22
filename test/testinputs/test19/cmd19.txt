@@ -1,0 +1,3 @@
+Load test19.txt
+Start
+Map

@@ -54,11 +54,25 @@ public class Tester {
 	public static void main(String args[]) throws IOException {
 
 		//TESZT 1
+		//Create the environment
 		presetTest(1);
-		printAttribute(map);
-		System.out.println("\n");
-		printAttribute(command);
-		System.out.println("\n");
-		printAttribute(output);
+		//Process and execute commands...
+		//TODO
+		//Save the output to a file
+		//TODO
+		//Compare saved file to reference file
+		//TODO
+		
+		//TESZT 2
+		//Create the environment
+		presetTest(2);
+		//Process and execute commands...
+		//TODO
+		//Save the output to a file
+		//TODO
+		//Compare saved file to reference file
+		//TODO
+		
+		//...
 	}
 }

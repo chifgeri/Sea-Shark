@@ -1,0 +1,4 @@
+Load test18.txt
+Start
+Right
+listMap

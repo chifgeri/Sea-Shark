@@ -1,0 +1,7 @@
+Load test14.txt
+Strength 2000
+Start
+Right
+Right
+Right
+listMap
