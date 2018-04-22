@@ -161,6 +161,11 @@ public class Map {
             else throw new  IllegalArgumentException();
         }
 
+        for(java.util.Map.Entry<String, Switch> entry : switchMap.entrySet()){
+            for(Box b: boxes)
+                if(b.actual == entry.getValue())
+                    entry.getValue().activate();
+        }
 
 	}
 

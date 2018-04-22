@@ -86,7 +86,7 @@ public class Worker extends Pushable {
 			}
 			//A munkás meghal.
 			public void Die() {
-				Map.workers.remove(actual);
+				Map.workers.remove(this);
 				actual.removeItem();
 
 			}
