@@ -1,6 +1,6 @@
 # Sea-Shark
 
-- git pull origin <link>
+- git clone <-link->
 - git checkout -b <új branch neve>
 - git checkout "branch neve" 
 - git push orogin "branch name"
