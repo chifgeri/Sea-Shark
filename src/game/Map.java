@@ -172,11 +172,18 @@ public class Map {
 	public boolean EndGame(){
 	    if(workers.size() == 1)
 	        return true;
+	    if(boxes.size() == 0)
+	        return true;
+        boolean end = true;
+        for (Box b : boxes)
+	        if(!b.isScored())
+	            end = false;
+        return end;
 //	    for(Box b : boxes)
 //            if (b.movable())
 //                return true;
-//        return false;
-    return false;
+
+
 	}
 
 	public Worker TopScorePlayer(){

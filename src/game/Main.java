@@ -143,7 +143,8 @@ public class Main {
     private static List<String> getcommand() throws IOException {
         String command = "";
         command = reader.readLine();
-        cmd = Arrays.asList(command.split(" "));
+        if(command != "")
+            cmd = Arrays.asList(command.split(" "));
         return cmd;
     }
 

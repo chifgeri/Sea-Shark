@@ -53,4 +53,8 @@ public class Box extends Pushable {
 	public void printType(PrintStream ps) {
 		ps.print("Box ");		
 	}
+
+	public boolean isScored() {
+		return scored;
+	}
 }
