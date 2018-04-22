@@ -4,16 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-//A térképet reprezentáló osztály.
-//A szkeletonban nem használjuk, mivel a futás során kérjük be a felhasználótól
-//a térképen található fieldeket és itemeket.
+
 public class Map {
-	//A térképen található mezõk listája.
+
 	private List<Field> fields = new ArrayList();
-	//A térképen található munkások listája.
 	private List<Worker> workers = new ArrayList<>();
 
     private List<Box> boxes = new ArrayList<>();
@@ -63,34 +61,40 @@ public class Map {
             cmd = line.split(" ");
             for(String parm : cmd){
                 Pushable p;
-                String[] subcmd = pushableCmd(parm);
+                List<String> subcmd =  Arrays.asList(pushableCmd(parm));
                 switch(parm.charAt(0)){
                     case 'F' :
-                        p = createPushable(subcmd[0]);
+                        p = createPushable(subcmd.get(0));
                         Field f = new Field(p);
                         p.setActual(f);
                         fields.add(f);
+                        if(subcmd.size() == 2)
+                            f.changeFriction(Integer.parseInt(subcmd.get(1)));
                         break;
                     case 'W' :
                         fields.add(new Field(new Wall()));
                         break;
                     case 'S' :
-                        if(subcmd.length == 2) {
-                            p = createPushable(subcmd[0]);
+                        if(subcmd.size() == 2) {
+                            p = createPushable(subcmd.get(0));
                             Switch s = new Switch(p);
                             p.setActual(s);
-                            switchMap.put(subcmd[1], s);
+                            switchMap.put(subcmd.get(1), s);
                             fields.add(s);
+                            if(subcmd.size() == 3)
+                                s.changeFriction(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
                     case 'T' :
-                        if(subcmd.length == 2) {
-                            p = createPushable(subcmd[0]);
+                        if(subcmd.size() == 2) {
+                            p = createPushable(subcmd.get(0));
                             Trapdoor t = new Trapdoor(p);
                             p.setActual(t);
-                            trapdoorMap.put(subcmd[1], t);
+                            trapdoorMap.put(subcmd.get(1), t);
                             fields.add(t);
+                            if(subcmd.size() == 3)
+                                t.changeFriction(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -98,7 +102,7 @@ public class Map {
                         fields.add(new Hole());
                         break;
                     case 'G' :
-                        p = createPushable(subcmd[0]);
+                        p = createPushable(subcmd.get(0));
                         Goal g = new Goal(p);
                         p.setActual(g);
                         fields.add(g);
@@ -166,6 +170,28 @@ public class Map {
 	        if(workers.size() > 0)
 			    workers.get(actualWorkerNumber).Move(d);
 		}
+    public void setWeight(int weight){
+	    for(Worker w: workers);
+	        //w.setWeight(weight);
+
+	    for(Box b: boxes);
+	        //b.setWeight(weight);
+    }
+
+    public  void setStrange(int strange){
+	    for(Worker w: workers);
+	        //w.setStrange(strange);
+    }
+
+    public  void setOil(int oil){
+	    for(Worker w: workers);
+	        //w.setOil(oil);
+    }
+
+    public  void setHoney(int honey){
+	    for(Worker w: workers);
+	       // w.setHoney(honey);
+    }
 
 	}
 

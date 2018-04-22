@@ -4,19 +4,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-//A program Main osztálya.
-//Itt található az az állapotgép-szerû logika, amely meghatározza a program mûködési folyamatát.
+//A program Main osztï¿½lya.
+//Itt talï¿½lhatï¿½ az az ï¿½llapotgï¿½p-szerï¿½ logika, amely meghatï¿½rozza a program mï¿½kï¿½dï¿½si folyamatï¿½t.
 public class Main {
 
 
-    //Input streamek a parancssorból való sorok beolvasásához.
+    //Input streamek a parancssorbï¿½l valï¿½ sorok beolvasï¿½sï¿½hoz.
     private static InputStreamReader isr = new InputStreamReader(System.in);
     private static BufferedReader reader = new BufferedReader(isr);
     private static Map map = new Map();
 
-	//Egy kétállapotú enum:
-	// - mozgásra készen áll a játékos
-	// - mozgás közben van a játékos
+	//Egy kï¿½tï¿½llapotï¿½ enum:
+	// - mozgï¿½sra kï¿½szen ï¿½ll a jï¿½tï¿½kos
+	// - mozgï¿½s kï¿½zben van a jï¿½tï¿½kos
 	public enum State {
 		READY_TO_MOVE,
 		MOVE
@@ -28,96 +28,105 @@ public class Main {
 
 	public  static  void GameMenu(){}
 	
-	//Itt találhatók azok a publikus statikus változók, amelyek a parancssor kezeléséhez szükségesek.
+	//Itt talï¿½lhatï¿½k azok a publikus statikus vï¿½ltozï¿½k, amelyek a parancssor kezelï¿½sï¿½hez szï¿½ksï¿½gesek.
 	
 
 	
-	//Irány és távolság. A felhasználónak szánt információ, hogy legyen elképzelése a mozgásról.
-	//Megtudhatja, hogy merre mozog a munkás, illetve, hogy milyen irányba.
+	//Irï¿½ny ï¿½s tï¿½volsï¿½g. A felhasznï¿½lï¿½nak szï¿½nt informï¿½ciï¿½, hogy legyen elkï¿½pzelï¿½se a mozgï¿½srï¿½l.
+	//Megtudhatja, hogy merre mozog a munkï¿½s, illetve, hogy milyen irï¿½nyba.
 	public static Direction DIR = null;
 	public static int DIST = 0;
 	
-	//Az éppen feldolgozott utasítást mentjük el mindig ebbe a változóba.
+	//Az ï¿½ppen feldolgozott utasï¿½tï¿½st mentjï¿½k el mindig ebbe a vï¿½ltozï¿½ba.
 	public static String command = "";
-	//Ebben a string tömbben szóközök mentén feldarabolva találhatjuk meg a kiadott parancsot.
+	//Ebben a string tï¿½mbben szï¿½kï¿½zï¿½k mentï¿½n feldarabolva talï¿½lhatjuk meg a kiadott parancsot.
 	private static String[] cmd = null;
 	
-	//A munkás, akit a szkeleton során irányítunk.
+	//A munkï¿½s, akit a szkeleton sorï¿½n irï¿½nyï¿½tunk.
 	public static Worker worker = new Worker();
 	
-	//Ezt a függvényt használjuk az összes osztályban, ahol a parancssorból utasítást kérünk be.
+	//Ezt a fï¿½ggvï¿½nyt hasznï¿½ljuk az ï¿½sszes osztï¿½lyban, ahol a parancssorbï¿½l utasï¿½tï¿½st kï¿½rï¿½nk be.
 	public static String[] getcommand() throws IOException {
 		command = reader.readLine();
 		cmd = command.split(" ");
 		return cmd;
 	}
-	//A Main osztály main függvénye, az IOException a beolvasás miatt kell.
+	//A Main osztï¿½ly main fï¿½ggvï¿½nye, az IOException a beolvasï¿½s miatt kell.
 	public static void main(String[] args) throws IOException {
 
 
-		
-		//Boolean érték, azt jelzi, hogy fut-e a programunk, alapértelmezetten igen.
-		boolean running = true;
 
-		//A játék elején írjuk ki, tájékoztatjuk a felhasználót.
-		System.out.println("@@@ A játék elkezdõdött!");
+        //Boolean ï¿½rtï¿½k, azt jelzi, hogy fut-e a programunk, alapï¿½rtelmezetten igen.
+        boolean running = true;
 
-		//Egy ciklus, addig fut, amíg  a játék befejezõdik.
-		while(running) {
-		    String[] cmd = getcommand();
-            switch (cmd[0]){
-                case "Load" :
+        //A jï¿½tï¿½k elejï¿½n ï¿½rjuk ki, tï¿½jï¿½koztatjuk a felhasznï¿½lï¿½t.
+        System.out.println("@@@ A jatek elkezdodott!");
+
+        //Egy ciklus, addig fut, amï¿½g  a jï¿½tï¿½k befejezï¿½dik.
+        while (running) {
+            String[] cmd = getcommand();
+            switch (cmd[0]) {
+                case "Load":
                     map.CreatedMap(cmd[1]);
-                    System.out.println("@@@ A játék betoltve!");
+                    System.out.println("@@@ A jï¿½tï¿½k betoltve!");
                     break;
-                case "Start" :
+                case "Start":
                     Game();
                     break;
-                case "Exit" :
+                case "Exit":
                     running = false;
                     break;
-                case "Strength" :
+                case "Strength":
+                    if( cmd.length == 2)
+                        map.setStrange(Integer.parseInt(cmd[1]));
                     break;
-                case "Wight" :
+                case "Wight":
+                    if( cmd.length == 2)
+                     map.setWeight(Integer.parseInt(cmd[1]));
                     break;
-                case "Honey" :
+                case "Honey":
+                    if( cmd.length == 2)
+                        map.setHoney(Integer.parseInt(cmd[1]));
                     break;
-                case "Oil" :
+                case "Oil":
+                    if( cmd.length == 2)
+                        map.setOil(Integer.parseInt(cmd[1]));
                     break;
                 default:
                     System.out.println("@@@ Ervenytelen parancs");
             }
-        }
-//			//A munkás ekkor mozoghat vagy kiléphet
+//        }
+//			//A munkï¿½s ekkor mozoghat vagy kilï¿½phet
 //			if(state == State.READY_TO_MOVE) {
-//				//A vizsgált távolság kezdetben 0, tehát a worker mezõjén állunk a vizsgálattal
+//				//A vizsgï¿½lt tï¿½volsï¿½g kezdetben 0, tehï¿½t a worker mezï¿½jï¿½n ï¿½llunk a vizsgï¿½lattal
 //				DIST = 0;
-//				//Információs üzenetek
-//				System.out.println("@@@ Mozoghatsz, befejezheted a játékot, vagy kiléphetsz.");
-//				System.out.println("@@@ Segítség: move [direction] {right, left, up, down}, exit, end.");
-//				//Parancsbekérés
+//				//Informï¿½ciï¿½s ï¿½zenetek
+//				System.out.println("@@@ Mozoghatsz, befejezheted a jï¿½tï¿½kot, vagy kilï¿½phetsz.");
+//				System.out.println("@@@ Segï¿½tsï¿½g: move [direction] {right, left, up, down}, exit, end.");
+//				//Parancsbekï¿½rï¿½s
 //				getcommand();
-//				//move parancs esetén a megadott irányba mozgunk
-//				//Az irányt úgy kapjuk, hogy a parancs második szavát nagybetûsítjük, majd enum
-//				//típusúvá konvertáljuk a valueOf() függvénnyel.
+//				//move parancs esetï¿½n a megadott irï¿½nyba mozgunk
+//				//Az irï¿½nyt ï¿½gy kapjuk, hogy a parancs mï¿½sodik szavï¿½t nagybetï¿½sï¿½tjï¿½k, majd enum
+//				//tï¿½pusï¿½vï¿½ konvertï¿½ljuk a valueOf() fï¿½ggvï¿½nnyel.
 //				if(cmd[0].equals("move")) {
 //					DIR = Direction.valueOf(cmd[1].toUpperCase());
 //					state = State.MOVE;
 //				}
-//				//exit vagy end esetén kilépünk ciklusból
+//				//exit vagy end esetï¿½n kilï¿½pï¿½nk ciklusbï¿½l
 //				else if(cmd[0].equals("exit") || cmd[0].equals("end") ) {
-//					System.out.println("@@@ A játék véget ért. Köszönöm, hogy kirpóbáltad a szkeletont!");
+//					System.out.println("@@@ A jï¿½tï¿½k vï¿½get ï¿½rt. Kï¿½szï¿½nï¿½m, hogy kirpï¿½bï¿½ltad a szkeletont!");
 //					running = false;
 //				}
 //			}
-//			//Ha mozgás közben vagyunk, akkor ez a feltételes ág fut le.
-//			//A mozgás parancs kiadása után kerülünk ide.
-//			//A munkást mozgatjuk a megadott irányba.
-//			//A mozgás lefutása után ismét készen állunk az új mozgásra.
+//			//Ha mozgï¿½s kï¿½zben vagyunk, akkor ez a feltï¿½teles ï¿½g fut le.
+//			//A mozgï¿½s parancs kiadï¿½sa utï¿½n kerï¿½lï¿½nk ide.
+//			//A munkï¿½st mozgatjuk a megadott irï¿½nyba.
+//			//A mozgï¿½s lefutï¿½sa utï¿½n ismï¿½t kï¿½szen ï¿½llunk az ï¿½j mozgï¿½sra.
 //			else if(state == State.MOVE) {
 //				worker.Move(DIR);
 //				state = State.READY_TO_MOVE;
 //				}
 //		}
-	}
+        }
+    }
 }

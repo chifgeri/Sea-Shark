@@ -1,14 +1,19 @@
 package game;
-//Falat reprezentáló osztály, nem lehet eltolni.
+//Falat reprezentï¿½lï¿½ osztï¿½ly, nem lehet eltolni.
 public class Wall extends Pushable {
-	//A falat nem tudjuk eltolni, ezért mindig false-al tér vissza.
+	//A falat nem tudjuk eltolni, ezï¿½rt mindig false-al tï¿½r vissza.
 	public boolean Push(Direction d) {
 		//System.out.println("--- Wall Push()");
 		System.out.println("@@@ A falakat nem lehet eltolni!");
 		return false;
 	}
-	//A fal leesik. Ilyen alapesetben nem történik meg.
+	//A fal leesik. Ilyen alapesetben nem tï¿½rtï¿½nik meg.
 	public void Fall() {
 		//System.out.println("--- Wall Push()");
+	}
+
+	@Override
+	public void setActual(Field field) {
+
 	}
 }
