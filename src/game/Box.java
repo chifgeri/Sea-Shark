@@ -11,7 +11,7 @@ public class Box extends Pushable {
 	//a doboz aktivál minden mezõt.
 	public boolean Push(Direction d)  {
 		//System.out.println("--- Box Push()");
-		Main.DIST++;
+
 		System.out.println("@@@ Tolódni próbál a doboz!");
 
 		Field neighbor = actual.getNeighborAt(d);
@@ -22,7 +22,6 @@ public class Box extends Pushable {
 			neighbor.setItem(this);
 			neighbor.activate();
 			actual.removeItem();
-			System.out.println("@@@ A doboz "+Main.DIR+" irányba tolódott!");
 			return true;
 		}
 		System.out.println("@@@ A doboz nem tud tolódni!");

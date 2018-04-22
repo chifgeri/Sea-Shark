@@ -26,8 +26,8 @@ public class Map {
 	private int actualWorkerNumber = 0;
 
 	private int sizeX;
-
 	private int sizeY;
+
 
 	private Pushable createPushable(String cmd) throws  IllegalArgumentException{
 	    switch (cmd){
@@ -115,6 +115,7 @@ public class Map {
                         p = createPushable(subcmd.get(0));
                         Goal g = new Goal(p);
                         if(p!=null)
+
                         p.setActual(g);
                         fields.add(g);
                         break;
@@ -166,7 +167,12 @@ public class Map {
 
 
 	public boolean EndGame(){
-		return true;
+	    if(workers.size() == 1)
+	        return false;
+	    for(Box b : boxes)
+            if (b.movable())
+                return true;
+        return false;
 	}
 
 	public Worker TopScorePlayer(){
@@ -186,26 +192,34 @@ public class Map {
 			    workers.get(actualWorkerNumber).Move(d);
 		}
     public void setWeight(int weight){
-	    for(Worker w: workers);
-	        //w.setWeight(weight);
+	    for(Worker w: workers)
+	        w.setWeight(weight);
 
-	    for(Box b: boxes);
-	        //b.setWeight(weight);
+	    for(Box b: boxes)
+	        b.setWeight(weight);
     }
 
     public  void setStrange(int strange){
-	    for(Worker w: workers);
-	        //w.setStrange(strange);
+	    for(Worker w: workers)
+	        w.setStrange(strange);
     }
 
     public  void setOil(int oil){
-	    for(Worker w: workers);
-	        //w.setOil(oil);
+	    for(Worker w: workers)
+	        w.setOil(oil);
     }
 
     public  void setHoney(int honey){
-	    for(Worker w: workers);
-	       // w.setHoney(honey);
+	    for(Worker w: workers)
+	        w.setHoney(honey);
+    }
+
+    public void DropOil(){
+	    actualPlayer.DropOil();
+    }
+
+    public void DropHoney(){
+	    actualPlayer.DropHoney();
     }
 
 	
@@ -260,7 +274,6 @@ public void save(String filename)  {
 			printFields(ps);
 			ps.close();
 		} catch (IOException e ) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 }
 }

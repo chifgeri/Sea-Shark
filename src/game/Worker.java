@@ -63,7 +63,7 @@ public class Worker extends Pushable {
 		if( neighbor_item==null || neighbor_item.Push(d) ) {
 			neighbor.setItem(this);
 			actual.removeItem();
-		
+
 			return true; 
 		}
 		System.out.println("@@@ A munkás a falnak nyomódott!");
