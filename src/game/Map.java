@@ -175,7 +175,8 @@ public class Map {
 		int i=1;
 		for (Worker w : workers) {
 			ps.print(i+". ");
-			//mez�
+			int j=fields.indexOf(w.actual);
+			ps.print(j/sizeX+" "+j%sizeX+" ");
 			ps.print(w.score);
 			i++;
 		}
@@ -185,7 +186,8 @@ public void printBoxes(PrintStream ps) {
 		int i=1;
 		for (Box b : boxes) {
 				ps.print(i+". ");
-		//mező
+			int j=fields.indexOf(b.actual);
+			ps.print(j/sizeX+" "+j%sizeX+" ");
 		}
 	}
 	

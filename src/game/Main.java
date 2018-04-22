@@ -130,6 +130,7 @@ public class Main {
 			
 		
 			map.printFields(System.out);
+			map.printBoxes(System.out);
 		}
 	
 }
