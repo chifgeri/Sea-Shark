@@ -16,6 +16,8 @@ public class Hole extends Field{
 			removeItem();
 		}
 	}
+	
+	//A kimeneti nyelvnek megfelelően kiírja az információkat a megadott streambe
 	public void print( PrintStream ps) {
 		ps.print("Hole ");
 		if(item!=null)

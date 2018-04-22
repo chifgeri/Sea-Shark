@@ -9,11 +9,12 @@ public class Goal extends Field{
     }
     //Ha dobozt tolunk a célmezõre, aktiváljuk azt.
     public void activate() {
-     //worke.addPoint(100);
+     if(Map.actualPlayer!=null)
+    	 Map.actualPlayer.addScore(100);
     }
 
 
-
+  //A kimeneti nyelvnek megfelelően kiírja az információkat a megadott streambe
 	public void print( PrintStream ps) {
 		ps.print("Goal ");
 		if(item!=null)

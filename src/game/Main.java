@@ -59,7 +59,7 @@ public class Main {
 
 		System.out.println("@@@ A jatek elkezdodott!");
 
-
+/*
 		while(running) {
 		    String[] cmd = getcommand();
             switch (cmd[0]){
@@ -84,7 +84,7 @@ public class Main {
                 default:
                     System.out.println("@@@ Ervenytelen parancs");
             }
-        }		
+        }*/		
 //		//Boolean érték, azt jelzi, hogy fut-e a programunk, alapértelmezetten igen.
 //		boolean running = true;
 //		//Az alapértelmezett állapot szerint a munkás készen áll a mozgásra.
@@ -128,8 +128,10 @@ public class Main {
 //				}
 //		}
 			
-		
+			map.CreatedMap("map");
 			map.printFields(System.out);
+			map.printBoxes(System.out);
+			map.printWorkers(System.out);
 		}
 	
 }

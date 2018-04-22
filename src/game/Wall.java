@@ -22,5 +22,10 @@ public class Wall extends Pushable {
 		ps.print(" Wall ");
 		
 	}
+	@Override
+	public void setActual(Field field) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
