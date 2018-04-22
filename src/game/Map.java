@@ -59,12 +59,12 @@ public class Map {
         try {
 	    BufferedReader br = new BufferedReader(new FileReader(filename));
         String line = br.readLine();
-        String[] cmd = line.split("x");
-        sizeX = Integer.parseInt(cmd[0]);
-        sizeY = Integer.parseInt(cmd[1]);
+        List<String> cmd = Arrays.asList(line.split("x"));
+        sizeX = Integer.parseInt(cmd.get(0));
+        sizeY = Integer.parseInt(cmd.get(1));
 
         while ((line = br.readLine()) != null){
-            cmd = line.split(" ");
+            cmd = Arrays.asList(line.split(" "));
             for(String parm : cmd){
                 Pushable p;
                 List<String> subcmd =  Arrays.asList(pushableCmd(parm));
