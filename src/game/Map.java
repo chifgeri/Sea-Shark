@@ -172,7 +172,7 @@ public class Map {
 public void printBoxes(PrintStream ps) {
 		int i=1;
 		for (Box b : boxes) {
-		ps.print(i+". ");
+				ps.print(i+". ");
 		//mező
 		}
 	}
@@ -182,7 +182,7 @@ public void printFields(PrintStream ps) {
 		int i=0;
 		for (Field f : fields) {
 			ps.print((i+1)+". ");
-//			ps.print(x/i+" "+i%x);
+			ps.print(i/sizeX+" "+i%sizeX+" ");
 			f.print(ps);
 			ps.print("\n");
 			i++;
