@@ -1,31 +1,44 @@
 package game;
 
 import java.io.IOException;
-//A dobozokat reprezentÃ¡lÃ³ osztÃ¡ly, ami a Pushable osztÃ¡lybÃ³l szÃ¡rmazik
+//A dobozokat reprezentáló osztály, ami a Pushable osztályból származik
 public class Box extends Pushable {
-	//A dobozt eltolÃ³ fÃ¼ggvÃ©ny, hasonlÃ³an mÃ»kÃ¶dik, mint a munkÃ¡st eltolÃ³ fÃ¼ggvÃ©ny, de
-	//a doboz aktivÃ¡l minden mezÃµt.
-	public boolean Push(Direction d)  {
+	
+	//A doboz súlyát reprezentáló adat.
+	protected int weight= 10;
+	
+	//A dobozt eltoló függvény, hasonlóan mûködik, mint a munkást eltoló függvény, de 
+	//a doboz aktivál minden mezõt.
+	public boolean Push(Direction d, int force) {
 		//System.out.println("--- Box Push()");
 		Main.DIST++;
-		System.out.println("@@@ TolÃ³dni prÃ³bÃ¡l a doboz!");
-
+		System.out.println("@@@ Tolódni próbál a doboz!");
+		
 		Field neighbor = actual.getNeighborAt(d);
 		Pushable neighbor_item = neighbor.getItem();
+		
 		if(neighbor_item != null)
 			neighbor_item.actual=neighbor;
-		if( neighbor_item==null || neighbor_item.Push(d) ) {
+		
+		if(force <= (neighbor_item.weight * neighbor.friction)) {
+			System.out.println("@@@ A doboz nem tud tolódni!");
+			return false;
+		}
+		
+		int newforce= force - (neighbor_item.weight * neighbor.friction);
+		if( neighbor_item==null || neighbor_item.Push(d, newforce) ) {
 			neighbor.setItem(this);
 			neighbor.activate();
 			actual.removeItem();
-			System.out.println("@@@ A doboz "+Main.DIR+" irÃ¡nyba tolÃ³dott!");
-			return true;
+			System.out.println("@@@ A doboz "+Main.DIR+" irányba tolódott!");
+			return true; 
 		}
-		System.out.println("@@@ A doboz nem tud tolÃ³dni!");
+		System.out.println("@@@ A doboz nem tud tolódni!");
 		return false;
 	}
-	//Ha a doboz leesik, akkor hÃ­vÃ³dik meg ez a fÃ¼ggvÃ©ny.
+	//Ha a doboz leesik, akkor hívódik meg ez a függvény.
 	public void Fall() {
+		actual.removeItem();
 		//System.out.println("--- Box Fall()");
 		System.out.println("@@@ A doboz leesett!");
 	}
