@@ -12,7 +12,6 @@ public class Box extends Pushable {
 	public boolean Push(Direction d, int force) {
 		//System.out.println("--- Box Push()");
 		Main.DIST++;
-		System.out.println("@@@ Tolódni próbál a doboz!");
 		
 		Field neighbor = actual.getNeighborAt(d);
 		Pushable neighbor_item = neighbor.getItem();
@@ -21,7 +20,6 @@ public class Box extends Pushable {
 			neighbor_item.actual=neighbor;
 		
 		if(force <= (neighbor_item.weight * neighbor.friction)) {
-			System.out.println("@@@ A doboz nem tud tolódni!");
 			return false;
 		}
 		
@@ -30,16 +28,14 @@ public class Box extends Pushable {
 			neighbor.setItem(this);
 			neighbor.activate();
 			actual.removeItem();
-			System.out.println("@@@ A doboz "+Main.DIR+" irányba tolódott!");
 			return true; 
 		}
-		System.out.println("@@@ A doboz nem tud tolódni!");
+	
 		return false;
 	}
 	//Ha a doboz leesik, akkor hívódik meg ez a függvény.
 	public void Fall() {
 		actual.removeItem();
-		//System.out.println("--- Box Fall()");
-		System.out.println("@@@ A doboz leesett!");
+		
 	}
 }
