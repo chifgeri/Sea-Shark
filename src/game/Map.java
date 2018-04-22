@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//A térképet reprezentáló osztály.
-//A szkeletonban nem használjuk, mivel a futás során kérjük be a felhasználótól
-//a térképen található fieldeket és itemeket.
+//A tÃ©rkÃ©pet reprezentÃ¡lÃ³ osztÃ¡ly.
+//A szkeletonban nem hasznÃ¡ljuk, mivel a futÃ¡s sorÃ¡n kÃ©rjÃ¼k be a felhasznÃ¡lÃ³tÃ³l
+//a tÃ©rkÃ©pen talÃ¡lhatÃ³ fieldeket Ã©s itemeket.
 public class Map {
-	//A térképen található mezõk listája.
+	//A tÃ©rkÃ©pen talÃ¡lhatÃ³ mezÃµk listÃ¡ja.
 	private List<Field> fields = new ArrayList();
-	//A térképen található munkások listája.
+	//A tÃ©rkÃ©pen talÃ¡lhatÃ³ munkÃ¡sok listÃ¡ja.
 	private List<Worker> workers = new ArrayList<>();
 
     private List<Box> boxes = new ArrayList<>();
@@ -156,6 +156,8 @@ public class Map {
 		}
 
 	}
+
+
 
 
 
