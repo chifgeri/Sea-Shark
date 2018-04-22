@@ -80,7 +80,9 @@ public class Worker extends Pushable {
 			}
 			//A munkás meghal.
 			public void Die() {
+				Map.workers.remove(actual);
 				actual.removeItem();
+
 			}
 
 			public void setForce(int force) {

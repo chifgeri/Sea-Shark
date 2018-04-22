@@ -18,8 +18,8 @@ public class Map {
 
 	
 	private List<Field> fields = new ArrayList<>();
-	private List<Worker> workers = new ArrayList<>();
-    private List<Box> boxes = new ArrayList<>();
+	public static List<Worker> workers = new ArrayList<>();
+    public static List<Box> boxes = new ArrayList<>();
 
     public static Worker actualPlayer;
 	private int actualWorkerNumber = 0;
@@ -63,7 +63,7 @@ public class Map {
         sizeX = Integer.parseInt(cmd.get(0));
         sizeY = Integer.parseInt(cmd.get(1));
 
-        while ((line = br.readLine()) != null && line.equals("")){
+        while ((line = br.readLine()) != null && !line.equals("")){
             cmd = Arrays.asList(line.split(" "));
             for(String parm : cmd){
                 Pushable p;

@@ -12,7 +12,7 @@ public class Main {
 
     private static InputStreamReader isr = new InputStreamReader(System.in);
     private static BufferedReader reader = new BufferedReader(isr);
-    private static Map map = new Map();
+    private static Map map;
     private static boolean end = false;
 
 
@@ -22,9 +22,11 @@ public class Main {
         System.out.println("@@@ A program elindult!");
         try {
         while(running) {
+            System.out.println("@@@ Kovetkezo parancsok elerhetoek: Load <filename>, Start, Exit, Strength <int>, Weight <int>, Honey <int>, Oil <int>");
             cmd = getcommand();
             switch (cmd.get(0)){
                 case "Load" :
+                    map = new Map();
                     map.CreatedMap(cmd.get(1));
                     System.out.println("@@@ A jatek betoltve!");
                     break;
@@ -38,18 +40,22 @@ public class Main {
                 case "Strength":
                     if( cmd.size() == 2)
                         map.setForce(Integer.parseInt(cmd.get(1)));
+                        System.out.println("@@@ Ero beallitva!");
                     break;
-                case "Wight":
+                case "Weight":
                     if( cmd.size() == 2)
                         map.setWeight(Integer.parseInt(cmd.get(1)));
+                        System.out.println("@@@ Suly beallitva!");
                     break;
                 case "Honey":
                     if( cmd.size() == 2)
                         map.setHoney(Integer.parseInt(cmd.get(1)));
+                        System.out.println("@@@ Mez beallitva!");
                     break;
                 case "Oil":
                     if( cmd.size() == 2)
                         map.setOil(Integer.parseInt(cmd.get(1)));
+                        System.out.println("@@@ Olaj beallitva!");
                     break;
                 default:
                     System.out.println("@@@ Ervenytelen parancs");
@@ -67,23 +73,28 @@ public class Main {
 
 	private   static  void GameMenu(){
 	    try {
+            System.out.println("@@@ Kovetkezo parancsok elerhetoek: Left, Right, Up, Down, End, listWorkers, listBoxes, listMap, save <filename>, Next, DropOil, DropHoney");
             List<String> com = getcommand();
-
 	        switch (com.get(0)){
                 case "Left":
                     map.MoveWorker(Direction.LEFT);
+                    System.out.println("@@@ Worker mozgott!");
                     break;
                 case "Right":
                     map.MoveWorker(Direction.RIGHT);
+                    System.out.println("@@@ Worker mozgott!");
                     break;
                 case "Up":
                     map.MoveWorker(Direction.UP);
+                    System.out.println("@@@ Worker mozgott!");
                     break;
                 case "Down":
                     map.MoveWorker(Direction.DOWN);
+                    System.out.println("@@@ Worker mozgott!");
                     break;
                 case "End":
                     end = true;
+                    System.out.println("@@@ Visszaleptel a menube!");
                     break;
                 case "listWorkers":
                     map.printWorkers(System.out);
@@ -95,20 +106,27 @@ public class Main {
                     map.printFields(System.out);
                     break;
                 case "save":
-                    map.save("test");
+                    map.save(com.get(1));
+                    System.out.println("@@@ Allas kimentve-->" + com.get(1));
                     break;
                 case "Next":
                     map.NextWorker();
+                    System.out.println("@@@ Kovetkezo Worker jon");
                     break;
                 case "DropOil":
                     map.DropOil();
+                    System.out.println("@@@ Worker olajat rakott le!");
                     break;
                 case "DropHoney":
                     map.DropHoney();
+                    System.out.println("@@@ Worker mezet rakott le!");
                     break;
-
+                default:
+                    System.out.println("Ervenytelen parancs");
 	        }
-        }catch (Exception e){}
+        }catch (Exception e){
+	        e.printStackTrace();
+        }
     }
 
 	private static List<String> cmd = null;
