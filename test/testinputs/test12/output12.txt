@@ -1,0 +1,10 @@
+Workers:
+1 1-2 0 200
+---
+Boxes:
+---
+Map:
+1-1 Field empty 10 
+1-2 Switch Worker 10
+1-3 Trapdoor empty 10 closed
+1-4 Field empty 10

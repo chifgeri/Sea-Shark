@@ -1,0 +1,5 @@
+Load test4.txt
+Srength 100
+Start
+Right
+listMap

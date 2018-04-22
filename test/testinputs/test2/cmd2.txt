@@ -1,0 +1,5 @@
+Load test2.txt
+Strength 100
+Start
+Right
+listMap
