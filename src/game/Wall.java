@@ -1,5 +1,8 @@
 package game;
-//Falat reprezentáló osztály, nem lehet eltolni.
+
+import java.io.PrintStream;
+
+
 public class Wall extends Pushable {
 	//A falat nem tudjuk eltolni, ezért mindig false-al tér vissza.
 	public boolean Push(Direction d) {
@@ -11,4 +14,13 @@ public class Wall extends Pushable {
 	public void Fall() {
 		//System.out.println("--- Wall Push()");
 	}
+
+
+
+	@Override
+	public void printType(PrintStream ps) {
+		ps.print(" Wall ");
+		
+	}
 }
+

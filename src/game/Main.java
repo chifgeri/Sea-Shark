@@ -49,6 +49,7 @@ public class Main {
 	}
 	//A Main osztály main függvénye, az IOException a beolvasás miatt kell.
 	public static void main(String[] args) throws IOException {
+
 		Map map = new Map();
 		map.CreatedMap("map");
 
@@ -94,5 +95,17 @@ public class Main {
 //				state = State.READY_TO_MOVE;
 //				}
 //		}
-	}
+			Map m=new Map();
+			Field b=new Field();
+			b.setItem(new Box());
+			m.addField(b);
+			m.addField(new Field());
+			m.addField(new Goal());
+			m.addWorker(new Worker());
+			
+			SerializeClass s = new SerializeClass();
+			s.printFields(m, System.out);
+		}
+	
 }
+

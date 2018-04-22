@@ -1,9 +1,11 @@
 package game;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.HashMap;
 //A mezőt reprezentáló osztály
 public class Field {
+	int friction=10;
 
     //A mezőn lévő tolható dolog
     protected Pushable item;
@@ -64,4 +66,13 @@ public class Field {
     public void setNeighboursAt(Direction d, Field f) {
         neighbours.put(d, f);
     }
+	
+	public void print( PrintStream ps) {
+		ps.print("Field ");
+		if(item!=null)
+		item.printType(ps);
+		else
+		ps.print("empty ");
+		ps.print(friction);
+	}
 }

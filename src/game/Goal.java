@@ -1,4 +1,5 @@
 package game;
+import java.io.PrintStream;
 //Célmezõt reprezentáló osztály
 public class Goal extends Field{
 
@@ -11,4 +12,16 @@ public class Goal extends Field{
         //System.out.println("--- Goal activate()");
         System.out.println("@@@ A goal aktiválódott!");
     }
+
+
+
+	public void print( PrintStream ps) {
+		ps.print("Goal ");
+		if(item!=null)
+			item.printType(ps);
+			else
+			ps.print("empty ");
+		//ps.print(friction);
+	}
+
 }

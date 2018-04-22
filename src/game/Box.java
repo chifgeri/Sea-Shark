@@ -1,7 +1,11 @@
 package game;
 
 import java.io.IOException;
+
 //A dobozokat reprezentáló osztály, ami a Pushable osztályból származik
+
+import java.io.PrintStream;
+
 public class Box extends Pushable {
 	//A dobozt eltoló függvény, hasonlóan mûködik, mint a munkást eltoló függvény, de
 	//a doboz aktivál minden mezõt.
@@ -29,4 +33,11 @@ public class Box extends Pushable {
 		//System.out.println("--- Box Fall()");
 		System.out.println("@@@ A doboz leesett!");
 	}
+
+	@Override
+	public void printType(PrintStream ps) {
+		ps.print(" Box ");
+		
+	}
 }
+

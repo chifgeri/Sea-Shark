@@ -1,7 +1,11 @@
 package game;
 
 import java.io.IOException;
+
 //A munkást reprezentáló osztály.
+
+import java.io.PrintStream;
+
 public class Worker extends Pushable {
 	//A munkás pontszáma.
 	protected int score = 0;
@@ -79,4 +83,10 @@ public class Worker extends Pushable {
 		//System.out.println("--- Worker Die()");
 		System.out.println("@@@ A munkás meghalt!");
 	}
+
+	@Override
+	public void printType(PrintStream ps) {
+		ps.print(" Worker ");		
+	}
 }
+

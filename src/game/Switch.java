@@ -1,4 +1,7 @@
 package game;
+
+import java.io.PrintStream;
+
 //Kapcsolót reprezentáló osztály.
 public class Switch extends Field {
     private Trapdoor trapdoor;
@@ -22,4 +25,15 @@ public class Switch extends Field {
     public void setTrapdoor(Trapdoor trapdoor) {
         this.trapdoor = trapdoor;
     }
+
+	
+	public void print(PrintStream ps) {
+		ps.print("Switch ");
+		if(item!=null)
+			item.printType(ps);
+			else
+			ps.print("empty ");
+		ps.print(friction);
+	}
 }
+
