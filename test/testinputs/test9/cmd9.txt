@@ -1,0 +1,5 @@
+Load test9.txt
+Strength 180
+Start
+Right
+listMap

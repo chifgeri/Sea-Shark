@@ -1,0 +1,4 @@
+Wall() - Field(Worker) - Field(Box) - Field()
+Switch() - Switch(Box) - Switch(Worker) - Hole()
+Trapdoor(Worker) - Trapdoor(Box) - Trapdoor() - Wall()
+Goal() - Goal(Worker) - Goal(Box) - Wall()
