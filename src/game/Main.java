@@ -4,19 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-//A program Main osztálya.
-//Itt található az az állapotgép-szerû logika, amely meghatározza a program mûködési folyamatát.
+//A program Main osztÃ¡lya.
+//Itt talÃ¡lhatÃ³ az az Ã¡llapotgÃ©p-szerÅ± logika, amely meghatÃ¡rozza a program mÅ±kÃ¶dÃ©si folyamatÃ¡t.
 public class Main {
 
-
-    //Input streamek a parancssorból való sorok beolvasásához.
     private static InputStreamReader isr = new InputStreamReader(System.in);
     private static BufferedReader reader = new BufferedReader(isr);
     private static Map map = new Map();
-
-	//Egy kétállapotú enum:
-	// - mozgásra készen áll a játékos
-	// - mozgás közben van a játékos
+	
+	//Egy kÃ©tÃ¡llapotÃº enum:
+	// - mozgÃ¡sra kÃ©szen Ã¡ll a jÃ¡tÃ©kos
+	// - mozgÃ¡s kÃ¶zben van a jÃ¡tÃ©kos
 	public enum State {
 		READY_TO_MOVE,
 		MOVE
@@ -28,47 +26,46 @@ public class Main {
 
 	public  static  void GameMenu(){}
 	
-	//Itt találhatók azok a publikus statikus változók, amelyek a parancssor kezeléséhez szükségesek.
+	//Itt talÃ¡lhatÃ³k azok a publikus statikus vÃ¡ltozÃ³k, amelyek a parancssor kezelÃ©sÃ©hez szÃ¼ksÃ©gesek.
 	
-
 	
-	//Irány és távolság. A felhasználónak szánt információ, hogy legyen elképzelése a mozgásról.
-	//Megtudhatja, hogy merre mozog a munkás, illetve, hogy milyen irányba.
+	//IrÃ¡ny Ã©s tÃ¡volsÃ¡g. A felhasznÃ¡lÃ³nak szÃ¡nt informÃ¡ciÃ³, hogy legyen elkÃ©pzelÃ©se a mozgÃ¡srÃ³l.
+	//Megtudhatja, hogy merre mozog a munkÃ¡s, illetve, hogy milyen irÃ¡nyba.
 	public static Direction DIR = null;
 	public static int DIST = 0;
 	
-	//Az éppen feldolgozott utasítást mentjük el mindig ebbe a változóba.
+	//Az Ã©ppen feldolgozott utasÃ­tÃ¡st mentjÃ¼k el mindig ebbe a vÃ¡ltozÃ³ba.
 	public static String command = "";
-	//Ebben a string tömbben szóközök mentén feldarabolva találhatjuk meg a kiadott parancsot.
+	//Ebben a string tÃ¶mbben szÃ³kÃ¶zÃ¶k mentÃ©n feldarabolva talÃ¡lhatjuk meg a kiadott parancsot.
 	private static String[] cmd = null;
 	
-	//A munkás, akit a szkeleton során irányítunk.
+	//A munkÃ¡s, akit a szkeleton sorÃ¡n irÃ¡nyÃ­tunk.
 	public static Worker worker = new Worker();
 	
-	//Ezt a függvényt használjuk az összes osztályban, ahol a parancssorból utasítást kérünk be.
+	//Ezt a fÃ¼ggvÃ©nyt hasznÃ¡ljuk az Ã¶sszes osztÃ¡lyban, ahol a parancssorbÃ³l utasÃ­tÃ¡st kÃ©rÃ¼nk be.
 	public static String[] getcommand() throws IOException {
 		command = reader.readLine();
 		cmd = command.split(" ");
 		return cmd;
 	}
-	//A Main osztály main függvénye, az IOException a beolvasás miatt kell.
+	//A Main osztÃ¡ly main fÃ¼ggvÃ©nye, az IOException a beolvasÃ¡s miatt kell.
 	public static void main(String[] args) throws IOException {
 
 
 		
-		//Boolean érték, azt jelzi, hogy fut-e a programunk, alapértelmezetten igen.
+		
 		boolean running = true;
 
-		//A játék elején írjuk ki, tájékoztatjuk a felhasználót.
-		System.out.println("@@@ A játék elkezdõdött!");
 
-		//Egy ciklus, addig fut, amíg  a játék befejezõdik.
+		System.out.println("@@@ A jatek elkezdodott!");
+
+
 		while(running) {
 		    String[] cmd = getcommand();
             switch (cmd[0]){
                 case "Load" :
                     map.CreatedMap(cmd[1]);
-                    System.out.println("@@@ A játék betoltve!");
+                    System.out.println("@@@ A jatek betoltve!");
                     break;
                 case "Start" :
                     Game();
@@ -87,37 +84,53 @@ public class Main {
                 default:
                     System.out.println("@@@ Ervenytelen parancs");
             }
-        }
-//			//A munkás ekkor mozoghat vagy kiléphet
+        }		
+//		//Boolean Ã©rtÃ©k, azt jelzi, hogy fut-e a programunk, alapÃ©rtelmezetten igen.
+//		boolean running = true;
+//		//Az alapÃ©rtelmezett Ã¡llapot szerint a munkÃ¡s kÃ©szen Ã¡ll a mozgÃ¡sra.
+//		State state = State.READY_TO_MOVE;
+//
+//		//A jÃ¡tÃ©k elejÃ©n Ã­rjuk ki, tÃ¡jÃ©koztatjuk a felhasznÃ¡lÃ³t.
+//		System.out.println("@@@ A jÃ¡tÃ©k elkezdÅ‘dÃ¶tt!");
+//
+//		//Egy ciklus, addig fut, amÃ­g  a jÃ¡tÃ©k befejezÅ‘dik.
+//		while(running) {
+//			//A munkÃ¡s ekkor mozoghat vagy kilÃ©phet
+
 //			if(state == State.READY_TO_MOVE) {
-//				//A vizsgált távolság kezdetben 0, tehát a worker mezõjén állunk a vizsgálattal
+//				//A vizsgÃ¡lt tÃ¡volsÃ¡g kezdetben 0, tehÃ¡t a worker mezÅ‘jÃ©n Ã¡llunk a vizsgÃ¡lattal
 //				DIST = 0;
-//				//Információs üzenetek
-//				System.out.println("@@@ Mozoghatsz, befejezheted a játékot, vagy kiléphetsz.");
-//				System.out.println("@@@ Segítség: move [direction] {right, left, up, down}, exit, end.");
-//				//Parancsbekérés
+//				//InformÃ¡ciÃ³s Ã¼zenetek
+//				System.out.println("@@@ Mozoghatsz, befejezheted a jÃ¡tÃ©kot, vagy kilÃ©phetsz.");
+//				System.out.println("@@@ SegÃ­tsÃ©g: move [direction] {right, left, up, down}, exit, end.");
+//				//ParancsbekÃ©rÃ©s
 //				getcommand();
-//				//move parancs esetén a megadott irányba mozgunk
-//				//Az irányt úgy kapjuk, hogy a parancs második szavát nagybetûsítjük, majd enum
-//				//típusúvá konvertáljuk a valueOf() függvénnyel.
+//				//move parancs esetÃ©n a megadott irÃ¡nyba mozgunk
+//				//Az irÃ¡nyt Ãºgy kapjuk, hogy a parancs mÃ¡sodik szavÃ¡t nagybetÅ±sÃ­tjÃ¼k, majd enum
+//				//tÃ­pusÃºvÃ¡ konvertÃ¡ljuk a valueOf() fÃ¼ggvÃ©nnyel.
 //				if(cmd[0].equals("move")) {
 //					DIR = Direction.valueOf(cmd[1].toUpperCase());
 //					state = State.MOVE;
 //				}
-//				//exit vagy end esetén kilépünk ciklusból
+//				//exit vagy end esetÃ©n kilÃ©pÃ¼nk ciklusbÃ³l
 //				else if(cmd[0].equals("exit") || cmd[0].equals("end") ) {
-//					System.out.println("@@@ A játék véget ért. Köszönöm, hogy kirpóbáltad a szkeletont!");
+//					System.out.println("@@@ A jÃ¡tÃ©k vÃ©get Ã©rt. KÃ¶szÃ¶nÃ¶m, hogy kirpÃ³bÃ¡ltad a szkeletont!");
 //					running = false;
 //				}
 //			}
-//			//Ha mozgás közben vagyunk, akkor ez a feltételes ág fut le.
-//			//A mozgás parancs kiadása után kerülünk ide.
-//			//A munkást mozgatjuk a megadott irányba.
-//			//A mozgás lefutása után ismét készen állunk az új mozgásra.
+//			//Ha mozgÃ¡s kÃ¶zben vagyunk, akkor ez a feltÃ©teles Ã¡g fut le.
+//			//A mozgÃ¡s parancs kiadÃ¡sa utÃ¡n kerÃ¼lÃ¼nk ide.
+//			//A munkÃ¡st mozgatjuk a megadott irÃ¡nyba.
+//			//A mozgÃ¡s lefutÃ¡sa utÃ¡n ismÃ©t kÃ©szen Ã¡llunk az Ãºj mozgÃ¡sra.
 //			else if(state == State.MOVE) {
 //				worker.Move(DIR);
 //				state = State.READY_TO_MOVE;
 //				}
 //		}
-	}
+			
+		
+			map.printFields(System.out);
+		}
+	
 }
+

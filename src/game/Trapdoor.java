@@ -1,6 +1,8 @@
 package game;
 
 import java.io.IOException;
+import java.io.PrintStream;
+
 //Csapóajtót reprezentáló osztály.
 public class Trapdoor extends Field{
 
@@ -38,4 +40,16 @@ public class Trapdoor extends Field{
     public void switch_(boolean b) {
         open = b;
     }
+
+	
+	public void print( PrintStream ps) {
+		ps.print("Trapdoor ");
+		if(item!=null)
+			item.printType(ps);
+			else
+			ps.print("empty ");
+		ps.print(friction+" ");
+		ps.print(open);
+	}
 }
+

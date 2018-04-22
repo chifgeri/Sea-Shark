@@ -1,21 +1,23 @@
 package game;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//A térképet reprezentáló osztály.
-//A szkeletonban nem használjuk, mivel a futás során kérjük be a felhasználótól
-//a térképen található fieldeket és itemeket.
-public class Map {
-	//A térképen található mezõk listája.
-	private List<Field> fields = new ArrayList();
-	//A térképen található munkások listája.
-	private List<Worker> workers = new ArrayList<>();
 
+public class Map {
+	
+	private List<Field> fields = new ArrayList();
+	private List<Worker> workers = new ArrayList<>();
     private List<Box> boxes = new ArrayList<>();
 
 
@@ -147,6 +149,7 @@ public class Map {
 
 	}
 
+
 	public boolean EndGame(){
 		return true;
 	}
@@ -167,8 +170,52 @@ public class Map {
 			    workers.get(actualWorkerNumber).Move(d);
 		}
 
+	
+	public void printWorkers(PrintStream ps) {
+		int i=1;
+		for (Worker w : workers) {
+			ps.print(i+". ");
+			//mezï¿½
+			ps.print(w.score);
+			i++;
+		}
+}
+
+public void printBoxes(PrintStream ps) {
+		int i=1;
+		for (Box b : boxes) {
+				ps.print(i+". ");
+		//mezÅ‘
+		}
 	}
+	
+	
+public void printFields(PrintStream ps) {
+		int i=0;
+		for (Field f : fields) {
+			ps.print((i+1)+". ");
+			ps.print(i/sizeX+" "+i%sizeX+" ");
+			f.print(ps);
+			ps.print("\n");
+			i++;
+		}
+}
 
-
-
+public void save(String filename)  {
+		File file=new File(filename);
+		try {
+		if(!file.exists())
+			file.createNewFile();
+		
+			PrintStream ps=new PrintStream(file);
+			printWorkers(ps);
+			printBoxes(ps);
+			printFields(ps);
+			
+		} catch (IOException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+}
+}
+}
 

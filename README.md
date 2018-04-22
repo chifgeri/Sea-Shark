@@ -1,4 +1,4 @@
-# Sea-Shark
+﻿# Sea-Shark
 
 - git clone <-link-> //leklónozza a gépedre a projektet , a link a jobb sarokban van
 - git checkout -b <új branch neve>
