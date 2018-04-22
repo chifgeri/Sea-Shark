@@ -37,7 +37,7 @@ public class Main {
                     break;
                 case "Strength":
                     if( cmd.size() == 2)
-                        map.setStrange(Integer.parseInt(cmd.get(1)));
+                        map.setForce(Integer.parseInt(cmd.get(1)));
                     break;
                 case "Wight":
                     if( cmd.size() == 2)

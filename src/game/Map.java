@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ public class Map {
         sizeX = Integer.parseInt(cmd.get(0));
         sizeY = Integer.parseInt(cmd.get(1));
 
-        while ((line = br.readLine()) != null){
+        while ((line = br.readLine()) != null && line.equals("")){
             cmd = Arrays.asList(line.split(" "));
             for(String parm : cmd){
                 Pushable p;
@@ -77,7 +76,7 @@ public class Map {
                         p.setActual(f);
                         fields.add(f);
                         if(subcmd.size() == 2)
-                            f.changeFritcion(Integer.parseInt(subcmd.get(1)));
+                            f.changeFriction(Integer.parseInt(subcmd.get(1)));
                         break;
                     case 'W' :
                         fields.add(new Field(new Wall()));
@@ -91,7 +90,7 @@ public class Map {
                             switchMap.put(subcmd.get(1), s);
                             fields.add(s);
                             if(subcmd.size() == 3)
-                                s.changeFritcion(Integer.parseInt(subcmd.get(2)));
+                                s.changeFriction(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -104,7 +103,7 @@ public class Map {
                             trapdoorMap.put(subcmd.get(1), t);
                             fields.add(t);
                             if(subcmd.size() == 3)
-                                t.changeFritcion(Integer.parseInt(subcmd.get(2)));
+                                t.changeFriction(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -165,18 +164,25 @@ public class Map {
 
 	}
 
-
 	public boolean EndGame(){
-	    if(workers.size() == 1)
-	        return false;
-	    for(Box b : boxes)
-            if (b.movable())
-                return true;
-        return false;
+//	    if(workers.size() == 1)
+//	        return false;
+//	    for(Box b : boxes)
+//            if (b.movable())
+//                return true;
+//        return false;
+    return true;
 	}
 
 	public Worker TopScorePlayer(){
-		return new Worker();
+	    int maxScore = 0;
+	    Worker maxW = null;
+	    for(Worker w : workers)
+	        if(w.getScore() > maxScore) {
+                maxScore = w.getScore();
+                maxW = w;
+            }
+	    return maxW;
 	}
 
 	public void NextWorker(){
@@ -199,9 +205,9 @@ public class Map {
 	        b.setWeight(weight);
     }
 
-    public  void setStrange(int strange){
+    public  void setForce(int strange){
 	    for(Worker w: workers)
-	        w.setStrange(strange);
+	        w.setForce(strange);
     }
 
     public  void setOil(int oil){

@@ -19,8 +19,13 @@ public abstract class Pushable {
 	//Ezt a függvényt híjvuk meg, amikor az item leesik.
 	public abstract void Fall();
 
-	public  abstract void setActual(Field field);
+	public void setActual(Field field){
+		actual = field;
+	}
 
 	public abstract void printType(PrintStream ps);
 
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
 }
