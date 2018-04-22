@@ -35,9 +35,13 @@ public class Box extends Pushable {
 	}
 
 	@Override
+
+	public void setActual(Field field) {
+		actual = field;
+	}
+
 	public void printType(PrintStream ps) {
 		ps.print(" Box ");
 		
 	}
 }
-

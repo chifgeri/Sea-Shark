@@ -88,5 +88,10 @@ public class Worker extends Pushable {
 	public void printType(PrintStream ps) {
 		ps.print(" Worker ");		
 	}
+
+	@Override
+	public void setActual(Field field) {
+		actual = field;
+	}
 }
 

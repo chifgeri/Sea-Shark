@@ -16,5 +16,9 @@ public abstract class Pushable {
 	public abstract boolean Push(Direction d);
 	//Ezt a függvényt híjvuk meg, amikor az item leesik.
 	public abstract void Fall();
+
+	public  abstract void setActual(Field field);
+
 	public abstract void printType(PrintStream ps);
+
 }

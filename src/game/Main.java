@@ -7,6 +7,10 @@ import java.io.InputStreamReader;
 //A program Main osztálya.
 //Itt található az az állapotgép-szerű logika, amely meghatározza a program működési folyamatát.
 public class Main {
+
+    private static InputStreamReader isr = new InputStreamReader(System.in);
+    private static BufferedReader reader = new BufferedReader(isr);
+    private static Map map = new Map();
 	
 	//Egy kétállapotú enum:
 	// - mozgásra készen áll a játékos
@@ -24,9 +28,6 @@ public class Main {
 	
 	//Itt találhatók azok a publikus statikus változók, amelyek a parancssor kezeléséhez szükségesek.
 	
-	//Input streamek a parancssorból való sorok beolvasásához.
-	public static InputStreamReader isr = new InputStreamReader(System.in);
-	public static BufferedReader reader = new BufferedReader(isr);
 	
 	//Irány és távolság. A felhasználónak szánt információ, hogy legyen elképzelése a mozgásról.
 	//Megtudhatja, hogy merre mozog a munkás, illetve, hogy milyen irányba.
@@ -50,10 +51,40 @@ public class Main {
 	//A Main osztály main függvénye, az IOException a beolvasás miatt kell.
 	public static void main(String[] args) throws IOException {
 
-		Map map = new Map();
-		map.CreatedMap("map");
 
 		
+		
+		boolean running = true;
+
+
+		System.out.println("@@@ A jatek elkezdodott!");
+
+
+		while(running) {
+		    String[] cmd = getcommand();
+            switch (cmd[0]){
+                case "Load" :
+                    map.CreatedMap(cmd[1]);
+                    System.out.println("@@@ A jatek betoltve!");
+                    break;
+                case "Start" :
+                    Game();
+                    break;
+                case "Exit" :
+                    running = false;
+                    break;
+                case "Strength" :
+                    break;
+                case "Wight" :
+                    break;
+                case "Honey" :
+                    break;
+                case "Oil" :
+                    break;
+                default:
+                    System.out.println("@@@ Ervenytelen parancs");
+            }
+        }		
 //		//Boolean érték, azt jelzi, hogy fut-e a programunk, alapértelmezetten igen.
 //		boolean running = true;
 //		//Az alapértelmezett állapot szerint a munkás készen áll a mozgásra.
@@ -65,6 +96,7 @@ public class Main {
 //		//Egy ciklus, addig fut, amíg  a játék befejeződik.
 //		while(running) {
 //			//A munkás ekkor mozoghat vagy kiléphet
+
 //			if(state == State.READY_TO_MOVE) {
 //				//A vizsgált távolság kezdetben 0, tehát a worker mezőjén állunk a vizsgálattal
 //				DIST = 0;
