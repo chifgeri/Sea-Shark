@@ -54,8 +54,9 @@ public class Map {
 
         java.util.Map<String, Switch> switchMap = new HashMap<>();
         java.util.Map<String, Trapdoor> trapdoorMap = new HashMap<>();
-        try {
-	    BufferedReader br = new BufferedReader(new FileReader(filename));
+        BufferedReader br = null;
+        try {    
+        br=new BufferedReader(new FileReader(filename));
         String line = br.readLine();
         String[] cmd = line.split("x");
         sizeX = Integer.parseInt(cmd[0]);
@@ -70,6 +71,7 @@ public class Map {
                     case 'F' :
                         p = createPushable(subcmd[0]);
                         Field f = new Field(p);
+                        if(p!=null)
                         p.setActual(f);
                         fields.add(f);
                         break;
@@ -80,6 +82,7 @@ public class Map {
                         if(subcmd.length == 2) {
                             p = createPushable(subcmd[0]);
                             Switch s = new Switch(p);
+                            if(p!=null)
                             p.setActual(s);
                             switchMap.put(subcmd[1], s);
                             fields.add(s);
@@ -90,6 +93,7 @@ public class Map {
                         if(subcmd.length == 2) {
                             p = createPushable(subcmd[0]);
                             Trapdoor t = new Trapdoor(p);
+                            if(p!=null)
                             p.setActual(t);
                             trapdoorMap.put(subcmd[1], t);
                             fields.add(t);
@@ -102,6 +106,7 @@ public class Map {
                     case 'G' :
                         p = createPushable(subcmd[0]);
                         Goal g = new Goal(p);
+                        if(p!=null)
                         p.setActual(g);
                         fields.add(g);
                         break;
@@ -114,6 +119,16 @@ public class Map {
         }
         }
         catch (Exception e){
+        	e.printStackTrace();
+        }
+        finally {
+        	if(br!=null) {
+        		 try {
+                     br.close();
+                 } catch (IOException e) {
+                    e.printStackTrace();
+                 }
+        	}
         }
         if(fields.size() != sizeX * sizeY)
             throw  new IllegalArgumentException();

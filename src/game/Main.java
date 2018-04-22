@@ -128,7 +128,7 @@ public class Main {
 //				}
 //		}
 			
-			map.CreatedMap("map");
+			map.CreatedMap("testcases/test12.txt");
 			map.printFields(System.out);
 			map.printBoxes(System.out);
 			map.printWorkers(System.out);
