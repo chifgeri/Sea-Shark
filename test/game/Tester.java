@@ -54,6 +54,7 @@ public class Tester {
 	public static void main(String args[]) throws IOException {
 
 		//TESZT 1
+<<<<<<< HEAD
 		//Create the environment
 		presetTest(1);
 		//Process and execute commands...
@@ -74,5 +75,13 @@ public class Tester {
 		//TODO
 		
 		//...
+=======
+		presetTest(1);
+		printAttribute(map);
+		System.out.println("\n");
+		printAttribute(command);
+		System.out.println("\n");
+		printAttribute(output);
+>>>>>>> test base created
 	}
 }
