@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
+import
 
 public class Map {
 
@@ -90,7 +90,7 @@ public class Map {
                             switchMap.put(subcmd.get(1), s);
                             fields.add(s);
                             if(subcmd.size() == 3)
-                                s.changeFriction(Integer.parseInt(subcmd.get(2)));
+                                s.changeFriction(Integer.parseInt(subcmd.get(2))-10);
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -103,7 +103,7 @@ public class Map {
                             trapdoorMap.put(subcmd.get(1), t);
                             fields.add(t);
                             if(subcmd.size() == 3)
-                                t.changeFriction(Integer.parseInt(subcmd.get(2)));
+                                t.changeFriction(Integer.parseInt(subcmd.get(2))-10);
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -161,6 +161,11 @@ public class Map {
             else throw new  IllegalArgumentException();
         }
 
+        for(java.util.Map.Entry<String, Switch> entry : switchMap.entrySet()){
+            for(Box b: boxes)
+                if(b.actual == entry.getValue())
+                    entry.getValue().activate();
+        }
 
 	}
 

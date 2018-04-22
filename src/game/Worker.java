@@ -7,9 +7,10 @@ public class Worker extends Pushable {
 
 			//A munkás pontszáma.
 			protected int score = 0;
-			protected int force = 200;
-			protected int honey = 2;
-			protected int oil = -2;
+			protected int force= 200;
+			protected int honey= 2;
+			protected int oil= -2;
+
 			
 			//Lekérdezzük a munkás pontszámát.
 			public int getScore() {
@@ -49,7 +50,7 @@ public class Worker extends Pushable {
 				Pushable neighbor_item = neighbor.getItem();
 				
 				
-				if(neighbor_item!=null && force <= (neighbor.friction * neighbor_item.weight)) {
+				if(force < (actual.friction * actual.getItem().weight)) {
 						return false;					
 				}
 				if(neighbor_item==null) {
@@ -59,7 +60,7 @@ public class Worker extends Pushable {
 					return true; 
 				}
 				
-				int newforce= force - (neighbor.friction * neighbor_item.weight);
+				int newforce= force - (actual.friction * actual.getItem().weight);
 				if(neighbor_item.Push(d, newforce) ) {
 					neighbor.setItem(this);
 					actual.removeItem();

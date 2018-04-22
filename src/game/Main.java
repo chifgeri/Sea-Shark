@@ -14,73 +14,73 @@ public class Main {
     private static BufferedReader reader = new BufferedReader(isr);
     private static Map map;
     private static boolean end = false;
-    
+
     public static void Log(String msg) {
-    	if(Tester.message == true)
-    	System.out.println(msg);
+        if(Tester.message == true)
+            System.out.println(msg);
     }
 
-	public  static  void  MainMenu (){
+    public  static  void  MainMenu (){
         boolean running = true;
-        
+
         Log("@@@ A program elindult!");
         try {
-        while(running) {
-            Log("@@@ Kovetkezo parancsok elerhetoek: Load <filename>, Start, Exit, Strength <int>, Weight <int>, Honey <int>, Oil <int>");
-            cmd = getcommand();
-            switch (cmd.get(0)){
-                case "Load" :
-                    map = new Map();
-                    map.CreatedMap(cmd.get(1));
-                    Log("@@@ A jatek betoltve!");
-                    break;
-                case "Start":
-                	Log("@@@ A jatek elkezdodott!");
-                    Game();
-                    break;
-                case "Exit":
-                	Log("@@@ Kilepes a jatekbol!");
-                    running = false;
-                    break;
-                case "Strength":
-                    if( cmd.size() == 2)
-                        map.setForce(Integer.parseInt(cmd.get(1)));
-                    Log("@@@ Ero beallitva!");
-                    break;
-                case "Weight":
-                    if( cmd.size() == 2)
-                        map.setWeight(Integer.parseInt(cmd.get(1)));
-                    Log("@@@ Suly beallitva!");
-                    break;
-                case "Honey":
-                    if( cmd.size() == 2)
-                        map.setHoney(Integer.parseInt(cmd.get(1)));
-                    Log("@@@ Mez beallitva!");
-                    break;
-                case "Oil":
-                    if( cmd.size() == 2)
-                        map.setOil(Integer.parseInt(cmd.get(1)));
-                    Log("@@@ Olaj beallitva!");
-                    break;
-                default:
-                	Log("@@@ Ervenytelen parancs");
+            while(running) {
+                Log("@@@ Kovetkezo parancsok elerhetoek: Load <filename>, Start, Exit, Strength <int>, Weight <int>, Honey <int>, Oil <int>");
+                cmd = getcommand();
+                switch (cmd.get(0)){
+                    case "Load" :
+                        map = new Map();
+                        map.CreatedMap(cmd.get(1));
+                        Log("@@@ A jatek betoltve!");
+                        break;
+                    case "Start":
+                        Log("@@@ A jatek elkezdodott!");
+                        Game();
+                        break;
+                    case "Exit":
+                        Log("@@@ Kilepes a jatekbol!");
+                        running = false;
+                        break;
+                    case "Strength":
+                        if( cmd.size() == 2)
+                            map.setForce(Integer.parseInt(cmd.get(1)));
+                        Log("@@@ Ero beallitva!");
+                        break;
+                    case "Weight":
+                        if( cmd.size() == 2)
+                            map.setWeight(Integer.parseInt(cmd.get(1)));
+                        Log("@@@ Suly beallitva!");
+                        break;
+                    case "Honey":
+                        if( cmd.size() == 2)
+                            map.setHoney(Integer.parseInt(cmd.get(1)));
+                        Log("@@@ Mez beallitva!");
+                        break;
+                    case "Oil":
+                        if( cmd.size() == 2)
+                            map.setOil(Integer.parseInt(cmd.get(1)));
+                        Log("@@@ Olaj beallitva!");
+                        break;
+                    default:
+                        Log("@@@ Ervenytelen parancs");
+                }
             }
-        }
         }catch (Exception e){
-        	e.printStackTrace(System.out);
+            e.printStackTrace(System.out);
         }
     }
 
-	private   static  void Game(){
-			while (end != true)
-				GameMenu();	
+    private   static  void Game(){
+        while (end != true)
+            GameMenu();
     }
 
-	private   static  void GameMenu(){
-	    try {
-	    	Log("@@@ Kovetkezo parancsok elerhetoek: Left, Right, Up, Down, End, listWorkers, listBoxes, listMap, save <filename>, Next, DropOil, DropHoney");
+    private   static  void GameMenu(){
+        try {
+            Log("@@@ Kovetkezo parancsok elerhetoek: Left, Right, Up, Down, End, listWorkers, listBoxes, listMap, save <filename>, Next, DropOil, DropHoney");
             List<String> com = getcommand();
-	        switch (com.get(0)){
+            switch (com.get(0)){
                 case "Left":
                     map.MoveWorker(Direction.LEFT);
                     Log("@@@ Worker mozgott!");
@@ -127,29 +127,27 @@ public class Main {
                     Log("@@@ Worker mezet rakott le!");
                     break;
                 default:
-                	Log("Ervenytelen parancs");
-	        }
+                    Log("Ervenytelen parancs");
+            }
         }catch (Exception e){
 
-	        e.printStackTrace();
+            e.printStackTrace();
 
         }
     }
 
-	private static List<String> cmd = null;
+    private static List<String> cmd = null;
 
-	//Ezt a függvényt használjuk az összes osztályban, ahol a parancssorból utasítást kérünk be.
+    //Ezt a függvényt használjuk az összes osztályban, ahol a parancssorból utasítást kérünk be.
 
-	private static List<String> getcommand() throws IOException {
+    private static List<String> getcommand() throws IOException {
         String command = "";
-		command = reader.readLine();
-		cmd = Arrays.asList(command.split(" "));
-		return cmd;
-	}
+        command = reader.readLine();
+        cmd = Arrays.asList(command.split(" "));
+        return cmd;
+    }
 
-	public static void main(String[] args) throws IOException {
-	    MainMenu();
+    public static void main(String[] args) throws IOException {
+        MainMenu();
     }
 }
-
-
