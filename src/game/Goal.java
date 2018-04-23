@@ -9,8 +9,9 @@ public class Goal extends Field{
     }
     //Ha dobozt tolunk a célmezõre, aktiváljuk azt.
     public void activate() {
-     if(Map.actualPlayer!=null)
-    	 Map.actualPlayer.addScore(100);
+    	if(Map.actualPlayer!=null)
+    		Map.actualPlayer.addScore(100);
+    	((Box)item).setscored(true);
     }
 
 

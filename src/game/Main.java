@@ -61,7 +61,9 @@ public class Main {
                     System.out.println("@@@ Ervenytelen parancs");
             }
         }
-        }catch (Exception e){}
+        }catch (Exception e){
+        	e.printStackTrace(System.out);
+        }
     }
 
 	private   static  void Game(){
@@ -125,7 +127,9 @@ public class Main {
                     System.out.println("Ervenytelen parancs");
 	        }
         }catch (Exception e){
+
 	        e.printStackTrace();
+
         }
     }
 
@@ -142,11 +146,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 	    MainMenu();
-//			map.CreatedMap("map");
-//			map.printFields(System.out);
-//			map.printBoxes(System.out);
-//			map.printWorkers(System.out);
-
+	    
     }
 }
 

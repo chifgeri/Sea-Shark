@@ -10,7 +10,7 @@ import java.io.PrintStream;
 
 public abstract class Pushable {
 	//Az a mező, amelyiken az item áll.
-	protected int weight;
+	protected int weight=10;
 	
 	protected Field actual = new Field();
 	

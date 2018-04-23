@@ -249,7 +249,7 @@ public void printBoxes(PrintStream ps) {
 				ps.print(i+". ");
 			int j=fields.indexOf(b.actual);
 			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
-			//ps.print(b.weight);
+			ps.print(b.weight);
 			ps.print("\n");
 			i++;
 		}
