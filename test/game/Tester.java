@@ -9,7 +9,11 @@ import java.util.ArrayList;
 public class Tester {
 	
 	final static String success = "A teszt SIKERESEN lefutott!";
+<<<<<<< HEAD
 	final static String failure = "A teszt HIBÃSAN futott le!";
+=======
+	final static String failure = "A teszt HIBÁSAN futott le!";
+>>>>>>> ca84dfc30a409f04547de1b870c94343fe0416c5
 	
 	static FileReader fr;
 	static BufferedReader reader;
@@ -44,7 +48,11 @@ public class Tester {
 			File outputsrc = new File("test/testinputs/test"+n+"/output"+n+".txt");
 			
 			if(!mapsrc.exists() || !commandsrc.exists() || !outputsrc.exists())
+<<<<<<< HEAD
 				System.out.println("Nem sikerÃ¼lt megnyitni egy vagy tÃ¶bb fÃ¡jlt!");
+=======
+				System.out.println("Nem sikerült megnyitni egy vagy több fájlt!");
+>>>>>>> ca84dfc30a409f04547de1b870c94343fe0416c5
 			
 			map = setAttributes(mapsrc);
 			command = setAttributes(commandsrc);
