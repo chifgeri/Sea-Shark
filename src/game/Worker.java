@@ -83,15 +83,22 @@ public class Worker extends Pushable {
 				actual.removeItem();
 			}
 
+			public void setForce(int force) {
+				this.force = force;
+			}
 
-	@Override
+			public void setHoney(int honey) {
+				this.honey = honey;
+			}
+
+			public void setOil(int oil) {
+				this.oil = oil;
+			}
+
+			@Override
 	public void printType(PrintStream ps) {
 		ps.print(" Worker ");		
 	}
 
-	@Override
-	public void setActual(Field field) {
-		actual = field;
-	}
 }
 
