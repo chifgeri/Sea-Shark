@@ -19,19 +19,17 @@ public class Main {
 	public  static  void  MainMenu (){
         boolean running = true;
 
-        System.out.println("@@@ A jatek elkezdodott!");
+        System.out.println("@@@ A program elindult!");
         try {
-            cmd = getcommand();
         while(running) {
-
-
-
+            cmd = getcommand();
             switch (cmd.get(0)){
                 case "Load" :
                     map.CreatedMap(cmd.get(1));
                     System.out.println("@@@ A jatek betoltve!");
                     break;
                 case "Start":
+                    System.out.println("@@@ A jatek elkezdodott!");
                     Game();
                     break;
                 case "Exit":
@@ -63,15 +61,13 @@ public class Main {
 	private   static  void Game(){
 	    while (map.EndGame() && end != true){
 	        GameMenu();
-	        map.NextWorker();
+
         }
     }
 
-
-
 	private   static  void GameMenu(){
 	    try {
-           List<String> com = getcommand();
+            List<String> com = getcommand();
 
 	        switch (com.get(0)){
                 case "Left":
@@ -101,6 +97,16 @@ public class Main {
                 case "save":
                     map.save("test");
                     break;
+                case "Next":
+                    map.NextWorker();
+                    break;
+                case "DropOil":
+                    map.DropOil();
+                    break;
+                case "DropHoney":
+                    map.DropHoney();
+                    break;
+
 	        }
         }catch (Exception e){}
     }
@@ -116,8 +122,8 @@ public class Main {
 		return cmd;
 	}
 
-	static void main(String[] args) throws IOException {
-    MainMenu();
+	public static void main(String[] args) throws IOException {
+	    MainMenu();
 //			map.CreatedMap("map");
 //			map.printFields(System.out);
 //			map.printBoxes(System.out);

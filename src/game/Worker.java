@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 		//A munkást reprezentáló osztály.
 public class Worker extends Pushable {
+
 			//A munkás pontszáma.
 			protected int score = 0;
 			protected int weight= 10;
@@ -81,6 +82,7 @@ public class Worker extends Pushable {
 			public void Die() {
 				actual.removeItem();
 			}
+
 
 	@Override
 	public void printType(PrintStream ps) {

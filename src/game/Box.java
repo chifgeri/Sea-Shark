@@ -3,13 +3,14 @@ package game;
 import java.io.PrintStream;
 //A dobozokat reprezentáló osztály, ami a Pushable osztályból származik
 public class Box extends Pushable {
-	
+
 	//A doboz súlyát reprezentáló adat.
 	protected int weight= 10;
 	
 	//A dobozt eltoló függvény, hasonlóan működik, mint a munkást eltoló függvény, de 
 	//a doboz aktivál minden mezőt.
 	public boolean Push(Direction d, int force) {		
+
 		Field neighbor = actual.getNeighborAt(d);
 		Pushable neighbor_item = neighbor.getItem();
 		
@@ -22,8 +23,10 @@ public class Box extends Pushable {
 			neighbor.setItem(this);
 			neighbor.activate();
 			actual.removeItem();
+
 			actual=neighbor;
 			return true; 
+
 		}
 	
 		return false;
