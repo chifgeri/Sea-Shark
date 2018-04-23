@@ -6,13 +6,16 @@ public class Box extends Pushable {
 
 	//A doboz súlyát reprezentáló adat.
 	protected int weight= 10;
-	
+	private boolean scored=false;
 	//A dobozt eltoló függvény, hasonlóan működik, mint a munkást eltoló függvény, de 
 	//a doboz aktivál minden mezőt.
 	public boolean Push(Direction d, int force) {		
 
 		Field neighbor = actual.getNeighborAt(d);
 		Pushable neighbor_item = neighbor.getItem();
+		
+		if(scored)
+			return false;
 		
 		if(neighbor_item!=null && force <= (neighbor_item.weight * neighbor.friction)) {
 			return false;
@@ -34,6 +37,10 @@ public class Box extends Pushable {
 	//Ha a doboz leesik, akkor hívódik meg ez a függvény.
 	public void Fall() {
 		actual.removeItem();
+	}
+	
+	public void setscored(boolean b) {
+		scored = b;
 	}
 
 	@Override

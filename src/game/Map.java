@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 
 import java.util.ArrayList;
@@ -77,7 +76,7 @@ public class Map {
                         p.setActual(f);
                         fields.add(f);
                         if(subcmd.size() == 2)
-                            f.changeFritcion(Integer.parseInt(subcmd.get(1)));
+                            f.changeFriction(Integer.parseInt(subcmd.get(1)));
                         break;
                     case 'W' :
                         fields.add(new Field(new Wall()));
@@ -91,7 +90,7 @@ public class Map {
                             switchMap.put(subcmd.get(1), s);
                             fields.add(s);
                             if(subcmd.size() == 3)
-                                s.changeFritcion(Integer.parseInt(subcmd.get(2)));
+                                s.changeFriction(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -104,7 +103,7 @@ public class Map {
                             trapdoorMap.put(subcmd.get(1), t);
                             fields.add(t);
                             if(subcmd.size() == 3)
-                                t.changeFritcion(Integer.parseInt(subcmd.get(2)));
+                                t.changeFriction(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -243,7 +242,7 @@ public void printBoxes(PrintStream ps) {
 				ps.print(i+". ");
 			int j=fields.indexOf(b.actual);
 			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
-			//ps.print(b.weight);
+			ps.print(b.weight);
 			ps.print("\n");
 			i++;
 		}

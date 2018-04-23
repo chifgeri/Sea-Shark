@@ -123,11 +123,11 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-	    MainMenu();
-//			map.CreatedMap("map");
-//			map.printFields(System.out);
-//			map.printBoxes(System.out);
-//			map.printWorkers(System.out);
+//	    MainMenu();
+			map.CreatedMap("testcases/test19.txt");
+			map.printFields(System.out);
+			map.printBoxes(System.out);
+			map.printWorkers(System.out);
 
     }
 }
