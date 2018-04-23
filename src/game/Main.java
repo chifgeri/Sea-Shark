@@ -3,136 +3,128 @@ package game;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 
-//A program Main osztálya.
+// Main osztálya.
 //Itt található az az állapotgép-szerű logika, amely meghatározza a program működési folyamatát.
 public class Main {
 
     private static InputStreamReader isr = new InputStreamReader(System.in);
     private static BufferedReader reader = new BufferedReader(isr);
     private static Map map = new Map();
-	
-	//Egy kétállapotú enum:
-	// - mozgásra készen áll a játékos
-	// - mozgás közben van a játékos
-	public enum State {
-		READY_TO_MOVE,
-		MOVE
-	}
-
-	public  static  void  MainMenu(){}
-
-	public  static  void Game(){}
-
-	public  static  void GameMenu(){}
-	
-	//Itt találhatók azok a publikus statikus változók, amelyek a parancssor kezeléséhez szükségesek.
-	
-	
-	//Irány és távolság. A felhasználónak szánt információ, hogy legyen elképzelése a mozgásról.
-	//Megtudhatja, hogy merre mozog a munkás, illetve, hogy milyen irányba.
-	public static Direction DIR = null;
-	public static int DIST = 0;
-	
-	//Az éppen feldolgozott utasítást mentjük el mindig ebbe a változóba.
-	public static String command = "";
-	//Ebben a string tömbben szóközök mentén feldarabolva találhatjuk meg a kiadott parancsot.
-	private static String[] cmd = null;
-	
-	//A munkás, akit a szkeleton során irányítunk.
-	public static Worker worker = new Worker();
-	
-	//Ezt a függvényt használjuk az összes osztályban, ahol a parancssorból utasítást kérünk be.
-	public static String[] getcommand() throws IOException {
-		command = reader.readLine();
-		cmd = command.split(" ");
-		return cmd;
-	}
-	//A Main osztály main függvénye, az IOException a beolvasás miatt kell.
-	public static void main(String[] args) throws IOException {
+    private static boolean end = false;
 
 
-		
-		
-		boolean running = true;
+	public  static  void  MainMenu (){
+        boolean running = true;
+
+        System.out.println("@@@ A jatek elkezdodott!");
+        try {
+            cmd = getcommand();
+        while(running) {
 
 
-		System.out.println("@@@ A jatek elkezdodott!");
 
-/*
-		while(running) {
-		    String[] cmd = getcommand();
-            switch (cmd[0]){
+            switch (cmd.get(0)){
                 case "Load" :
-                    map.CreatedMap(cmd[1]);
+                    map.CreatedMap(cmd.get(1));
                     System.out.println("@@@ A jatek betoltve!");
                     break;
-                case "Start" :
+                case "Start":
                     Game();
                     break;
-                case "Exit" :
+                case "Exit":
                     running = false;
                     break;
-                case "Strength" :
+                case "Strength":
+                    if( cmd.size() == 2)
+                        map.setStrange(Integer.parseInt(cmd.get(1)));
                     break;
-                case "Wight" :
+                case "Wight":
+                    if( cmd.size() == 2)
+                        map.setWeight(Integer.parseInt(cmd.get(1)));
                     break;
-                case "Honey" :
+                case "Honey":
+                    if( cmd.size() == 2)
+                        map.setHoney(Integer.parseInt(cmd.get(1)));
                     break;
-                case "Oil" :
+                case "Oil":
+                    if( cmd.size() == 2)
+                        map.setOil(Integer.parseInt(cmd.get(1)));
                     break;
                 default:
                     System.out.println("@@@ Ervenytelen parancs");
             }
-        }*/		
-//		//Boolean érték, azt jelzi, hogy fut-e a programunk, alapértelmezetten igen.
-//		boolean running = true;
-//		//Az alapértelmezett állapot szerint a munkás készen áll a mozgásra.
-//		State state = State.READY_TO_MOVE;
-//
-//		//A játék elején írjuk ki, tájékoztatjuk a felhasználót.
-//		System.out.println("@@@ A játék elkezdődött!");
-//
-//		//Egy ciklus, addig fut, amíg  a játék befejeződik.
-//		while(running) {
-//			//A munkás ekkor mozoghat vagy kiléphet
+        }
+        }catch (Exception e){}
+    }
 
-//			if(state == State.READY_TO_MOVE) {
-//				//A vizsgált távolság kezdetben 0, tehát a worker mezőjén állunk a vizsgálattal
-//				DIST = 0;
-//				//Információs üzenetek
-//				System.out.println("@@@ Mozoghatsz, befejezheted a játékot, vagy kiléphetsz.");
-//				System.out.println("@@@ Segítség: move [direction] {right, left, up, down}, exit, end.");
-//				//Parancsbekérés
-//				getcommand();
-//				//move parancs esetén a megadott irányba mozgunk
-//				//Az irányt úgy kapjuk, hogy a parancs második szavát nagybetűsítjük, majd enum
-//				//típusúvá konvertáljuk a valueOf() függvénnyel.
-//				if(cmd[0].equals("move")) {
-//					DIR = Direction.valueOf(cmd[1].toUpperCase());
-//					state = State.MOVE;
-//				}
-//				//exit vagy end esetén kilépünk ciklusból
-//				else if(cmd[0].equals("exit") || cmd[0].equals("end") ) {
-//					System.out.println("@@@ A játék véget ért. Köszönöm, hogy kirpóbáltad a szkeletont!");
-//					running = false;
-//				}
-//			}
-//			//Ha mozgás közben vagyunk, akkor ez a feltételes ág fut le.
-//			//A mozgás parancs kiadása után kerülünk ide.
-//			//A munkást mozgatjuk a megadott irányba.
-//			//A mozgás lefutása után ismét készen állunk az új mozgásra.
-//			else if(state == State.MOVE) {
-//				worker.Move(DIR);
-//				state = State.READY_TO_MOVE;
-//				}
-//		}
-			
-			map.CreatedMap("testcases/test12.txt");
-			map.printFields(System.out);
-			map.printBoxes(System.out);
-			map.printWorkers(System.out);
-		}
-	
+	private   static  void Game(){
+	    while (map.EndGame() && end != true){
+	        GameMenu();
+	        map.NextWorker();
+        }
+    }
+
+
+
+	private   static  void GameMenu(){
+	    try {
+           List<String> com = getcommand();
+
+	        switch (com.get(0)){
+                case "Left":
+                    map.MoveWorker(Direction.LEFT);
+                    break;
+                case "Right":
+                    map.MoveWorker(Direction.RIGHT);
+                    break;
+                case "Up":
+                    map.MoveWorker(Direction.UP);
+                    break;
+                case "Down":
+                    map.MoveWorker(Direction.DOWN);
+                    break;
+                case "End":
+                    end = true;
+                    break;
+                case "listWorkers":
+                    map.printWorkers(System.out);
+                    break;
+                case "listBoxes":
+                    map.printBoxes(System.out);
+                    break;
+                case "listMap":
+                    map.printFields(System.out);
+                    break;
+                case "save":
+                    map.save("test");
+                    break;
+	        }
+        }catch (Exception e){}
+    }
+
+	private static List<String> cmd = null;
+
+	//Ezt a függvényt használjuk az összes osztályban, ahol a parancssorból utasítást kérünk be.
+
+	private static List<String> getcommand() throws IOException {
+        String command = "";
+		command = reader.readLine();
+		cmd = Arrays.asList(command.split(" "));
+		return cmd;
+	}
+
+	static void main(String[] args) throws IOException {
+    MainMenu();
+//			map.CreatedMap("map");
+//			map.printFields(System.out);
+//			map.printBoxes(System.out);
+//			map.printWorkers(System.out);
+
+    }
 }
+
+
 

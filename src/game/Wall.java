@@ -5,14 +5,21 @@ import java.io.PrintStream;
 
 public class Wall extends Pushable {
 	//A falat nem tudjuk eltolni, ezért mindig false-al tér vissza.
+
 	public boolean Push(Direction d, int force) {
 		return false;
 	}
-	//A fal leesik. Ilyen alapesetben nem történik meg.
+
+
 	public void Fall() {
 		//System.out.println("--- Wall Push()");
 	}
 
+
+	@Override
+	public void setActual(Field field) {
+
+	}
 
 
 	@Override
@@ -20,10 +27,7 @@ public class Wall extends Pushable {
 		ps.print(" Wall ");
 		
 	}
-	@Override
-	public void setActual(Field field) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }
 

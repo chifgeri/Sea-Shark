@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 
 public class Map {
+
 	
 	private List<Field> fields = new ArrayList<>();
 	private List<Worker> workers = new ArrayList<>();
@@ -58,45 +60,51 @@ public class Map {
         try {    
         br=new BufferedReader(new FileReader(filename));
         String line = br.readLine();
-        String[] cmd = line.split("x");
-        sizeX = Integer.parseInt(cmd[0]);
-        sizeY = Integer.parseInt(cmd[1]);
+        List<String> cmd = Arrays.asList(line.split("x"));
+        sizeX = Integer.parseInt(cmd.get(0));
+        sizeY = Integer.parseInt(cmd.get(1));
 
         while ((line = br.readLine()) != null){
-            cmd = line.split(" ");
+            cmd = Arrays.asList(line.split(" "));
             for(String parm : cmd){
                 Pushable p;
-                String[] subcmd = pushableCmd(parm);
+                List<String> subcmd =  Arrays.asList(pushableCmd(parm));
                 switch(parm.charAt(0)){
                     case 'F' :
-                        p = createPushable(subcmd[0]);
+                        p = createPushable(subcmd.get(0));
                         Field f = new Field(p);
                         if(p!=null)
                         p.setActual(f);
                         fields.add(f);
+                        if(subcmd.size() == 2)
+                            f.changeFritcion(Integer.parseInt(subcmd.get(1)));
                         break;
                     case 'W' :
                         fields.add(new Field(new Wall()));
                         break;
                     case 'S' :
-                        if(subcmd.length == 2) {
-                            p = createPushable(subcmd[0]);
+                        if(subcmd.size() == 2) {
+                            p = createPushable(subcmd.get(0));
                             Switch s = new Switch(p);
                             if(p!=null)
                             p.setActual(s);
-                            switchMap.put(subcmd[1], s);
+                            switchMap.put(subcmd.get(1), s);
                             fields.add(s);
+                            if(subcmd.size() == 3)
+                                s.changeFritcion(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
                     case 'T' :
-                        if(subcmd.length == 2) {
-                            p = createPushable(subcmd[0]);
+                        if(subcmd.size() == 2) {
+                            p = createPushable(subcmd.get(0));
                             Trapdoor t = new Trapdoor(p);
                             if(p!=null)
                             p.setActual(t);
-                            trapdoorMap.put(subcmd[1], t);
+                            trapdoorMap.put(subcmd.get(1), t);
                             fields.add(t);
+                            if(subcmd.size() == 3)
+                                t.changeFritcion(Integer.parseInt(subcmd.get(2)));
                         }
                         else throw new IllegalArgumentException();
                         break;
@@ -104,7 +112,7 @@ public class Map {
                         fields.add(new Hole());
                         break;
                     case 'G' :
-                        p = createPushable(subcmd[0]);
+                        p = createPushable(subcmd.get(0));
                         Goal g = new Goal(p);
                         if(p!=null)
                         p.setActual(g);
@@ -156,14 +164,6 @@ public class Map {
 
 	}
 
-	public void Save(String filename){
-
-	}
-
-	public  void Print(){
-
-	}
-
 
 	public boolean EndGame(){
 		return true;
@@ -185,6 +185,28 @@ public class Map {
 	        if(workers.size() > 0)
 			    workers.get(actualWorkerNumber).Move(d);
 		}
+    public void setWeight(int weight){
+	    for(Worker w: workers);
+	        //w.setWeight(weight);
+
+	    for(Box b: boxes);
+	        //b.setWeight(weight);
+    }
+
+    public  void setStrange(int strange){
+	    for(Worker w: workers);
+	        //w.setStrange(strange);
+    }
+
+    public  void setOil(int oil){
+	    for(Worker w: workers);
+	        //w.setOil(oil);
+    }
+
+    public  void setHoney(int honey){
+	    for(Worker w: workers);
+	       // w.setHoney(honey);
+    }
 
 	
 	public void printWorkers(PrintStream ps) {

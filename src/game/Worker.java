@@ -81,7 +81,6 @@ public class Worker extends Pushable {
 			public void Die() {
 				actual.removeItem();
 			}
-		
 
 	@Override
 	public void printType(PrintStream ps) {
