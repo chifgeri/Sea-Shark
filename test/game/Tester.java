@@ -58,6 +58,7 @@ public class Tester {
 	
 	public static void main(String args[]) throws IOException, InterruptedException {
 
+
 		//TESZT 1
 		//Create the environment
 		presetTest(1);
@@ -87,11 +88,14 @@ public class Tester {
 		
 		//ByteArrayInputStream stream = new ByteArrayInputStream("Start".getBytes(StandardCharsets.UTF_8));
 		//System.in.
+		Main.main( new String[0]);
+		Thread mainThread = Thread.currentThread();
+		System.out.println(mainThread);
+		
 		//Save the output to a file
 		//TODO
 		//Compare saved file to reference file
 		//TODO
-		
 
 	}
 }

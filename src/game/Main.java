@@ -125,9 +125,9 @@ public class Main {
 		return cmd;
 	}
 
-	
 	public static void main(String[] args) throws IOException {
-			MainMenu();
+		MainMenu();
+
 //			map.CreatedMap("map");
 //			map.printFields(System.out);
 //			map.printBoxes(System.out);
