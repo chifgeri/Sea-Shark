@@ -18,8 +18,8 @@ public class Map {
 
 	
 	private List<Field> fields = new ArrayList<>();
-	private List<Worker> workers = new ArrayList<>();
-    private List<Box> boxes = new ArrayList<>();
+	public static List<Worker> workers = new ArrayList<>();
+    public static List<Box> boxes = new ArrayList<>();
 
     public static Worker actualPlayer;
 	private int actualWorkerNumber = 0;

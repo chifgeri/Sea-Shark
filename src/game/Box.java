@@ -38,6 +38,7 @@ public class Box extends Pushable {
 	}
 	//Ha a doboz leesik, akkor hívódik meg ez a függvény.
 	public void Fall() {
+		Map.boxes.remove(actual);
 		actual.removeItem();
 	}
 	
