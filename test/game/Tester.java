@@ -16,6 +16,9 @@ public class Tester {
 	static File output_source;
 	static File reference_output_source;
 	
+    public static boolean message = true;
+    public static boolean trackend = false;
+	
 	static int testNumber;
 	
 	public static void printmsg(int testNumber, boolean success) {
@@ -84,7 +87,8 @@ public class Tester {
 		testNumber = n;
 		presetTest(testNumber);
 		System.setIn(testInput);
-	    Main.message = false;
+	    if(18 >= testNumber && testNumber >= 15)
+	    	trackend = true;
 	    Main.main(new String[0]);
 	} finally {
 	    System.setIn(standardInput);
@@ -97,6 +101,8 @@ public class Tester {
 	}
 	
 	public static void main(String args[]) throws IOException, InterruptedException {
+		
+		message = false;
 		
 		//Successful tests:
 		//Test(1);
@@ -113,8 +119,8 @@ public class Tester {
 		//Test(12);
 		//Test(13);
 		//Test(14);
-		
-		
+		//Main.trackend = false;
+		Test(10);
 		
 	}
 }

@@ -15,11 +15,8 @@ public class Main {
     private static Map map;
     private static boolean end = false;
     
-    public static boolean message = true;
-    public static boolean trackend = false;
-    
     public static void Log(String msg) {
-    	if(message == true)
+    	if(Tester.message == true)
     	System.out.println(msg);
     }
 
@@ -75,10 +72,8 @@ public class Main {
     }
 
 	private   static  void Game(){
-	    while (!map.EndGame() && end != true && trackend){
-	        GameMenu();
-
-        }
+			while (end != true)
+				GameMenu();	
     }
 
 	private   static  void GameMenu(){
@@ -154,7 +149,6 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 	    MainMenu();
-	    
     }
 }
 

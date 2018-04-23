@@ -165,8 +165,8 @@ public class Map {
 	}
 
 	public boolean EndGame(){
-//	    if(workers.size() == 1)
-//	        return false;
+	    if(workers.size() == 1)
+	        return true;
 //	    for(Box b : boxes)
 //            if (b.movable())
 //                return true;
@@ -269,6 +269,16 @@ public void printFields(PrintStream ps) {
 			ps.print(System.lineSeparator());
 			i++;
 		}
+		if(Tester.trackend)
+		printGameOver(ps);
+}
+
+public void printGameOver(PrintStream ps) {
+	ps.println("Game Over:");
+	if(EndGame())
+		ps.println("YES");
+	else
+		ps.println("NO");
 }
 
 public void save(String filename)  {
