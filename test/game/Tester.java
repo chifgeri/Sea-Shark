@@ -1,10 +1,15 @@
 package game;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Tester {
 	
@@ -51,40 +56,42 @@ public class Tester {
 			output = setAttributes(outputsrc);	
 	}
 	
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, InterruptedException {
 
 		//TESZT 1
-<<<<<<< HEAD
 		//Create the environment
 		presetTest(1);
 		//Process and execute commands...
-		Main.main( new String[0]);
-		Thread mainThread = Thread.currentThread();
-		System.out.println(mainThread);
+		//String[] array = command.toArray(new String[0]);
 		
+		
+		//Thread mainThread = Thread.currentThread();
+		
+		
+		
+		//String data = "Exit";
+		//InputStream testInput = new ByteArrayInputStream( data.getBytes("UTF-8") );
+		InputStream testInput = new FileInputStream(new File("test/testinputs/test1/cmd1.txt"));
+		InputStream old = System.in;
+		
+		try {
+			
+		    System.setIn( testInput );
+		   Main.main(args);
+
+		} finally {
+		    System.setIn( old );
+		}
+		//Scanner scanner = new Scanner(System.in);
+		//scanner.
+		
+		//ByteArrayInputStream stream = new ByteArrayInputStream("Start".getBytes(StandardCharsets.UTF_8));
+		//System.in.
 		//Save the output to a file
 		//TODO
 		//Compare saved file to reference file
 		//TODO
 		
-		//TESZT 2
-		//Create the environment
-		presetTest(2);
-		//Process and execute commands...
-		//TODO
-		//Save the output to a file
-		//TODO
-		//Compare saved file to reference file
-		//TODO
-		
-		//...
-=======
-		presetTest(1);
-		printAttribute(map);
-		System.out.println("\n");
-		printAttribute(command);
-		System.out.println("\n");
-		printAttribute(output);
->>>>>>> test base created
+
 	}
 }
