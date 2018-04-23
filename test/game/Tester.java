@@ -58,7 +58,10 @@ public class Tester {
 		//Create the environment
 		presetTest(1);
 		//Process and execute commands...
-		//TODO
+		Main.main( new String[0]);
+		Thread mainThread = Thread.currentThread();
+		System.out.println(mainThread);
+		
 		//Save the output to a file
 		//TODO
 		//Compare saved file to reference file
