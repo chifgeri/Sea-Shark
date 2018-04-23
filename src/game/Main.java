@@ -8,7 +8,7 @@ import java.util.List;
 
 // Main osztálya.
 //Itt található az az állapotgép-szerű logika, amely meghatározza a program működési folyamatát.
-public class Main {
+public class Main extends Thread {
 
     private static InputStreamReader isr = new InputStreamReader(System.in);
     private static BufferedReader reader = new BufferedReader(isr);
@@ -122,8 +122,12 @@ public class Main {
 		return cmd;
 	}
 
-	public static void main(String[] args) throws IOException {
+	public void run() {
 	    MainMenu();
+	}
+	
+	public static void main(String[] args) throws IOException {
+			(new Main()).start();
 //			map.CreatedMap("map");
 //			map.printFields(System.out);
 //			map.printBoxes(System.out);

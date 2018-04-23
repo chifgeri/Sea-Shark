@@ -63,7 +63,7 @@ public class Map {
         sizeX = Integer.parseInt(cmd.get(0));
         sizeY = Integer.parseInt(cmd.get(1));
 
-        while ((line = br.readLine()) != null && line.equals("")){
+        while ((line = br.readLine()) != null && !line.equals("")){
             cmd = Arrays.asList(line.split(" "));
             for(String parm : cmd){
                 Pushable p;
