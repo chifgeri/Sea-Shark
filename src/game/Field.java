@@ -41,7 +41,7 @@ public class Field {
     public void setNeighboursAt(Direction d, Field f) {
         neighbours.put(d, f);
     }
-    public void changeFritcion(int plus) {
+    public void changeFriction(int plus) {
     	friction+=plus;
     }
 	

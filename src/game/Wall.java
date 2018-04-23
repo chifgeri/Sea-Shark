@@ -6,9 +6,7 @@ import java.io.PrintStream;
 public class Wall extends Pushable {
 	//A falat nem tudjuk eltolni, ezért mindig false-al tér vissza.
 
-	public boolean Push(Direction d) {
-		//System.out.println("--- Wall Push()");
-		System.out.println("@@@ A falakat nem lehet eltolni!");
+	public boolean Push(Direction d, int force) {
 		return false;
 	}
 
