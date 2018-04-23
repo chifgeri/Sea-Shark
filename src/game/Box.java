@@ -5,7 +5,6 @@ import java.io.PrintStream;
 public class Box extends Pushable {
 
 	//A doboz súlyát reprezentáló adat.
-	protected int weight= 10;
 	private boolean scored=false;
 	//A dobozt eltoló függvény, hasonlóan működik, mint a munkást eltoló függvény, de 
 	//a doboz aktivál minden mezőt.

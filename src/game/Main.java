@@ -55,7 +55,9 @@ public class Main {
                     System.out.println("@@@ Ervenytelen parancs");
             }
         }
-        }catch (Exception e){}
+        }catch (Exception e){
+        	e.printStackTrace(System.out);
+        }
     }
 
 	private   static  void Game(){

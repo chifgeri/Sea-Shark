@@ -7,7 +7,6 @@ public class Worker extends Pushable {
 
 			//A munkás pontszáma.
 			protected int score = 0;
-			protected int weight= 10;
 			protected int force= 200;
 			protected int honey= 2;
 			protected int oil= -2;
