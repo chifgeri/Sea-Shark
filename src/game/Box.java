@@ -17,20 +17,23 @@ public class Box extends Pushable {
 		if(scored)
 			return false;
 		
-		if(neighbor_item!=null && force <= (neighbor_item.weight * neighbor.friction)) {
-			return false;
-		}
-		
-		int newforce= force - (neighbor_item.weight * neighbor.friction);
-		if( neighbor_item==null || neighbor_item.Push(d, newforce) ) {
-			neighbor.setItem(this);
-			neighbor.activate();
-			actual.removeItem();
-
-			actual=neighbor;
-			return true; 
-
-		}
+		if(neighbor_item!=null && force <= (neighbor.friction * neighbor_item.weight)) {
+			return false;					
+	}
+	if(neighbor_item==null) {
+		neighbor.setItem(this);
+		actual.removeItem();
+		actual=neighbor;
+		return true; 
+	}
+	
+			int newforce= force - (neighbor.friction * neighbor_item.weight);
+			if(neighbor_item.Push(d, newforce) ) {
+				neighbor.setItem(this);
+				actual.removeItem();
+				actual=neighbor;
+				return true; 
+			}
 	
 		return false;
 	}

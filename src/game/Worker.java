@@ -50,11 +50,18 @@ public class Worker extends Pushable {
 				Pushable neighbor_item = neighbor.getItem();
 				
 				
-				if(neighbor_item!=null && force <= (neighbor.friction * neighbor_item.weight))
-					return false;
+				if(neighbor_item!=null && force <= (neighbor.friction * neighbor_item.weight)) {
+						return false;					
+				}
+				if(neighbor_item==null) {
+					neighbor.setItem(this);
+					actual.removeItem();
+					actual=neighbor;
+					return true; 
+				}
 				
 				int newforce= force - (neighbor.friction * neighbor_item.weight);
-				if( neighbor_item==null || neighbor_item.Push(d, newforce) ) {
+				if(neighbor_item.Push(d, newforce) ) {
 					neighbor.setItem(this);
 					actual.removeItem();
 					actual=neighbor;

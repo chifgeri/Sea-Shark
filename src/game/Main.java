@@ -108,7 +108,9 @@ public class Main {
                     break;
 
 	        }
-        }catch (Exception e){}
+        }catch (Exception e){
+        	e.printStackTrace();
+        }
     }
 
 	private static List<String> cmd = null;
@@ -123,12 +125,8 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-//	    MainMenu();
-			map.CreatedMap("testcases/test19.txt");
-			map.printFields(System.out);
-			map.printBoxes(System.out);
-			map.printWorkers(System.out);
-
+	    MainMenu();
+	    
     }
 }
 
