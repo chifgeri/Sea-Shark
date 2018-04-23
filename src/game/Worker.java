@@ -20,6 +20,27 @@ public class Worker extends Pushable {
 			public void addScore(int s) {
 				score += s;
 			}
+			
+			public boolean Move(Direction d) {			
+				Field neighbor = actual.getNeighborAt(d);
+				Pushable neighbor_item = neighbor.getItem();
+				
+				//Ha a szomszédon lévő item null, akkor true-val térünk vissza, mert el tud mozdulni oda az item.
+				//Ha a szomszédon lévő itemet el tudjuk tolni, akkor is.
+				//Ekkor egy sor keletkezik, tehát az összes szomszédos itemet meg próbáljuk eltolni.
+				if( neighbor_item==null || neighbor_item.Push(d,force) ) {
+					//Az eltolás során a szomszéd itemét beállítjuk a munkásra,
+					//Az aktuális fieldről pedig eltávolítjuk a munkást.
+					neighbor.setItem(this);
+					actual.removeItem();
+					actual=neighbor;
+					return true; 
+				}
+				//Egyéb esetben a munkás nem tud mozogni, ezt tudatjuk a felhasználóval is.
+				return false;
+			}
+			
+			
 			//A tolódás jelentő függvény, hasonlít a mozgásra, de most a surlódással is számolni kell.
 			//A munkás mindenképpen el tud tolódni, ha nincs hely, akkor összenyomódik.
 			public boolean Push(Direction d, int force) {
@@ -27,16 +48,15 @@ public class Worker extends Pushable {
 				Field neighbor = actual.getNeighborAt(d);
 				Pushable neighbor_item = neighbor.getItem();
 				
-				if(neighbor_item != null)
-					neighbor_item.actual=neighbor;
 				
-				if(force <= (neighbor.friction * neighbor_item.weight))
+				if(neighbor_item!=null && force <= (neighbor.friction * neighbor_item.weight))
 					return false;
 				
 				int newforce= force - (neighbor.friction * neighbor_item.weight);
 				if( neighbor_item==null || neighbor_item.Push(d, newforce) ) {
 					neighbor.setItem(this);
 					actual.removeItem();
+					actual=neighbor;
 					return true; 
 				}
 				Die();
