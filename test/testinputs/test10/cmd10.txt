@@ -1,5 +1,0 @@
-Load test10.txt
-Strength 200
-Start
-Right
-listMap

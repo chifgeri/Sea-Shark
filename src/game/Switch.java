@@ -16,7 +16,6 @@ public class Switch extends Field {
     //Az itemet beállítjuk a kapcsolóra.
     public void setItem(Pushable p) {
        item=p;
-       trapdoor.switch_(false);
     }
     //A doboz hívja meg, amikor rátoljuk. A hozzá tartozó csapóajtót nyitja ki.
     public void activate() {
@@ -37,4 +36,3 @@ public class Switch extends Field {
 		ps.print(friction);
 	}
 }
-

@@ -24,10 +24,9 @@ public class Wall extends Pushable {
 
 	@Override
 	public void printType(PrintStream ps) {
-		ps.print(" Wall ");
+		ps.print("Wall ");
 		
 	}
 
 
 }
-

@@ -1,0 +1,12 @@
+Load testcases/test8/test8.txt
+Start
+listWorkers
+listBoxes
+listMap
+DropHoney
+listWorkers
+listBoxes
+listMap
+save testcases/test8/save8.txt
+End
+Exit

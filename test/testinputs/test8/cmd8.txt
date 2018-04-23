@@ -1,4 +1,0 @@
-Load test8.txt
-Start
-DropHoney
-listMap

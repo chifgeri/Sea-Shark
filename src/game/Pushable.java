@@ -1,7 +1,5 @@
 package game;
 
-import java.io.IOException;
-
 
 //Eltolható típusú itemeket összefoglaló absztrakt ősosztály.
 //Minden leszármazottjának implementálnia kell a függényeit.
@@ -10,7 +8,7 @@ import java.io.PrintStream;
 
 public abstract class Pushable {
 	//Az a mező, amelyiken az item áll.
-	protected int weight;
+	protected int weight=10;
 	
 	protected Field actual = new Field();
 	

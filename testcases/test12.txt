@@ -1,2 +1,0 @@
-1x4
-F(W) S(B,test) T(_,test) F(_)

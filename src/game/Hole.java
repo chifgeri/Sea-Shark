@@ -1,7 +1,5 @@
 package game;
 
-import java.io.IOException;
-
 //Lyukat reprezentáló osztály
 
 import java.io.PrintStream;

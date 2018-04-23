@@ -1,4 +1,0 @@
-Load test7.txt
-Start
-DropOil
-listMap

@@ -5,7 +5,6 @@ import java.io.PrintStream;
 public class Box extends Pushable {
 
 	//A doboz súlyát reprezentáló adat.
-	protected int weight= 10;
 	private boolean scored=false;
 	//A dobozt eltoló függvény, hasonlóan működik, mint a munkást eltoló függvény, de 
 	//a doboz aktivál minden mezőt.
@@ -13,32 +12,37 @@ public class Box extends Pushable {
 
 		Field neighbor = actual.getNeighborAt(d);
 		Pushable neighbor_item = neighbor.getItem();
-		
+
 		if(scored)
 			return false;
+			
+		//nincs erő
+		if((actual.friction * actual.getItem().weight > force))
+			return false;
 		
-		if(neighbor_item!=null && force <= (neighbor.friction * neighbor_item.weight)) {
-			return false;					
-	}
-	if(neighbor_item==null) {
-		neighbor.setItem(this);
-		actual.removeItem();
-		actual=neighbor;
-		return true; 
-	}
-	
-			int newforce= force - (neighbor.friction * neighbor_item.weight);
+		//van erő és a következő mező üres --> az utolsó áthelyezése
+		if(neighbor_item==null) {
+			neighbor.setItem(this);
+			neighbor.activate();
+			actual.removeItem();
+			actual=neighbor;
+			return true; 
+		}
+		//van erő és a következő mező nem üres --> tovább tolás
+			int newforce = force - (actual.friction * actual.getItem().weight);
 			if(neighbor_item.Push(d, newforce) ) {
 				neighbor.setItem(this);
+				neighbor.activate();
 				actual.removeItem();
 				actual=neighbor;
 				return true; 
 			}
-	
+
 		return false;
 	}
 	//Ha a doboz leesik, akkor hívódik meg ez a függvény.
 	public void Fall() {
+		Map.boxes.remove(this);
 		actual.removeItem();
 	}
 	
@@ -47,6 +51,6 @@ public class Box extends Pushable {
 	}
 
 	public void printType(PrintStream ps) {
-		ps.print(" Box ");		
+		ps.print("Box ");		
 	}
 }

@@ -1,0 +1,12 @@
+Load testcases/test7/test7.txt
+Start
+listWorkers
+listBoxes
+listMap
+DropOil
+listWorkers
+listBoxes
+listMap
+save testcases/test7/save7.txt
+End
+Exit

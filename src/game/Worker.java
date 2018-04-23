@@ -1,16 +1,15 @@
 package game;
 
-import java.io.IOException;
 import java.io.PrintStream;
+
 		//A munkást reprezentáló osztály.
 public class Worker extends Pushable {
 
 			//A munkás pontszáma.
 			protected int score = 0;
-			protected int weight= 10;
-			protected int force= 200;
-			protected int honey= 2;
-			protected int oil= -2;
+			protected int force = 200;
+			protected int honey = 2;
+			protected int oil = -2;
 			
 			//Lekérdezzük a munkás pontszámát.
 			public int getScore() {
@@ -87,7 +86,9 @@ public class Worker extends Pushable {
 			}
 			//A munkás meghal.
 			public void Die() {
+				Map.workers.remove(this);
 				actual.removeItem();
+
 			}
 
 			public void setForce(int force) {
@@ -104,8 +105,7 @@ public class Worker extends Pushable {
 
 			@Override
 	public void printType(PrintStream ps) {
-		ps.print(" Worker ");		
+		ps.print("Worker ");		
 	}
 
 }
-

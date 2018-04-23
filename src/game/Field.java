@@ -1,6 +1,5 @@
 package game;
 
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashMap;
 //A mezőt reprezentáló osztály

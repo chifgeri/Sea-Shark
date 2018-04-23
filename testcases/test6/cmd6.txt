@@ -1,0 +1,13 @@
+Load testcases/test6/test6.txt
+Strength 100
+Start
+listWorkers
+listBoxes
+listMap
+Right
+listWorkers
+listBoxes
+listMap
+save testcases/test6/save6.txt
+End
+Exit

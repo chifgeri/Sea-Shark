@@ -18,8 +18,8 @@ public class Map {
 
 	
 	private List<Field> fields = new ArrayList<>();
-	private List<Worker> workers = new ArrayList<>();
-    private List<Box> boxes = new ArrayList<>();
+	public static List<Worker> workers = new ArrayList<>();
+    public static List<Box> boxes = new ArrayList<>();
 
     public static Worker actualPlayer;
 	private int actualWorkerNumber = 0;
@@ -76,7 +76,7 @@ public class Map {
                         p.setActual(f);
                         fields.add(f);
                         if(subcmd.size() == 2)
-                            f.changeFriction(Integer.parseInt(subcmd.get(1)));
+                            f.changeFriction(Integer.parseInt(subcmd.get(1))-10);
                         break;
                     case 'W' :
                         fields.add(new Field(new Wall()));
@@ -171,7 +171,7 @@ public class Map {
 //            if (b.movable())
 //                return true;
 //        return false;
-    return true;
+    return false;
 	}
 
 	public Worker TopScorePlayer(){
@@ -193,10 +193,11 @@ public class Map {
 		actualPlayer=workers.get(actualWorkerNumber);
 	}
 
-	public  void MoveWorker(Direction d){
+	public void MoveWorker(Direction d){
 	        if(workers.size() > 0)
 			    workers.get(actualWorkerNumber).Move(d);
 		}
+	
     public void setWeight(int weight){
 	    for(Worker w: workers)
 	        w.setWeight(weight);
@@ -221,23 +222,25 @@ public class Map {
     }
 
     public void DropOil(){
-	    actualPlayer.DropOil();
+    	if(workers.size() > 0)
+		    workers.get(actualWorkerNumber).DropOil();
     }
 
     public void DropHoney(){
-	    actualPlayer.DropHoney();
+    	if(workers.size() > 0)
+		    workers.get(actualWorkerNumber).DropHoney();
     }
 
 	
 	public void printWorkers(PrintStream ps) {
 		int i=1;
-		ps.println("Workers");
+		ps.println("Workers:");
 		for (Worker w : workers) {
 			ps.print(i+". ");
 			int j=fields.indexOf(w.actual);
-			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
+			ps.print("["+(j/sizeX+1)+","+(j%sizeX+1)+"]"+" ");
 			ps.print(w.score);
-			ps.print("\n");
+			ps.print(System.lineSeparator());
 			i++;
 		}
 }
@@ -248,9 +251,9 @@ public void printBoxes(PrintStream ps) {
 		for (Box b : boxes) {
 				ps.print(i+". ");
 			int j=fields.indexOf(b.actual);
-			ps.print("["+j/sizeX+","+j%sizeX+"]"+" ");
+			ps.print("["+(j/sizeX+1)+","+(j%sizeX+1)+"]"+" ");
 			ps.print(b.weight);
-			ps.print("\n");
+			ps.print(System.lineSeparator());
 			i++;
 		}
 	}
@@ -258,12 +261,12 @@ public void printBoxes(PrintStream ps) {
 	
 public void printFields(PrintStream ps) {
 		int i=0;
-		ps.println("Fields:");
+		ps.println("Map:");
 		for (Field f : fields) {
 			ps.print((i+1)+". ");
-			ps.print("["+i/sizeX+","+i%sizeX+"]"+" ");
+			ps.print("["+(i/sizeX+1)+","+(i%sizeX+1)+"]"+" ");
 			f.print(ps);
-			ps.print("\n");
+			ps.print(System.lineSeparator());
 			i++;
 		}
 }
@@ -284,4 +287,3 @@ public void save(String filename)  {
 }
 }
 }
-

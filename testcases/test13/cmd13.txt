@@ -1,0 +1,12 @@
+Load testcases/test13/test13.txt
+Start
+listWorkers
+listBoxes
+listMap
+Right
+listWorkers
+listBoxes
+listMap
+save testcases/test13/save13.txt
+End
+Exit

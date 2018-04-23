@@ -1,0 +1,8 @@
+Workers:
+1. [1,1] 0
+Boxes:
+1. [1,2] 10
+Map:
+1. [1,1] Field Worker 12
+2. [1,2] Field Box 10
+3. [1,3] Field empty 10
