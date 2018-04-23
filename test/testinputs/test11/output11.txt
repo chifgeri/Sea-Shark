@@ -1,0 +1,11 @@
+Workers:
+1 1-2 0 200
+---
+Box:
+1 1-3 10
+---
+Map:
+1-1 Field empty 10 
+1-2 Field Worker 10
+1-3 Field Box 10
+1-4 Hole empty 10

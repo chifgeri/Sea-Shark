@@ -1,0 +1,4 @@
+Load test16.txt
+Start
+Left
+listMap

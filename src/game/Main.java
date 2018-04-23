@@ -35,6 +35,7 @@ public class Main {
                     Game();
                     break;
                 case "Exit":
+                	System.out.println("teszt kilép");
                     running = false;
                     break;
                 case "Strength":
@@ -145,8 +146,13 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-	    MainMenu();
-	    
+		MainMenu();
+
+//			map.CreatedMap("map");
+//			map.printFields(System.out);
+//			map.printBoxes(System.out);
+//			map.printWorkers(System.out);
+
     }
 }
 

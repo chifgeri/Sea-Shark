@@ -1,0 +1,5 @@
+4x4
+W() F(W) F(B) F(_)
+S(_,test1) S(B,test2) S(W,test3) H()
+T(W,test3) T(B,test1) T(_,test3) W()
+G(_) G(W) G(B) W()
