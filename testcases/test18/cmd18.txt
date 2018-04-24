@@ -1,4 +1,12 @@
-Load test18.txt
+Load testcases/test18/test18.txt
 Start
-Right
+listWorkers
+listBoxes
 listMap
+Right
+listWorkers
+listBoxes
+listMap
+save testcases/test18/save18.txt
+End
+Exit

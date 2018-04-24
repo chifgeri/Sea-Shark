@@ -1,2 +1,2 @@
 6x1
-F(W) F(B) H() F(W) F() W()
+F(W) F(B) H(_) F(W) F(_) W(_)
