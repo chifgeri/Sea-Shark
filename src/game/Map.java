@@ -27,7 +27,9 @@ public class Map {
 	private int sizeX;
 	private int sizeY;
 
-
+	/**
+	 * Pushable objektumot létrehozó függvény
+	 */
 	private Pushable createPushable(String cmd) throws  IllegalArgumentException{
 	    switch (cmd){
             case "W":
@@ -45,12 +47,16 @@ public class Map {
         }
 
     }
-
+	/**
+	 * A beolvasást segítő függvény
+	 */
     private String[] pushableCmd(String s){
         String sub = s.substring(2, s.length()-1);
         return sub.split(",");
     }
-
+    /**
+	 * A térképet létrehozó, fájlból beolvasó függvény
+     */
 	public void CreatedMap(String filename) throws IllegalArgumentException{
 
         java.util.Map<String, Switch> switchMap = new HashMap<>();
@@ -168,7 +174,9 @@ public class Map {
         }
 
 	}
-
+	/**
+	 * A játék véget érését vizsgálja
+	 */
 	public boolean EndGame(){
 	    if(workers.size() == 1)
 	        return true;
@@ -179,13 +187,11 @@ public class Map {
 	        if(!b.isScored())
 	            end = false;
         return end;
-//	    for(Box b : boxes)
-//            if (b.movable())
-//                return true;
-
 
 	}
-
+	/**
+	 * A legnagyobb pontszámmal rendelkező játékossal tér vissza
+	 */
 	public Worker TopScorePlayer(){
 	    int maxScore = 0;
 	    Worker maxW = null;
@@ -196,7 +202,9 @@ public class Map {
             }
 	    return maxW;
 	}
-
+	/**
+	 * A játékban soron következő workert adja meg
+	 */
 	public void NextWorker(){
 		if(workers.size() > actualWorkerNumber)
 		    actualWorkerNumber++;
@@ -204,12 +212,16 @@ public class Map {
             actualWorkerNumber = 0;
 		actualPlayer=workers.get(actualWorkerNumber);
 	}
-
+	/**
+	 * Adott irányba mozgatja a workert.
+	 */
 	public void MoveWorker(Direction d){
 	        if(workers.size() > 0)
 			    workers.get(actualWorkerNumber).Move(d);
 		}
-	
+	/**
+	 * Beállítja a workerek és ládák súlyát
+	 */
     public void setWeight(int weight){
 	    for(Worker w: workers)
 	        w.setWeight(weight);
@@ -217,33 +229,45 @@ public class Map {
 	    for(Box b: boxes)
 	        b.setWeight(weight);
     }
-
+    /**
+     * Beállítja a workerek erejét
+     */
     public  void setForce(int strange){
 	    for(Worker w: workers)
 	        w.setForce(strange);
     }
-
+    /**
+     * Beállítja az olaj csúszási súrlódási együttható változtatását
+     */
     public  void setOil(int oil){
 	    for(Worker w: workers)
 	        w.setOil(oil);
     }
-
+    /**
+     * Beállítja a méz csúszási súrlódási együttható változtatását
+     */
     public  void setHoney(int honey){
 	    for(Worker w: workers)
 	        w.setHoney(honey);
     }
-
+    /**
+     * Olajat helyez ez a pályán az aktuális munkás
+     */
     public void DropOil(){
     	if(workers.size() > 0)
 		    workers.get(actualWorkerNumber).DropOil();
     }
-
+    /**
+     * Mézet helyez ez a pályán az aktuális munkás
+     */
     public void DropHoney(){
     	if(workers.size() > 0)
 		    workers.get(actualWorkerNumber).DropHoney();
     }
 
-	
+    /**
+     * Kiírja a kimenetre a workerek információit
+     */
 	public void printWorkers(PrintStream ps) {
 		int i=1;
 		ps.println("Workers:");
@@ -256,7 +280,9 @@ public class Map {
 			i++;
 		}
 }
-
+    /**
+     * Kiírja a kimenetre a ládák információit
+     */
 public void printBoxes(PrintStream ps) {
 		int i=1;
 		ps.println("Boxes:");
@@ -270,7 +296,9 @@ public void printBoxes(PrintStream ps) {
 		}
 	}
 	
-	
+/**
+ * Kiírja a kimenetre a fieldek információit
+ */
 public void printFields(PrintStream ps) {
 		int i=0;
 		ps.println("Map:");
@@ -284,7 +312,9 @@ public void printFields(PrintStream ps) {
 		if(Tester.trackend)
 		printGameOver(ps);
 }
-
+/**
+ * Kiírja a kimenetre, hogy véget ért-e a játék
+ */
 public void printGameOver(PrintStream ps) {
 	ps.println("Game Over:");
 	if(EndGame())
@@ -292,7 +322,9 @@ public void printGameOver(PrintStream ps) {
 	else
 		ps.println("NO");
 }
-
+/**
+ * Kimenti egy megadott fájlba a játék információit
+ */
 public void save(String filename)  {
 		File file=new File(filename);
 		try {

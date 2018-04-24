@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Tester {
     static InputStream testInput;
@@ -105,25 +106,13 @@ public class Tester {
     public static void main(String args[]) throws IOException, InterruptedException {
 
         message = false;
-
-        //Successful tests:
-        Test(1);
-        Test(2);
-        Test(3);
-        //Test(4);
-        //Test(5);
-        //Test(6);
-        //Test(7);
-        //Test(8);
-        //Test(9);
-        //Test(10);
-        //Test(11);
-        //Test(12);
-        //Test(13);
-        //Test(14);
-        //Main.trackend = false;
-        //Test(10);
-
+        //Tudjuk, hogy a teszt 16 nem sikeres, a grafikus beadásra javítjuk!
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(isr);
+        System.out.println("ÜDV a tesztelő programban! Kérlek add meg melyik tesztet akarod futtatni!");
+        System.out.println("Csak egy számot írj be 1-19 között!");
+        System.out.println("(Tudunk a 16 teszt problémájáról!)");
+        Test(Integer.parseInt(reader.readLine()));
     }
 }
 

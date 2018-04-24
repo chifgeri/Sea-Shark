@@ -1,12 +1,13 @@
 package game;
 
-//Lyukat reprezentáló osztály
-
 import java.io.PrintStream;
-
+/**
+ * Lyukat reprezentáló osztály
+ */
 public class Hole extends Field{
-
-	//A lyukba beállítjuk az itemet, valójában a leesik, majd kitöröljük.
+	/**
+	 * A lyukba beállítjuk az itemet, valójában a leesik, majd kitöröljük.
+	 */
 	public void setItem(Pushable p){
 		item = p;
 		if(item != null) {
@@ -14,8 +15,9 @@ public class Hole extends Field{
 			removeItem();
 		}
 	}
-	
-	//A kimeneti nyelvnek megfelelően kiírja az információkat a megadott streambe
+	/**
+	 * A kimeneti nyelvnek megfelelően kiírja az információkat a megadott streambe.
+	 */
 	public void print( PrintStream ps) {
 		ps.print("Hole ");
 		if(item!=null)

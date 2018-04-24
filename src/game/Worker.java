@@ -2,26 +2,36 @@ package game;
 
 import java.io.PrintStream;
 
-		//A munkást reprezentáló osztály.
+/**
+ * A munkást reprezentáló osztály.
+ */
 public class Worker extends Pushable {
 
-			//A munkás pontszáma.
+			/**
+			 * A munkás pontszáma.
+			 */
 			protected int score = 0;
 			protected int force= 200;
 			protected int honey= 2;
 			protected int oil= -2;
 
 			
-			//Lekérdezzük a munkás pontszámát.
+			/**
+			 * Lekérdezzük a munkás pontszámát.
+			 */
 			public int getScore() {
-				//System.out.println("--- Worker getScore()");
 				return score;
 			}
-			//Beállítjuk a munkás pontszámát.
+			/**
+			 * Beállítjuk a munkás pontszámát.
+			 * @param s
+			 */
 			public void addScore(int s) {
 				score += s;
 			}
-			
+			/**
+			 * A munkás mozgását leíró függvény
+			 */
 			public boolean Move(Direction d) {			
 				Field neighbor = actual.getNeighborAt(d);
 				Pushable neighbor_item = neighbor.getItem();
@@ -42,8 +52,10 @@ public class Worker extends Pushable {
 			}
 			
 			
-			//A tolódás jelentő függvény, hasonlít a mozgásra, de most a surlódással is számolni kell.
-			//A munkás mindenképpen el tud tolódni, ha nincs hely, akkor összenyomódik.
+			/**
+			 * A tolódás jelentő függvény, hasonlít a mozgásra, de most a surlódással is számolni kell.
+			 *  A munkás mindenképpen el tud tolódni, ha nincs hely, akkor összenyomódik.
+			 */
 			public boolean Push(Direction d, int force) {
 						
 				Field neighbor = actual.getNeighborAt(d);
@@ -71,35 +83,49 @@ public class Worker extends Pushable {
 				return true;
 			}
 			
-			//olajat önt a mezőre, csökkenti a surlódást.
+			/**
+			 * Olajat önt a mezőre, csökkenti a surlódást.
+			 */
 			public void DropOil() {
 				actual.changeFriction(oil);
 			}
 			
-			//mézet önt a mezőre, növeli a surlódást.
+			/**
+			 * Mézet önt a mezőre, növeli a surlódást.
+			 */
 			public void DropHoney() {
 				actual.changeFriction(honey);
 			}
 			
-			//A munkás leesik, ekkor meg is hal.
+			/**
+			 * A munkás leesik, ekkor meg is hal.
+			 */
 			public void Fall() {
 				Die();
 			}
-			//A munkás meghal.
+			/**
+			 * A munkás meghal.
+			 */
 			public void Die() {
 				Map.workers.remove(this);
 				actual.removeItem();
 
 			}
-
+			/**
+			 * Beállítjuk a munkás erejét.
+			 */
 			public void setForce(int force) {
 				this.force = force;
 			}
-
+			/**
+			 * Beállítjuk a méz hatását.
+			 */
 			public void setHoney(int honey) {
 				this.honey = honey;
 			}
-
+			/**
+			 * Beállítjuk az olaj hatását.
+			 */
 			public void setOil(int oil) {
 				this.oil = oil;
 			}

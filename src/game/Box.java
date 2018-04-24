@@ -1,22 +1,26 @@
 package game;
 
 import java.io.PrintStream;
-//A dobozokat reprezentáló osztály, ami a Pushable osztályból származik
+/**
+* A dobozokat reprezentáló osztály, ami a Pushable osztályból származik
+*/
 public class Box extends Pushable {
-
-	//A doboz súlyát reprezentáló adat.
+	/**
+	 * Ha pontot szerez vele a munkás, akkor true
+	 */
 	private boolean scored=false;
-	//A dobozt eltoló függvény, hasonlóan működik, mint a munkást eltoló függvény, de 
-	//a doboz aktivál minden mezőt.
+	/**
+	*A dobozt eltoló függvény, hasonlóan működik, mint a munkást eltoló függvény, de 
+	*a doboz aktivál minden mezőt.
+	*Bizonyos erővel tolja meg a munkás
+	*/
 	public boolean Push(Direction d, int force) {		
-
 		Field neighbor = actual.getNeighborAt(d);
 		Pushable neighbor_item = neighbor.getItem();
-
+		
 		if(scored)
 			return false;
 			
-		//nincs erő
 		if((actual.friction * actual.getItem().weight > force))
 			return false;
 		
@@ -40,20 +44,30 @@ public class Box extends Pushable {
 
 		return false;
 	}
-	//Ha a doboz leesik, akkor hívódik meg ez a függvény.
+	/**
+	*Ha a doboz leesik, akkor hívódik meg ez a függvény.
+	*/
 	public void Fall() {
 		Map.boxes.remove(this);
 		actual.removeItem();
 	}
-	
+	/**
+	 * 
+	 * scored változó beállítása
+	 */
 	public void setscored(boolean b) {
 		scored = b;
 	}
-
+	/**
+	 * Kiíráskor mit jelenítünk meg
+	 */
 	public void printType(PrintStream ps) {
 		ps.print("Box ");		
 	}
-
+	/**
+	 * 
+	 * getter függvény
+	 */
 	public boolean isScored() {
 		return scored;
 	}

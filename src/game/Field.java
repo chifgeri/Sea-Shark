@@ -2,49 +2,74 @@ package game;
 
 import java.io.PrintStream;
 import java.util.HashMap;
-//A mezőt reprezentáló osztály
+/**
+ * A mezőt reprezentáló osztály
+ */
 public class Field {
+	/**
+	 * A mező súrlódási együtthatója, amit lehet változtatni mézzel és olajja
+	 */
 	int friction=10;
-
-    //A mezőn lévő tolható dolog
+	/**
+	 * A mezőn lévő tolható dolog
+	 */
     protected Pushable item;
-    //Az iránnyal indexelt szomszédok
+    /**
+     * Az iránnyal indexelt szomszédok
+     */
     protected HashMap<Direction, Field> neighbours = new HashMap<Direction, Field>();
 
     public Field(){};
+    
     public Field(Pushable p){
         item = p;
     }
 
-
-    //Minden fieldnek van activate függvénye, a field nem csinál semmit a függvény meghívásakor.
+    /**
+     * Minden fieldnek van activate függvénye, a field nem csinál semmit a függvény meghívásakor.
+     */
     public void activate() {
     }
-    //Beállítja a fielden lévő itemet.
+    /**
+     * Beállítja a fielden lévő itemet.
+     */
     public void setItem(Pushable p) {
         item = p;
     }
-    //Lekéri a fielden lévő itemet.
+    /**
+     * Lekéri a fielden lévő itemet.
+     */
     public Pushable getItem() {
         return item;
     }
-    //Eltávolítjuk az itemet a fieldről.
+    /**
+     * Eltávolítjuk az itemet a fieldről.
+     */
     public void removeItem() {
         item = null;
     }
-    //Lekérdezzük az adott irányban a field szomszédját.
+    /**
+     * Lekérdezzük az adott irányban a field szomszédját.
+     */
     public Field getNeighborAt(Direction d)  {
     	return neighbours.get(d);
         }
-
+    /**
+     * Beállítjuk az adott irányban a field szomszédját.
+     */
     public void setNeighboursAt(Direction d, Field f) {
         neighbours.put(d, f);
     }
+    /**
+     * Beállítjuk a field súrlódási együtthatóját.
+     */
     public void changeFriction(int plus) {
     	friction+=plus;
     }
 	
-    //A kimeneti nyelvnek megfelelően kiírja az információkat a megadott streambe
+    /**
+     * A kimeneti nyelvnek megfelelően kiírja az információkat a megadott streambe.
+     */
 	public void print( PrintStream ps) {
 		ps.print("Field ");
 		if(item!=null)

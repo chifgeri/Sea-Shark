@@ -11,4 +11,4 @@ Map:
 5. [1,5] Field empty 10
 6. [1,6] Field Wall 10
 Game Over:
-NO
+YES

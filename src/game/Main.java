@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+/**
+ * Main osztálya.
+ * Itt található az az állapotgép-szerű logika, amely meghatározza a program működési folyamatát.
+ */
 
-// Main osztálya.
-//Itt található az az állapotgép-szerű logika, amely meghatározza a program működési folyamatát.
 public class Main {
 
     private static InputStreamReader isr = new InputStreamReader(System.in);
@@ -19,7 +21,9 @@ public class Main {
         if(Tester.message == true)
             System.out.println(msg);
     }
-
+    /**
+     * A játék főmenüjét reprezentáló logika
+     */
     public  static  void  MainMenu (){
         boolean running = true;
 
@@ -70,12 +74,16 @@ public class Main {
             e.printStackTrace(System.out);
         }
     }
-
+    /**
+     * A játékot reprezentáló logika.
+     */
     private   static  void Game(){
         while (end != true)
             GameMenu();
     }
-
+    /**
+     * A játék menüjét reprezentáló logika
+     */
     private   static  void GameMenu(){
         try {
             Log("@@@ Kovetkezo parancsok elerhetoek: Left, Right, Up, Down, End, listWorkers, listBoxes, listMap, save <filename>, Next, DropOil, DropHoney");
@@ -137,9 +145,9 @@ public class Main {
     }
 
     private static List<String> cmd = null;
-
-    //Ezt a függvényt használjuk az összes osztályban, ahol a parancssorból utasítást kérünk be.
-
+    /**
+     * Ezt a függvényt használjuk az összes osztályban, ahol a parancssorból utasítást kérünk be.
+     */
     private static List<String> getcommand() throws IOException {
         String command = "";
         command = reader.readLine();
