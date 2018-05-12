@@ -137,7 +137,7 @@ public class Worker extends Pushable {
 		ps.print("Worker ");		
 	}
 			public void Draw(Graphics g) {
-				g.drawImage(Images.WorkerImage, actual.x, actual.y,null);
+				g.drawImage(GamePanel.WorkerImage, actual.x, actual.y,null);
 			}
 
 }

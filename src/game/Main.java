@@ -1,22 +1,29 @@
 package game;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  * Main osztálya.
  * Itt található az az állapotgép-szerű logika, amely meghatározza a program működési folyamatát.
  */
 
-public class Main {
-
-    private static InputStreamReader isr = new InputStreamReader(System.in);
+public class Main extends JFrame {	
+	
+	private static final long serialVersionUID = 1L;
+	private static InputStreamReader isr = new InputStreamReader(System.in);
     private static BufferedReader reader = new BufferedReader(isr);
     private static Map map;
     private static boolean end = false;
-
+    private static GamePanel d;
     public static void Log(String msg) {
         if(Tester.message == true)
             System.out.println(msg);
@@ -76,8 +83,22 @@ public class Main {
     }
     /**
      * A játékot reprezentáló logika.
+     * @throws IOException 
      */
     private   static  void Game(){
+    	Main m=new Main();
+    	m.setVisible(true);
+    	try {
+			d=new GamePanel(map);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	JPanel pan=new JPanel();
+    	pan.add(d);
+    	m.getContentPane().add(d,BorderLayout.CENTER);
+    	m.setFocusable(true);
+    	m.pack();
         while (end != true)
             GameMenu();
     }
@@ -159,4 +180,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         MainMenu();
     }
+    
+    Main(){
+    	super("MainWindow");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setMinimumSize(new Dimension(702,652));
+    	}
 }

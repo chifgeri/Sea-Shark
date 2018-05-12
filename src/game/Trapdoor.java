@@ -70,12 +70,12 @@ public class Trapdoor extends Field{
 	public void Draw(Graphics g) {
 		// TODO Auto-generated method stub
 		if(open)
-			g.drawImage(Images.TrapOpenImage, x, y,null);
+			g.drawImage(GamePanel.TrapOpenImage, x, y,null);
 		else
-			g.drawImage(Images.TrapClosedImage, x, y,null);
+			g.drawImage(GamePanel.TrapClosedImage, x, y,null);
 		if(friction>10)
-			g.drawImage(Images.OilImage, x, y,null);
+			g.drawImage(GamePanel.OilImage, x, y,null);
 		if(friction<10)
-			g.drawImage(Images.HoneyImage, x, y,null);
+			g.drawImage(GamePanel.HoneyImage, x, y,null);
 	}
 }

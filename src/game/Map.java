@@ -25,8 +25,8 @@ public class Map {
     public static Worker actualPlayer;
 	private int actualWorkerNumber = 0;
 
-	private int sizeX;
-	private int sizeY;
+	public int sizeX;
+	public int sizeY;
 
 	/**
 	 * Pushable objektumot létrehozó függvény
@@ -176,8 +176,8 @@ public class Map {
         
         for(Field f : fields) {
         	int i=fields.indexOf(f);
-        	f.x=(i/sizeX+1)*20;
-        	f.y=(i%sizeX+1)*20;
+        	f.x=(i%sizeX)*40;
+        	f.y=(i/sizeX)*40;
         }
 
 	}

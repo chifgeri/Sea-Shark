@@ -38,7 +38,7 @@ public class Wall extends Pushable {
 
 	@Override
 	public void Draw(Graphics g) {
-		g.drawImage(Images.WallImage, actual.x, actual.y,null);
+		g.drawImage(GamePanel.WallImage, actual.x, actual.y,null);
 	}
 	
 

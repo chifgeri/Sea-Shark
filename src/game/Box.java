@@ -75,6 +75,6 @@ public class Box extends Pushable {
 	@Override
 	public void Draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(Images.BoxImage, actual.x, actual.y,null);
+		g.drawImage(GamePanel.BoxImage, actual.x, actual.y,null);
 	}
 }
