@@ -5,7 +5,7 @@ import java.io.PrintStream;
  *Eltolható típusú itemeket összefoglaló absztrakt ősosztály.
  *Minden leszármazottjának implementálnia kell a függényeit.
  */
-public abstract class Pushable {
+public abstract class Pushable implements Drawable{
 	
 	protected int weight=10;
 	
