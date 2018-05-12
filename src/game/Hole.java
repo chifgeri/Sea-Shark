@@ -30,7 +30,7 @@ public class Hole extends Field{
 	
 	public void Draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(Images.HoleImage, x, y,null);
+		g.drawImage(GamePanel.HoleImage, x, y,null);
 		if(item!=null)
 			item.Draw(g);
 	}

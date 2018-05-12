@@ -3,8 +3,13 @@ package game;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Dimension;
+import java.awt.Graphics;
 
-public class Images {
+import javax.swing.JComponent;
+
+
+public class GamePanel  extends JComponent {
 	static Image WallImage;
 	static Image WorkerImage;
     static Image FieldImage;
@@ -17,9 +22,13 @@ public class Images {
     static Image TrapClosedImage;
 	static Image TrapOpenImage;
     //static Image SwitchImage=javax.imageio.ImageIO.read(new File("images/field.png"));
-	
-	Images()throws IOException
+    Map map;	
+    
+	GamePanel(Map _map)throws IOException
 	{
+		map=_map;
+		this.setMinimumSize(new Dimension(map.sizeX*40,map.sizeY*40));
+		
 		WallImage=javax.imageio.ImageIO.read(new File("images/wall.png"));
 	    WorkerImage=javax.imageio.ImageIO.read(new File("images/worker.png"));
 	    FieldImage=javax.imageio.ImageIO.read(new File("images/field.png"));
@@ -32,5 +41,7 @@ public class Images {
 	     TrapClosedImage=javax.imageio.ImageIO.read(new File("images/trapdoor_closed.png"));
 		 TrapOpenImage=javax.imageio.ImageIO.read(new File("images/trapdoor_open.png"));
 	}
-	
+	public void paint(Graphics g) {
+    	map.DrawAll(g);
+	}
 }
