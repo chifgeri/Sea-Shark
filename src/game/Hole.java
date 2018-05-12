@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Graphics;
 import java.io.PrintStream;
 /**
  * Lyukat reprezentáló osztály
@@ -25,5 +26,12 @@ public class Hole extends Field{
 			else
 			ps.print("empty ");
 		ps.print(friction);
+	}
+	
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(Images.HoleImage, x, y,null);
+		if(item!=null)
+			item.Draw(g);
 	}
 }

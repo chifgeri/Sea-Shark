@@ -1,11 +1,12 @@
 package game;
 
+import java.awt.Graphics;
 import java.io.PrintStream;
 import java.util.HashMap;
 /**
  * A mezőt reprezentáló osztály
  */
-public class Field {
+public class Field implements Drawable{
 	/**
 	 * A mező súrlódási együtthatója, amit lehet változtatni mézzel és olajja
 	 */
@@ -17,9 +18,11 @@ public class Field {
     /**
      * Az iránnyal indexelt szomszédok
      */
+    
+    int x=0,y=0;
     protected HashMap<Direction, Field> neighbours = new HashMap<Direction, Field>();
 
-    public Field(){};
+    public Field() {};
     
     public Field(Pushable p){
         item = p;
@@ -77,5 +80,17 @@ public class Field {
 		else
 			ps.print("empty ");
 		ps.print(friction);
+	}
+
+	@Override
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(Images.FieldImage, x, y,null);
+		if(friction>10)
+			g.drawImage(Images.OilImage, x, y,null);
+		if(friction<10)
+			g.drawImage(Images.HoneyImage, x, y,null);
+		if(item!=null)
+			item.Draw(g);
 	}
 }

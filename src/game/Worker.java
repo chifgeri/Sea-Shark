@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Graphics;
 import java.io.PrintStream;
 
 /**
@@ -19,6 +20,7 @@ public class Worker extends Pushable {
 			/**
 			 * Lekérdezzük a munkás pontszámát.
 			 */
+			
 			public int getScore() {
 				return score;
 			}
@@ -134,5 +136,8 @@ public class Worker extends Pushable {
 	public void printType(PrintStream ps) {
 		ps.print("Worker ");		
 	}
+			public void Draw(Graphics g) {
+				g.drawImage(Images.WorkerImage, actual.x, actual.y,null);
+			}
 
 }

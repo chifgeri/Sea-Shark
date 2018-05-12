@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Graphics;
 import java.io.PrintStream;
 /**
  * Kapcsolót reprezentáló osztály.
@@ -43,5 +44,16 @@ public class Switch extends Field {
 			else
 			ps.print("empty ");
 		ps.print(friction);
+	}
+	
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(Images.SwitchImage, x, y,null);
+		if(friction>10)
+			g.drawImage(Images.OilImage, x, y,null);
+		if(friction<10)
+			g.drawImage(Images.HoneyImage, x, y,null);
+		if(item!=null)
+			item.Draw(g);
 	}
 }

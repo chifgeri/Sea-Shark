@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Graphics;
+
 import java.io.PrintStream;
 
 /**
@@ -10,6 +12,8 @@ public class Wall extends Pushable {
 	/**
 	 * A falat nem tudjuk eltolni, ezért mindig false-al tér vissza.
 	 */
+	
+	
 	public boolean Push(Direction d, int force) {
 		return false;
 	}
@@ -32,5 +36,10 @@ public class Wall extends Pushable {
 		
 	}
 
+	@Override
+	public void Draw(Graphics g) {
+		g.drawImage(Images.WallImage, actual.x, actual.y,null);
+	}
+	
 
 }
