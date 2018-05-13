@@ -136,12 +136,13 @@ public class Worker extends Pushable {
 	public void printType(PrintStream ps) {
 		ps.print("Worker ");		
 	}
-			public void Draw(Graphics g) {
+	public void Draw(Graphics g) {
 				g.drawImage(GamePanel.WorkerImage, actual.x, actual.y,null);
 			}
 			
-			public void DrawMarker(Graphics g) {
-				g.drawImage(GamePanel.MarkerImage, actual.x, actual.y,null);
-			}
+	public void DrawMarker(Graphics g) {
+			g.drawImage(GamePanel.MarkerImage, actual.x, actual.y,null);
+		}
+
 
 }

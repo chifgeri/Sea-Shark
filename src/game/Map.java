@@ -179,7 +179,9 @@ public class Map {
         	f.x=(i%sizeX)*40;
         	f.y=(i/sizeX)*40;
         }
+
         actualPlayer=workers.get(actualWorkerNumber);
+
 
 	}
 	/**
@@ -355,6 +357,7 @@ public void DrawAll(Graphics g) {
 		for(Field f : fields)
 			f.Draw(g);
 		actualPlayer.DrawMarker(g);
+
 	}
 }
 
