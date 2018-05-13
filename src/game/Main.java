@@ -104,72 +104,85 @@ public class Main extends JFrame {
 		mainwindow.setVisible(true);
 		mainwindow.setFocusable(true);
 		mainwindow.pack();
-    	
-        while (end != true)
-            GameMenu();
+    	mainwindow.getContentPane().repaint();
+        mainwindow.revalidate();
+        mainwindow.getContentPane().getComponent(0).requestFocusInWindow();
     }
+
+    public static void Menu() throws IOException{
+        mainwindow.getContentPane().removeAll();
+        mainwindow.getContentPane().add(menupanel,BorderLayout.CENTER);
+        mainwindow.setVisible(true);
+        mainwindow.setFocusable(true);
+        mainwindow.pack();
+        mainwindow.getContentPane().repaint();
+        mainwindow.revalidate();
+        mainwindow.getContentPane().getComponent(0).requestFocusInWindow();
+    }
+
+
     /**
      * A játék menüjét reprezentáló logika
      */
-    private static void GameMenu(){
-        try {
-            Log("@@@ Kovetkezo parancsok elerhetoek: Left, Right, Up, Down, End, listWorkers, listBoxes, listMap, save <filename>, Next, DropOil, DropHoney");
-            List<String> com = getcommand();
-            switch (com.get(0)){
-                case "Left":
-                    map.MoveWorker(Direction.LEFT);
-                    Log("@@@ Worker mozgott!");
-                    break;
-                case "Right":
-                    map.MoveWorker(Direction.RIGHT);
-                    Log("@@@ Worker mozgott!");
-                    break;
-                case "Up":
-                    map.MoveWorker(Direction.UP);
-                    Log("@@@ Worker mozgott!");
-                    break;
-                case "Down":
-                    map.MoveWorker(Direction.DOWN);
-                    Log("@@@ Worker mozgott!");
-                    break;
-                case "End":
-                    end = true;
-                    Log("@@@ Visszaleptel a menube!");
-                    break;
-                case "listWorkers":
-                    map.printWorkers(System.out);
-                    break;
-                case "listBoxes":
-                    map.printBoxes(System.out);
-                    break;
-                case "listMap":
-                    map.printFields(System.out);
-                    break;
-                case "save":
-                    map.save(com.get(1));
-                    Log("@@@ Allas kimentve-->" + com.get(1));
-                    break;
-                case "Next":
-                    map.NextWorker();
-                    Log("@@@ Kovetkezo Worker jon");
-                    break;
-                case "DropOil":
-                    map.DropOil();
-                    Log("@@@ Worker olajat rakott le!");
-                    break;
-                case "DropHoney":
-                    map.DropHoney();
-                    Log("@@@ Worker mezet rakott le!");
-                    break;
-                default:
-                    Log("Ervenytelen parancs");
-            }
-        }catch (Exception e){
-
-            e.printStackTrace();
-
-        }
-    }
+//    private static void GameMenu(){
+//        try {
+//            Log("@@@ Kovetkezo parancsok elerhetoek: Left, Right, Up, Down, End, listWorkers, listBoxes, listMap, save <filename>, Next, DropOil, DropHoney");
+//            List<String> com = getcommand();
+//            switch (com.get(0)){
+//                case "Left":
+//                    map.MoveWorker(Direction.LEFT);
+//                    Log("@@@ Worker mozgott!");
+//                    break;
+//                case "Right":
+//                    map.MoveWorker(Direction.RIGHT);
+//                    Log("@@@ Worker mozgott!");
+//                    break;
+//                case "Up":
+//                    map.MoveWorker(Direction.UP);
+//                    Log("@@@ Worker mozgott!");
+//                    break;
+//                case "Down":
+//                    map.MoveWorker(Direction.DOWN);
+//                    Log("@@@ Worker mozgott!");
+//                    break;
+//                case "End":
+//                    end = true;
+//                    Log("@@@ Visszaleptel a menube!");
+//                    break;
+//                case "listWorkers":
+//                    map.printWorkers(System.out);
+//                    break;
+//                case "listBoxes":
+//                    map.printBoxes(System.out);
+//                    break;
+//                case "listMap":
+//                    map.printFields(System.out);
+//                    break;
+//                case "save":
+//                    map.save(com.get(1));
+//                    Log("@@@ Allas kimentve-->" + com.get(1));
+//                    break;
+//                case "Next":
+//                    map.NextWorker();
+//                    Log("@@@ Kovetkezo Worker jon");
+//                    break;
+//                case "DropOil":
+//                    map.DropOil();
+//                    Log("@@@ Worker olajat rakott le!");
+//                    break;
+//                case "DropHoney":
+//                    map.DropHoney();
+//                    Log("@@@ Worker mezet rakott le!");
+//                    break;
+//                default:
+//                    Log("Ervenytelen parancs");
+//            }
+//        }catch (Exception e){
+//
+//            e.printStackTrace();
+//
+//        }
+//    }
 
     private static List<String> cmd = null;
     /**

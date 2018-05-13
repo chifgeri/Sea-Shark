@@ -22,7 +22,7 @@ public class Map {
 	public static List<Worker> workers = new ArrayList<>();
     public static List<Box> boxes = new ArrayList<>();
 
-    public static Worker actualPlayer;
+    private static Worker actualPlayer;
 	private int actualWorkerNumber = 0;
 
 	public int sizeX;
@@ -216,7 +216,7 @@ public class Map {
 	 * A játékban soron következő workert adja meg
 	 */
 	public void NextWorker(){
-		if(workers.size() > actualWorkerNumber)
+		if(workers.size() - 1 > actualWorkerNumber)
 		    actualWorkerNumber++;
         else
             actualWorkerNumber = 0;
@@ -285,7 +285,7 @@ public class Map {
 			ps.print(i+". ");
 			int j=fields.indexOf(w.actual);
 			ps.print("["+(j/sizeX+1)+","+(j%sizeX+1)+"]"+" ");
-			ps.print(w.score);
+			ps.print(w.getScore());
 			ps.print(System.lineSeparator());
 			i++;
 		}
@@ -359,5 +359,9 @@ public void DrawAll(Graphics g) {
 		actualPlayer.DrawMarker(g);
 
 	}
+
+    public static Worker getActualPlayer() {
+        return actualPlayer;
+    }
 }
 

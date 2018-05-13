@@ -21,6 +21,12 @@ import javax.swing.border.EmptyBorder;
 public class MenuPanel extends JComponent{
 	
 	public MenuPanel() {
+
+        Main.map = new Map();
+        Main.map.CreatedMap("map.txt");
+        System.out.println("@@@ A jatek betoltve!");
+
+
     	//Betűtípus importálása
     	try {
     		GraphicsEnvironment ge =  GraphicsEnvironment.getLocalGraphicsEnvironment();

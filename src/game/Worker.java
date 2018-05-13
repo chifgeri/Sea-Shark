@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.io.PrintStream;
 
 /**
@@ -11,10 +12,17 @@ public class Worker extends Pushable {
 			/**
 			 * A munkás pontszáma.
 			 */
-			protected int score = 0;
-			protected int force= 200;
-			protected int honey= 2;
-			protected int oil= -2;
+			private int score = 0;
+			private int force= 200;
+			private int honey= 2;
+			private int oil= -2;
+			private int leftKey = KeyEvent.VK_A;
+			private int rightKey = KeyEvent.VK_D;
+			private int upKey = KeyEvent.VK_W;
+			private int downKey = KeyEvent.VK_S;
+			private int honeyKey = KeyEvent.VK_Q;
+			private int oilKey = KeyEvent.VK_E;
+
 
 			
 			/**
@@ -144,5 +152,27 @@ public class Worker extends Pushable {
 			g.drawImage(GamePanel.MarkerImage, actual.x, actual.y,null);
 		}
 
+    public int getLeftKey() {
+        return leftKey;
+    }
 
+    public int getRightKey() {
+        return rightKey;
+    }
+
+    public int getUpKey() {
+        return upKey;
+    }
+
+    public int getDownKey() {
+        return downKey;
+    }
+
+    public int getHoneyKey() {
+        return honeyKey;
+    }
+
+    public int getOilKey() {
+        return oilKey;
+    }
 }
