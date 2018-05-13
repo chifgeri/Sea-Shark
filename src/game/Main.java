@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,13 +18,16 @@ import javax.swing.JPanel;
  */
 
 public class Main extends JFrame {	
-	
+	public static Main mainwindow;
+	public static final int FRAME_WIDTH = 800;
+	public static final int FRAME_HEIGHT = 800;
 	private static final long serialVersionUID = 1L;
 	private static InputStreamReader isr = new InputStreamReader(System.in);
     private static BufferedReader reader = new BufferedReader(isr);
-    private static Map map;
+    public static Map map;
     private static boolean end = false;
-    private static GamePanel d;
+    private static GamePanel gamepanel;
+    private static MenuPanel menupanel;
     public static void Log(String msg) {
         if(Tester.message == true)
             System.out.println(msg);
@@ -34,6 +38,13 @@ public class Main extends JFrame {
     public  static  void  MainMenu (){
         boolean running = true;
 
+        mainwindow = new Main();
+        mainwindow.setVisible(true);
+		menupanel = new MenuPanel();
+		mainwindow.getContentPane().add(menupanel,BorderLayout.CENTER);
+		mainwindow.setFocusable(true);
+		mainwindow.pack();
+		
         Log("@@@ A program elindult!");
         try {
             while(running) {
@@ -80,32 +91,27 @@ public class Main extends JFrame {
         }catch (Exception e){
             e.printStackTrace(System.out);
         }
+        
     }
     /**
      * A játékot reprezentáló logika.
      * @throws IOException 
      */
-    private   static  void Game(){
-    	Main m=new Main();
-    	m.setVisible(true);
-    	try {
-			d=new GamePanel(map);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	JPanel pan=new JPanel();
-    	pan.add(d);
-    	m.getContentPane().add(d,BorderLayout.CENTER);
-    	m.setFocusable(true);
-    	m.pack();
+    public static void Game() throws IOException{
+    	mainwindow.getContentPane().removeAll();
+		gamepanel = new GamePanel(map);
+		mainwindow.getContentPane().add(gamepanel,BorderLayout.CENTER);
+		mainwindow.setVisible(true);
+		mainwindow.setFocusable(true);
+		mainwindow.pack();
+    	
         while (end != true)
             GameMenu();
     }
     /**
      * A játék menüjét reprezentáló logika
      */
-    private   static  void GameMenu(){
+    private static void GameMenu(){
         try {
             Log("@@@ Kovetkezo parancsok elerhetoek: Left, Right, Up, Down, End, listWorkers, listBoxes, listMap, save <filename>, Next, DropOil, DropHoney");
             List<String> com = getcommand();
@@ -178,12 +184,16 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) throws IOException {
+    	System.setProperty("awt.useSystemAAFontSettings","on");
+    	System.setProperty("swing.aatext", "true");
         MainMenu();
     }
     
     Main(){
-    	super("MainWindow");
+    	super("Sokoban Game");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setMinimumSize(new Dimension(702,652));
+		setMinimumSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+		setResizable(false);
+		setLocationRelativeTo(null);
     	}
 }
