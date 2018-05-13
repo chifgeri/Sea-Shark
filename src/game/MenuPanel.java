@@ -103,9 +103,8 @@ public class MenuPanel extends JComponent{
     		public void actionPerformed(ActionEvent ae) {
     			System.out.println("@@@ A jatek elkezdodott!");
     			try {
-					Main.Game();
+					Main.mainwindow.Game();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
     		}
@@ -115,8 +114,8 @@ public class MenuPanel extends JComponent{
     	loadbutton.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent ae) {
-    			Main.map = new Map();
-    	        Main.map.CreatedMap("map.txt");
+    			GameFrame.map = new Map();
+    	        GameFrame.map.CreatedMap("map.txt");
     	        System.out.println("@@@ A jatek betoltve!");
     		}
     	});
@@ -125,8 +124,8 @@ public class MenuPanel extends JComponent{
     	ownloadbutton.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent ae) {
-    			Main.map = new Map();
-    	        Main.map.CreatedMap("map.txt");
+    			GameFrame.map = new Map();
+    	        GameFrame.map.CreatedMap("map.txt");
     	        System.out.println("@@@ A jatek betoltve!");
     		}
     	});
