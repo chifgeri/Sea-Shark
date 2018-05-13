@@ -1,6 +1,7 @@
 package game;
 
 
+import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,8 +25,8 @@ public class Map {
     public static Worker actualPlayer;
 	private int actualWorkerNumber = 0;
 
-	private int sizeX;
-	private int sizeY;
+	public int sizeX;
+	public int sizeY;
 
 	/**
 	 * Pushable objektumot létrehozó függvény
@@ -172,6 +173,15 @@ public class Map {
                 if(b.actual == entry.getValue())
                     entry.getValue().activate();
         }
+        
+        for(Field f : fields) {
+        	int i=fields.indexOf(f);
+        	f.x=(i%sizeX)*40;
+        	f.y=(i/sizeX)*40;
+        }
+
+        actualPlayer=workers.get(actualWorkerNumber);
+
 
 	}
 	/**
@@ -309,6 +319,7 @@ public void printFields(PrintStream ps) {
 			ps.print(System.lineSeparator());
 			i++;
 		}
+		
 		if(Tester.trackend)
 		printGameOver(ps);
 }
@@ -338,6 +349,15 @@ public void save(String filename)  {
 			ps.close();
 		} catch (IOException e ) {
 			e.printStackTrace();
+		}
 }
+
+
+public void DrawAll(Graphics g) {
+		for(Field f : fields)
+			f.Draw(g);
+		actualPlayer.DrawMarker(g);
+
+	}
 }
-}
+

@@ -1,4 +1,5 @@
 package game;
+import java.awt.Graphics;
 import java.io.PrintStream;
 /**
  * Célmezõt reprezentáló osztály
@@ -28,6 +29,17 @@ public class Goal extends Field{
 			else
 			ps.print("empty ");
 		ps.print(friction);
+	}
+	
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(GamePanel.GoalImage, x, y,null);
+		if(friction>10)
+			g.drawImage(GamePanel.OilImage, x, y,null);
+		if(friction<10)
+			g.drawImage(GamePanel.HoneyImage, x, y,null);
+		if(item!=null)
+			item.Draw(g);
 	}
 
 }

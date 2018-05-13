@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Graphics;
 import java.io.PrintStream;
 
 /**
@@ -64,5 +65,17 @@ public class Trapdoor extends Field{
 		ps.print("open");
 		else
 		ps.print("closed");	
+	}
+	
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		if(open)
+			g.drawImage(GamePanel.TrapOpenImage, x, y,null);
+		else
+			g.drawImage(GamePanel.TrapClosedImage, x, y,null);
+		if(friction>10)
+			g.drawImage(GamePanel.OilImage, x, y,null);
+		if(friction<10)
+			g.drawImage(GamePanel.HoneyImage, x, y,null);
 	}
 }

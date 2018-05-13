@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Graphics;
 import java.io.PrintStream;
 /**
 * A dobozokat reprezentáló osztály, ami a Pushable osztályból származik
@@ -70,5 +71,10 @@ public class Box extends Pushable {
 	 */
 	public boolean isScored() {
 		return scored;
+	}
+	@Override
+	public void Draw(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(GamePanel.BoxImage, actual.x, actual.y,null);
 	}
 }
