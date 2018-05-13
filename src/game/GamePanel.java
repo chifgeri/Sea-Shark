@@ -21,7 +21,7 @@ public class GamePanel  extends JComponent {
     static Image SwitchImage;
     static Image TrapClosedImage;
 	static Image TrapOpenImage;
-    //static Image SwitchImage=javax.imageio.ImageIO.read(new File("images/field.png"));
+    static Image MarkerImage;
     Map map;	
     
 	GamePanel(Map _map)throws IOException
@@ -40,6 +40,7 @@ public class GamePanel  extends JComponent {
 	     SwitchImage=javax.imageio.ImageIO.read(new File("images/switch.png"));
 	     TrapClosedImage=javax.imageio.ImageIO.read(new File("images/trapdoor_closed.png"));
 		 TrapOpenImage=javax.imageio.ImageIO.read(new File("images/trapdoor_open.png"));
+		 MarkerImage=javax.imageio.ImageIO.read(new File("images/marker.png"));
 	}
 	public void paint(Graphics g) {
     	map.DrawAll(g);

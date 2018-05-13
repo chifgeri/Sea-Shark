@@ -139,5 +139,9 @@ public class Worker extends Pushable {
 			public void Draw(Graphics g) {
 				g.drawImage(GamePanel.WorkerImage, actual.x, actual.y,null);
 			}
+			
+			public void DrawMarker(Graphics g) {
+				g.drawImage(GamePanel.MarkerImage, actual.x, actual.y,null);
+			}
 
 }
