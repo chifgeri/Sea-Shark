@@ -125,8 +125,10 @@ public class MenuPanel extends JComponent{
     	loadbutton.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent ae) {
+    			Map.workers.removeAll(Map.workers);
     			GameFrame.map = new Map();
     	        GameFrame.map.CreatedMap("map.txt");
+    	        GameFrame.end=false;
     	        System.out.println("@@@ A jatek betoltve!");
     		}
     	});
@@ -136,7 +138,9 @@ public class MenuPanel extends JComponent{
     		@Override
     		public void actionPerformed(ActionEvent ae) {
     			try {
+    				Map.workers.removeAll(Map.workers);
 					load();
+					GameFrame.end=false;
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
