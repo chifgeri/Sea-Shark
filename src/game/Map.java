@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Map {
 
-	
+    private int id = 0;
 	private List<Field> fields = new ArrayList<>();
 	public static List<Worker> workers = new ArrayList<>();
     public static List<Box> boxes = new ArrayList<>();
@@ -34,7 +34,8 @@ public class Map {
 	private Pushable createPushable(String cmd) throws  IllegalArgumentException{
 	    switch (cmd){
             case "W":
-                Worker w = new Worker();
+                Worker w = new Worker(id);
+                id++;
                 workers.add(w);
                 return w;
             case "B":
@@ -206,7 +207,7 @@ public class Map {
 	 * A legnagyobb pontszámmal rendelkező játékossal tér vissza
 	 */
 	public Worker TopScorePlayer(){
-	    int maxScore = 0;
+	    int maxScore = -1;
 	    Worker maxW = null;
 	    for(Worker w : workers)
 	        if(w.getScore() > maxScore) {

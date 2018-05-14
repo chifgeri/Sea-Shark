@@ -12,6 +12,7 @@ public class Worker extends Pushable {
 			/**
 			 * A munkás pontszáma.
 			 */
+			private int id;
 			private int score = 0;
 			private int force= 200;
 			private int honey= 2;
@@ -23,7 +24,9 @@ public class Worker extends Pushable {
 			private int honeyKey = KeyEvent.VK_Q;
 			private int oilKey = KeyEvent.VK_E;
 
-
+			public Worker(int id){
+				this.id = id;
+			}
 			
 			/**
 			 * Lekérdezzük a munkás pontszámát.
@@ -175,4 +178,8 @@ public class Worker extends Pushable {
     public int getOilKey() {
         return oilKey;
     }
+
+	public int getId() {
+		return id;
+	}
 }

@@ -35,9 +35,9 @@ public class Goal extends Field{
 		// TODO Auto-generated method stub
 		g.drawImage(GamePanel.GoalImage, x, y,null);
 		if(friction>10)
-			g.drawImage(GamePanel.OilImage, x, y,null);
-		if(friction<10)
 			g.drawImage(GamePanel.HoneyImage, x, y,null);
+		if(friction<10)
+			g.drawImage(GamePanel.OilImage, x, y,null);
 		if(item!=null)
 			item.Draw(g);
 	}

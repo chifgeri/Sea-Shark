@@ -19,7 +19,8 @@ public class Switch extends Field {
      * Az itemet beállítjuk a kapcsolóra.
      */
     public void setItem(Pushable p) {
-       item=p;
+        item=p;
+        trapdoor.switch_(false);
     }
     /**
      * A doboz hívja meg, amikor rátoljuk. A hozzá tartozó csapóajtót nyitja ki.
@@ -50,9 +51,9 @@ public class Switch extends Field {
 		// TODO Auto-generated method stub
 		g.drawImage(GamePanel.SwitchImage, x, y,null);
 		if(friction>10)
-			g.drawImage(GamePanel.OilImage, x, y,null);
-		if(friction<10)
 			g.drawImage(GamePanel.HoneyImage, x, y,null);
+		if(friction<10)
+			g.drawImage(GamePanel.OilImage, x, y,null);
 		if(item!=null)
 			item.Draw(g);
 	}

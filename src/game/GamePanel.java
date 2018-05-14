@@ -55,13 +55,18 @@ public class GamePanel  extends JComponent  implements KeyListener {
 		g.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		g.drawString("Soron Lévő:" , map.sizeX*40+20, 30);
-		g.drawString((Map.workers.indexOf(Map.getActualPlayer())+1)+". Játékos", map.sizeX*40+20, 50);
-		
-		for(int i=0;i!=Map.workers.size();i++) {
-			 g.drawString((i+1)+". Játékos", map.sizeX*40+20, (i+1)*60+20);
-			 g.drawString("Pontok: "+Map.workers.get(i).getScore(), map.sizeX*40+20, (i+1)*60+50);
+		g.drawString((Map.getActualPlayer().getId()+ 1) +". Játékos", map.sizeX*40+20, 50);
+
+		for(Worker w: Map.workers) {
+
+			 g.drawString((w.getId()+1)+". Játékos", map.sizeX*40+20, (w.getId()+1)*60+20);
+			 g.drawString("Pontok: "+w.getScore(), map.sizeX*40+20, (w.getId()+1)*60+50);
 		 }
-		
+
+
+        g.drawString("Mozgas: w,a,s,d", map.sizeX*40+20, (10*60+20));
+        g.drawString("Mez: q, Olaj: e", map.sizeX*40+20, (10*60+50));
+
 		
 		
 		
@@ -70,9 +75,10 @@ public class GamePanel  extends JComponent  implements KeyListener {
     	if(GameFrame.end) {
 			int y=this.getSize().height;
 			int x=this.getSize().width;
-			
-			g.drawString("Game Over" , x/2-50, y/2);
-			g.drawString("Nyomj Q-t a menübe lépéshez!" , x/2-150, y/2+20);
+            g.setFont(new Font("Arial", Font.PLAIN, 60));
+
+			g.drawString("Nyomj Q-t a menübe lépéshez!" , x/2-465, y/2+100);
+            g.drawString((map.TopScorePlayer().getId() + 1) + ". jatekos nyert" , x/2-200, y/2);
 		}
 	}
 

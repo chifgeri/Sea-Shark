@@ -23,7 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class MenuPanel extends JComponent{
-	
+	private File file = null;
+	private boolean ownMap = false;
 	public MenuPanel() {
 
         GameFrame.map = new Map();
@@ -113,6 +114,15 @@ public class MenuPanel extends JComponent{
     		public void actionPerformed(ActionEvent ae) {
     			System.out.println("@@@ A jatek elkezdodott!");
     			try {
+					Map.workers.clear();
+					Map.boxes.clear();
+					GameFrame.map = new Map();
+    				if(ownMap)
+    					GameFrame.map.CreatedMap(file.getCanonicalPath());
+    				else
+						GameFrame.map.CreatedMap("map.txt");
+    				GameFrame.end=false;
+					System.out.println("@@@ A jatek betoltve!");
 					GameFrame.Game();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -125,11 +135,7 @@ public class MenuPanel extends JComponent{
     	loadbutton.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent ae) {
-    			Map.workers.removeAll(Map.workers);
-    			GameFrame.map = new Map();
-    	        GameFrame.map.CreatedMap("map.txt");
-    	        GameFrame.end=false;
-    	        System.out.println("@@@ A jatek betoltve!");
+    			ownMap = false;
     		}
     	});
     	
@@ -138,9 +144,9 @@ public class MenuPanel extends JComponent{
     		@Override
     		public void actionPerformed(ActionEvent ae) {
     			try {
-    				Map.workers.removeAll(Map.workers);
 					load();
-					GameFrame.end=false;
+					ownMap = true;
+
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -165,7 +171,6 @@ public class MenuPanel extends JComponent{
     }
 	
 	public void load() throws IOException, ClassNotFoundException {
-		File file = null;
 		JFileChooser choose=new JFileChooser();
 		int var= choose.showDialog(this,"Betölt");
 		if(var== JFileChooser.APPROVE_OPTION) {
