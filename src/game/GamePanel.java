@@ -63,15 +63,17 @@ public class GamePanel  extends JComponent  implements KeyListener {
 		 }
 		
 		
-		if(GameFrame.end) {
+		
+		
+    	map.DrawAll(g);
+    	
+    	if(GameFrame.end) {
 			int y=this.getSize().height;
 			int x=this.getSize().width;
 			
 			g.drawString("Game Over" , x/2-50, y/2);
 			g.drawString("Nyomj Q-t a menübe lépéshez!" , x/2-150, y/2+20);
 		}
-		
-    	map.DrawAll(g);
 	}
 
     @Override
