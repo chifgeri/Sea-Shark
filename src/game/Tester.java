@@ -90,7 +90,7 @@ public class Tester {
             System.setIn(testInput);
             if(18 >= testNumber && testNumber >= 15)
                 trackend = true;
-            Main.main(new String[0]);
+            GameFrame.main(new String[0]);
         } finally {
             System.setIn(standardInput);
 

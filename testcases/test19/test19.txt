@@ -1,5 +1,5 @@
 4x4
-W(_) F(W) F(B) F(_)
+W() F(W) F(B) F(_)
 S(_,test1) S(B,test2) S(W,test3) H(_)
-T(W,test2) T(B,test1) T(_,test3) W(_)
-G(_) G(W) G(B) W(_)
+T(W,test2) T(B,test1) T(_,test3) W()
+G(_) G(W) G(B) W()

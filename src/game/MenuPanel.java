@@ -11,9 +11,13 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,8 +26,8 @@ public class MenuPanel extends JComponent{
 	
 	public MenuPanel() {
 
-        Main.map = new Map();
-        Main.map.CreatedMap("map.txt");
+        GameFrame.map = new Map();
+        GameFrame.map.CreatedMap("map.txt");
         System.out.println("@@@ A jatek betoltve!");
 
 
@@ -109,7 +113,7 @@ public class MenuPanel extends JComponent{
     		public void actionPerformed(ActionEvent ae) {
     			System.out.println("@@@ A jatek elkezdodott!");
     			try {
-					Main.Game();
+					GameFrame.Game();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -121,8 +125,8 @@ public class MenuPanel extends JComponent{
     	loadbutton.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent ae) {
-    			Main.map = new Map();
-    	        Main.map.CreatedMap("map.txt");
+    			GameFrame.map = new Map();
+    	        GameFrame.map.CreatedMap("map.txt");
     	        System.out.println("@@@ A jatek betoltve!");
     		}
     	});
@@ -131,9 +135,15 @@ public class MenuPanel extends JComponent{
     	ownloadbutton.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent ae) {
-    			Main.map = new Map();
-    	        Main.map.CreatedMap("map.txt");
-    	        System.out.println("@@@ A jatek betoltve!");
+    			try {
+					load();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}   			  			
     		}
     	});
     	
@@ -149,6 +159,21 @@ public class MenuPanel extends JComponent{
     	
     	
     }
+	
+	public void load() throws IOException, ClassNotFoundException {
+		File file = null;
+		JFileChooser choose=new JFileChooser();
+		int var= choose.showDialog(this,"Betölt");
+		if(var== JFileChooser.APPROVE_OPTION) {
+			file=choose.getSelectedFile();
+		}
+		if(file.exists() && file!= null) {
+			GameFrame.map = new Map();
+	        GameFrame.map.CreatedMap(file.getCanonicalPath());
+	        System.out.println("@@@ A jatek betoltve!");
+			}
+	}
+	
 	}
 
 

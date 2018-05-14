@@ -27,6 +27,7 @@ public class Wall extends Pushable {
 
 	@Override
 	public void setActual(Field field) {
+		actual=field;
 	}
 
 

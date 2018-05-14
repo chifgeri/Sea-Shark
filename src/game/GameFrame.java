@@ -17,15 +17,15 @@ import javax.swing.JPanel;
  * Itt található az az állapotgép-szerű logika, amely meghatározza a program működési folyamatát.
  */
 
-public class Main extends JFrame {	
-	public static Main mainwindow;
+public class GameFrame extends JFrame {	
+	public static GameFrame mainwindow;
 	public static final int FRAME_WIDTH = 800;
 	public static final int FRAME_HEIGHT = 800;
 	private static final long serialVersionUID = 1L;
 	private static InputStreamReader isr = new InputStreamReader(System.in);
     private static BufferedReader reader = new BufferedReader(isr);
     public static Map map;
-    private static boolean end = false;
+    public static boolean end = false;
     private static GamePanel gamepanel;
     private static MenuPanel menupanel;
     public static void Log(String msg) {
@@ -38,13 +38,13 @@ public class Main extends JFrame {
     public  static  void  MainMenu (){
         boolean running = true;
 
-        mainwindow = new Main();
+        mainwindow = new GameFrame();
         mainwindow.setVisible(true);
 		menupanel = new MenuPanel();
 		mainwindow.getContentPane().add(menupanel,BorderLayout.CENTER);
 		mainwindow.setFocusable(true);
 		mainwindow.pack();
-		
+	/*	
         Log("@@@ A program elindult!");
         try {
             while(running) {
@@ -91,7 +91,7 @@ public class Main extends JFrame {
         }catch (Exception e){
             e.printStackTrace(System.out);
         }
-        
+        */
     }
     /**
      * A játékot reprezentáló logika.
@@ -103,6 +103,10 @@ public class Main extends JFrame {
 		mainwindow.getContentPane().add(gamepanel,BorderLayout.CENTER);
 		mainwindow.setVisible(true);
 		mainwindow.setFocusable(true);
+		if(map.sizeY*40>200) 
+		mainwindow.setMinimumSize(new Dimension(map.sizeX*40+200,map.sizeY*40));
+		else
+			mainwindow.setMinimumSize(new Dimension(map.sizeX*40+150,300));
 		mainwindow.pack();
     	mainwindow.getContentPane().repaint();
         mainwindow.revalidate();
@@ -202,10 +206,10 @@ public class Main extends JFrame {
         MainMenu();
     }
     
-    Main(){
+    GameFrame(){
     	super("Sokoban Game");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+		setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 		setResizable(false);
 		setLocationRelativeTo(null);
     	}

@@ -86,7 +86,10 @@ public class Map {
                             f.changeFriction(Integer.parseInt(subcmd.get(1))-10);
                         break;
                     case 'W' :
-                        fields.add(new Field(new Wall()));
+                    	p=new Wall();
+                    	Field f1 = new Field(p);
+                    	p.setActual(f1);
+                        fields.add(f1);
                         break;
                     case 'S' :
                         if(subcmd.size() == 2) {

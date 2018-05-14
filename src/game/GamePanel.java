@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
@@ -31,7 +32,7 @@ public class GamePanel  extends JComponent  implements KeyListener {
 	{
         addKeyListener(this);
 		map=_map;
-		this.setMinimumSize(new Dimension(map.sizeX*40,map.sizeY*40));
+	
 
 		WallImage=javax.imageio.ImageIO.read(new File("images/wall.png"));
 	    WorkerImage=javax.imageio.ImageIO.read(new File("images/worker.png"));
@@ -45,9 +46,31 @@ public class GamePanel  extends JComponent  implements KeyListener {
 	     TrapClosedImage=javax.imageio.ImageIO.read(new File("images/trapdoor_closed.png"));
 		 TrapOpenImage=javax.imageio.ImageIO.read(new File("images/trapdoor_open.png"));
 		 MarkerImage=javax.imageio.ImageIO.read(new File("images/marker.png"));
+		 
+		 
 
 	}
 	public void paint(Graphics g) {
+		
+		g.setFont(new Font("Arial", Font.PLAIN, 20));
+		
+		g.drawString("Soron Lévő:" , map.sizeX*40+20, 30);
+		g.drawString((Map.workers.indexOf(Map.getActualPlayer())+1)+". Játékos", map.sizeX*40+20, 50);
+		
+		for(int i=0;i!=Map.workers.size();i++) {
+			 g.drawString((i+1)+". Játékos", map.sizeX*40+20, (i+1)*60+20);
+			 g.drawString("Pontok: "+Map.workers.get(i).getScore(), map.sizeX*40+20, (i+1)*60+50);
+		 }
+		
+		
+		if(GameFrame.end) {
+			int y=this.getSize().height;
+			int x=this.getSize().width;
+			
+			g.drawString("Game Over" , x/2-50, y/2);
+			g.drawString("Nyomj Q-t a menübe lépéshez!" , x/2-150, y/2+20);
+		}
+		
     	map.DrawAll(g);
 	}
 
@@ -59,6 +82,7 @@ public class GamePanel  extends JComponent  implements KeyListener {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         boolean validKey = false;
+        if(!GameFrame.end) {
 	    if(keyEvent.getKeyCode() == Map.getActualPlayer().getLeftKey()) {
             map.MoveWorker(Direction.LEFT);
             validKey = true;
@@ -98,6 +122,18 @@ public class GamePanel  extends JComponent  implements KeyListener {
         }
         else
             System.out.println("Wrong key");
+        }
+        else
+        	if(keyEvent.getKeyCode() == KeyEvent.VK_Q) {
+        		try {
+					GameFrame.Menu();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        map.printWorkers(System.out);
+        	
     }
 
     @Override
@@ -106,10 +142,9 @@ public class GamePanel  extends JComponent  implements KeyListener {
     }
 
     private void endGame(){
-	    if(map.EndGame())
-	        try {
-                Main.Menu();
-            }catch (Exception e){e.printStackTrace();}
-
+	    if(map.EndGame()) {
+	    	GameFrame.end=true;
+	    }
+	    	
     }
 }
